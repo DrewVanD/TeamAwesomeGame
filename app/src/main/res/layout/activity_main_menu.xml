@@ -43,29 +43,39 @@
         app:fontFamily="monospace" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="267dp"
-        android:text="Button" />
+        android:text="Fight" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/statsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="296dp"
+        android:text="Stats" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/storeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="24dp"
-        android:text="Button" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="222dp"
+        android:text="Store" />
+
+    <Button
+        android:id="@+id/aboutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="144dp"
+        android:text="About" />
 
 </RelativeLayout>
