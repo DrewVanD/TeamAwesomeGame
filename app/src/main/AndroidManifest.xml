@@ -21,7 +21,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".mainMenu"></activity>
+        <activity android:name=".mainMenu" />
+        <activity android:name=".playGame" />
+        <activity android:name=".playerStats" />
+        <activity android:name=".storePage" />
+        <activity android:name=".aboutPage"></activity>
     </application>
 
 </manifest>
