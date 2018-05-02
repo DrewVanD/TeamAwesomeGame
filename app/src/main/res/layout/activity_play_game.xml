@@ -1,22 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".playGame">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="434dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/metal" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="435dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        app:srcCompat="@drawable/metal" />
+
     <Button
         android:id="@+id/exitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="162dp"
-        android:layout_marginLeft="161dp"
-        android:layout_marginRight="162dp"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="317dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:text="Exit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/chrisButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="31dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/chris" />
+
+    <ImageButton
+        android:id="@+id/alexxButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/chrisButton"
+        android:layout_marginTop="119dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/alexx" />
+
+    <ImageButton
+        android:id="@+id/drewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/alexxButton"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="223dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/drew" />
+
+    <ImageButton
+        android:id="@+id/mattButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/alexxButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="294dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/matt" />
+
+    <ImageButton
+        android:id="@+id/randyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/alexxButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="202dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/randy" />
+
+    <ImageButton
+        android:id="@+id/jeffButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/chrisButton"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="99dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/jeff" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="268dp"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/chrisButton"
+        android:layout_marginStart="98dp"
+        android:background="#FFF"
+        android:text="TextView" />
+
+</RelativeLayout>
