@@ -69,9 +69,9 @@
         android:id="@+id/mattButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/alexxButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="294dp"
+        android:layout_alignStart="@+id/chrisButton"
+        android:layout_marginBottom="266dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/matt" />
 
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/alexxButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="202dp"
+        android:layout_marginBottom="171dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/randy" />
 
@@ -91,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/chrisButton"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="99dp"
+        android:layout_marginBottom="73dp"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/jeff" />
 
@@ -102,7 +102,16 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/chrisButton"
         android:layout_marginStart="98dp"
-        android:background="#FFF"
-        android:text="TextView" />
+        android:background="#FFF" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/chrisButton"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
 
 </RelativeLayout>
