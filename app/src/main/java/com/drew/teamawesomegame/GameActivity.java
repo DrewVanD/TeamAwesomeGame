@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
-
+//TODO determine how to grab canvas for the original surface view
     Canvas canvas;
     SpriteView spriteView;
 
@@ -105,7 +105,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Thread thread = null;
         final SurfaceHolder holder;
-        final Paint paint;
+        //final Paint paint;
 
         Bitmap bmp;
         Sprite character;
@@ -117,7 +117,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             super(context);
 
             holder = getHolder();
-            paint = new Paint();
+            //paint = new Paint();
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
