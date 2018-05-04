@@ -8,11 +8,13 @@
 
     <Button
         android:id="@+id/exitButton"
-        android:layout_width="wrap_content"
+        android:layout_width="77dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="12dp"
+        android:background="@android:color/transparent"
         android:text="Exit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,11 +43,12 @@
         app:fontFamily="casual" />
 
     <Button
-        android:id="@+id/health"
+        android:id="@+id/healthButton"
         android:layout_width="77dp"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/exitButton"
         android:layout_below="@+id/storeId"
+        android:background="@android:color/transparent"
         android:text="Health"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="18sp"
@@ -53,12 +56,13 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/stamina"
+        android:id="@+id/staminaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/storeId"
         android:layout_marginStart="100dp"
+        android:background="@android:color/transparent"
         android:text="Stamina"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="18sp"
@@ -66,26 +70,28 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/train"
+        android:id="@+id/glovesButton"
         android:layout_width="78dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/storeId"
-        android:layout_marginEnd="12dp"
-        android:text="Train"
+        android:layout_marginEnd="109dp"
+        android:background="@android:color/transparent"
+        android:text="Gloves"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="18sp"
         android:textStyle="bold|italic"
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/gloves2"
+        android:id="@+id/trainButton"
         android:layout_width="78dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/storeId"
-        android:layout_marginEnd="109dp"
-        android:text="Gloves"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/transparent"
+        android:text="Train"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="18sp"
         android:textStyle="bold|italic"
