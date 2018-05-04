@@ -1,12 +1,35 @@
 package com.drew.teamawesomegame;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Canvas canvas;
+    SpriteView spriteView;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        spriteView.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        spriteView.resume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +62,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Button buttonPunch6 = findViewById(R.id.test6);
         buttonPunch6.setOnClickListener(this);
+
+        spriteView = new SpriteView(this);
+        setContentView(spriteView);
     }
 
     @Override
@@ -73,6 +99,92 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 //punch();
                 break;
                 //TODO replace buttons with touch surface to detect if player is hitting enemy.
+        }
+    }
+    class SpriteView extends SurfaceView implements  Runnable {
+
+        Thread thread = null;
+        final SurfaceHolder holder;
+        final Paint paint;
+
+        Bitmap bmp;
+        Sprite character;
+
+        long lastFrameTime;
+        int fps;
+
+        public SpriteView(Context context) {
+            super(context);
+
+            holder = getHolder();
+            paint = new Paint();
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inScaled = false;
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.spritesheet);
+
+            character = new Sprite(bmp);
+
+            character.x = 200;
+            character.y = 200;
+        }
+
+        private void updateLogic() {
+            //character.y += 1;
+        }
+
+        private void drawCanvas(){
+            if(holder.getSurface().isValid()){
+                canvas = holder.lockCanvas();
+                canvas.drawColor(Color.TRANSPARENT);
+
+                character.draw(canvas);
+                //paint.setColor(Color.argb(255,255,255,255));
+                //paint.setTextSize(45);
+                //canvas.drawText("FPS: " + fps,10,40, paint);
+                holder.unlockCanvasAndPost(canvas);
+            }
+        }
+
+        public void controlFPS() {
+            long timeThisFrame = (System.nanoTime() / 1000000 - lastFrameTime);
+            long timeToSleep = 15 - timeThisFrame;
+
+            if (timeThisFrame > 0){
+                fps = (int) (1000/ timeThisFrame);
+            }
+
+            if (timeToSleep > 0){
+                try{
+                    thread.sleep(timeToSleep);
+                }catch(InterruptedException e){
+
+                }
+            }
+            lastFrameTime = System.nanoTime() / 1000000;
+        }
+
+        @Override
+        public void run(){
+            while (true){
+                updateLogic();
+                drawCanvas();
+                controlFPS();
+            }
+        }
+
+        public void resume() {
+            thread = new Thread(this);
+            thread.start();
+        }
+
+        public void pause(){
+            try {
+                thread.join();
+            }
+            catch (InterruptedException e){
+
+            }
         }
     }
 }
