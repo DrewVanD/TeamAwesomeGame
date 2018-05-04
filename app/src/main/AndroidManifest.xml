@@ -25,7 +25,8 @@
         <activity android:name=".playGame" />
         <activity android:name=".playerStats" />
         <activity android:name=".storePage" />
-        <activity android:name=".aboutPage"></activity>
+        <activity android:name=".aboutPage" />
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>
