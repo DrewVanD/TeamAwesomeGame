@@ -98,20 +98,68 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="268dp"
-        android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/chrisButton"
-        android:layout_marginStart="98dp"
-        android:background="#FFF" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/chrisButton"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_marginEnd="42dp"
+        android:background="#FFF"
+        android:text='Chris "Holly" Jarino \n Health: 100 \n Damage: 5/hit'
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/alexxButton"
+        android:background="#FFF"
+        android:text='Alexx "Quanterooni" Quan \n Health: 200 \n Damage: 10/hit'
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/drewButton"
+        android:background="#FFF"
+        android:text="Drew Van Doom \n Health: 300 \n Damage: 15/hit"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/mattButton"
+        android:background="#FFF"
+        android:text='Matt "Oca" Agostino \nHealth: 400 \nDamage: 20/hit'
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/randyButton"
+        android:background="#FFF"
+        android:text='Macho "Stan The Van" Savage \nHealth: 500 \nDamage: 25/hit'
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignTop="@+id/jeffButton"
+        android:background="#FFF"
+        android:text='Jeff "The Demo Man" Gauvan \nHealth: 1000 \nDamage: 40/hit'
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
 </RelativeLayout>
