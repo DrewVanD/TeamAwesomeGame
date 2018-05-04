@@ -44,33 +44,33 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                startActivity(i);
                break;
            case R.id.chrisButton:
-               Intent j = new Intent(this, gameActivity.class);
-               startActivity(i);
+               Intent j = new Intent(this, GameActivity.class);
+               startActivity(j);
                break;
            case R.id.alexxButton:
                MainActivity.enemyNumber = 2;
-               Intent k = new Intent(this, gameActivity.class);
-               startActivity(i);
+               Intent k = new Intent(this, GameActivity.class);
+               startActivity(k);
                break;
            case R.id.drewButton:
                MainActivity.enemyNumber = 3;
-               Intent l = new Intent(this, gameActivity.class);
-               startActivity(i);
+               Intent l = new Intent(this, GameActivity.class);
+               startActivity(l);
                break;
            case R.id.mattButton:
                MainActivity.enemyNumber = 4;
-               Intent m = new Intent(this, gameActivity.class);
-               startActivity(i);
+               Intent m = new Intent(this, GameActivity.class);
+               startActivity(m);
                break;
            case R.id.randyButton:
                MainActivity.enemyNumber = 5;
-               Intent n = new Intent(this, gameActivity.class);
-               startActivity(i);
+               Intent n = new Intent(this, GameActivity.class);
+               startActivity(n);
                break;
            case R.id.jeffButton:
                MainActivity.enemyNumber = 6;
-               Intent o = new Intent(this, gameActivity.class);
-               startActivity(i);
+               Intent o = new Intent(this, GameActivity.class);
+               startActivity(o);
                break;
        }
     }
