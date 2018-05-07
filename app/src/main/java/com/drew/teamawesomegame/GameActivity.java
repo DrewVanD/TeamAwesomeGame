@@ -135,8 +135,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             character = new Sprite(bmp);
 
-            character.x = 200;
-            character.y = 200;
+            character.x = 400;
+            character.y = 800;//TODO : need to fix to make sure its in center and at bottom on all screens
         }
 
         private void updateLogic() {
