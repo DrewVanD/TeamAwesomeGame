@@ -108,7 +108,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         //final Paint paint;
 
         Bitmap bmp;
+        Bitmap bit;
         Sprite character;
+        //sprite test for background
+        BackGround background;
 
         long lastFrameTime;
         int fps;
@@ -122,6 +125,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.spritesheet);
+            bit = BitmapFactory.decodeResource(getResources(), R.drawable.ring2);
+
+            //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
+            background = new BackGround(bit);
+
+            background.x = 0;
+            background.y = 0;
 
             character = new Sprite(bmp);
 
@@ -136,8 +146,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         private void drawCanvas(){
             if(holder.getSurface().isValid()){
                 canvas = holder.lockCanvas();
-                canvas.drawColor(Color.TRANSPARENT);
+                //canvas.drawColor(Color.TRANSPARENT);
+                //canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),background);
 
+                background.draw(canvas);
                 character.draw(canvas);
                 //paint.setColor(Color.argb(255,255,255,255));
                 //paint.setTextSize(45);
