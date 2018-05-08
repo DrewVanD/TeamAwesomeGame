@@ -26,13 +26,19 @@
     </option>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 993484be350c8e847c4aede2f71daaac90c3b5e1
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="JDK" project-jdk-type="JavaSDK">
 =======
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
 >>>>>>> parent of 20991b4... Merge branch 'Alpha' of https://github.com/DrewVanD/TeamAwesomeGame into Alpha
+<<<<<<< HEAD
+>>>>>>> 993484be350c8e847c4aede2f71daaac90c3b5e1
+=======
 >>>>>>> 993484be350c8e847c4aede2f71daaac90c3b5e1
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
