@@ -9,6 +9,8 @@ public class Sprite {
     int y = 0;
     int width;
     int height;
+    int scalex;
+    int scaley;
 
     int sheet_rows = 3;
     int sheet_cols = 1;
@@ -23,11 +25,14 @@ public class Sprite {
     public  Sprite(Bitmap bmp) {
         this.bmp = bmp;
 
-        //width = bmp.getWidth() / sheet_cols;
-        //height = bmp.getHeight() / sheet_rows;
+        width = bmp.getWidth() / sheet_cols;
+        height = bmp.getHeight() / sheet_rows;
 
         srcX = 0;//currentFrame % sheet_cols * width;
         srcY = bodyNumber / sheet_cols * height;
+
+        scalex = width * (3 / 2);
+        scaley = height * (3 / 2);
     }
 
     public void draw(Canvas canvas) {
