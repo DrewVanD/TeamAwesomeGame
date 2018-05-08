@@ -137,12 +137,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             background.y = 0;
 
             character = new Body(bmp);
-            character.x = 200;
-            character.y = 1000;
+            character.x = (background.width / 2) - 180;
+            character.y = (background.height / 2) + 290;
 
             face = new Face(bim);
-            face.x = 345;
-            face.y = 550;
+            face.x = (background.width / 2) - 75;
+            face.y = background.height / 2;
         }
 
         private void updateLogic() {
