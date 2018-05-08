@@ -10,14 +10,15 @@ public class Sprite {
     int width;
     int height;
 
-    int sheet_rows = 4;
-    int sheet_cols = 3;
+    int sheet_rows = 3;
+    int sheet_cols = 1;
     //TODO fix sizing and such
 
     private final Bitmap bmp;
     private int srcX = 0;
     private int srcY = 0;
-    private int currentFrame = 7;
+    public static int bodyNumber = 0;
+    //private int currentFrame = 7;
 
     public  Sprite(Bitmap bmp) {
         this.bmp = bmp;
@@ -25,8 +26,8 @@ public class Sprite {
         width = bmp.getWidth() / sheet_cols;
         height = bmp.getHeight() / sheet_rows;
 
-        srcX = currentFrame % sheet_cols * width;
-        srcY = currentFrame / sheet_cols * height;
+        srcX = 0;//currentFrame % sheet_cols * width;
+        srcY = bodyNumber / sheet_cols * height;
     }
 
     public void draw(Canvas canvas) {
