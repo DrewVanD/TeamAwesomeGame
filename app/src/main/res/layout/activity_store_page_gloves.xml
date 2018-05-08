@@ -118,4 +118,30 @@
         android:layout_marginEnd="-7dp"
         android:background="@android:drawable/arrow_down_float" />
 
+    <Button
+        android:id="@+id/buttonPellet"
+        android:layout_width="187dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="306dp"
+        android:text="Pellet Gloves" />
+
+    <Button
+        android:id="@+id/buttonHeaven"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonUp"
+        android:layout_centerHorizontal="true"
+        android:text="Heavy Gloves" />
+
+    <Button
+        android:id="@+id/buttonBarb"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="251dp"
+        android:text="Barbed Gloves" />
+
 </RelativeLayout>
