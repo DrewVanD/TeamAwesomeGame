@@ -13,6 +13,7 @@ public class Enemy {
 
 
 
+
     public Enemy(String enemyName, int health, int damage, int coinReward, int expReward, int timeBetweenSwings, int hurt) {
         this.enemyName = enemyName;
         this.health = health;
