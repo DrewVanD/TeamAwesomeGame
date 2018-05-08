@@ -3,6 +3,7 @@ package com.drew.teamawesomegame;
 public class Enemy {
 
     String enemyName;
+    int enemyNumber;
     int health;
     int damage;
     int coinReward;

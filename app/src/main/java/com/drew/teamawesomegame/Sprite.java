@@ -23,8 +23,8 @@ public class Sprite {
     public  Sprite(Bitmap bmp) {
         this.bmp = bmp;
 
-        width = bmp.getWidth() / sheet_cols;
-        height = bmp.getHeight() / sheet_rows;
+        //width = bmp.getWidth() / sheet_cols;
+        //height = bmp.getHeight() / sheet_rows;
 
         srcX = 0;//currentFrame % sheet_cols * width;
         srcY = bodyNumber / sheet_cols * height;
