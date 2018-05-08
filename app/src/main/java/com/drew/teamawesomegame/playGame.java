@@ -44,38 +44,38 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                startActivity(i);
                break;
            case R.id.chrisButton:
-               Sprite.bodyNumber = 2;
-               MainActivity.enemyNumber = 1;
+               Body.bodyNumber = 2;
+               Enemy chris = new Enemy("Chris 'Holy' Jarino",200,10,100,100,1,0);
                Intent j = new Intent(this, GameActivity.class);
                startActivity(j);
                break;
            case R.id.alexxButton:
-               Sprite.bodyNumber = 1;
-               MainActivity.enemyNumber = 2;
+               Body.bodyNumber = 1;
+               Enemy alexx = new Enemy("Alexx 'Quanterooni' Quan",200,10,100,100,1,0);
                Intent k = new Intent(this, GameActivity.class);
                startActivity(k);
                break;
            case R.id.drewButton:
-               Sprite.bodyNumber = 0;
-               MainActivity.enemyNumber = 3;
+               Body.bodyNumber = 0;
+               Enemy drew = new Enemy("Drew Van Doom",200,10,100,100,1,0);
                Intent l = new Intent(this, GameActivity.class);
                startActivity(l);
                break;
            case R.id.mattButton:
-               Sprite.bodyNumber = 0;
-               MainActivity.enemyNumber = 4;
+               Body.bodyNumber = 0;
+               Enemy matt = new Enemy("Matt 'Oca'  Agostino",200,10,100,100,1,0);
                Intent m = new Intent(this, GameActivity.class);
                startActivity(m);
                break;
            case R.id.randyButton:
-               Sprite.bodyNumber = 1;
-               MainActivity.enemyNumber = 5;
+               Body.bodyNumber = 1;
+               Enemy randy = new Enemy("Macho 'Stan The Van' Savage",200,10,100,100,1,0);
                Intent n = new Intent(this, GameActivity.class);
                startActivity(n);
                break;
            case R.id.jeffButton:
-               Sprite.bodyNumber = 0;
-               MainActivity.enemyNumber = 6;
+               Body.bodyNumber = 0;
+               Enemy jeff = new Enemy("Jeff 'The Demo Man' Gauvan",200,10,100,100,1,0);
                Intent o = new Intent(this, GameActivity.class);
                startActivity(o);
                break;
