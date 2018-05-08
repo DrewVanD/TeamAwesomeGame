@@ -124,7 +124,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
-            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.spritesheet);
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.body);
             bit = BitmapFactory.decodeResource(getResources(), R.drawable.ring2);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
@@ -136,7 +136,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             character = new Sprite(bmp);
 
             character.x = 400;
-            character.y = 800;//TODO : need to fix to make sure its in center and at bottom on all screens
+            character.y = 1000;//TODO : need to fix to make sure its in center and at bottom on all screens
         }
 
         private void updateLogic() {
