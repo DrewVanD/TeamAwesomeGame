@@ -25,8 +25,8 @@ public class Face {
         width = bim.getWidth() / sheet_cols;
         height = bim.getHeight() / sheet_rows;
 
-        srcX = Enemy.hurt * (bim.getWidth() / sheet_cols);
-        srcY = 0;//sheet_cols * height;
+        srcX = Enemy.hurt * width;
+        srcY = Enemy.facenum * height;
     }
 
     public void draw(Canvas canvas) {
