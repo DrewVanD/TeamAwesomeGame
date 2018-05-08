@@ -4,16 +4,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public class Sprite {
+public class Face {
     int x = 0;
     int y = 0;
     int width;
     int height;
-    int scalex;
-    int scaley;
 
-    int sheet_rows = 3;
-    int sheet_cols = 1;
+    int sheet_rows = 7;
+    int sheet_cols = 2;
     //TODO fix sizing and such
 
     private final Bitmap bmp;
@@ -22,17 +20,14 @@ public class Sprite {
     public static int bodyNumber = 0;
     //private int currentFrame = 7;
 
-    public  Sprite(Bitmap bmp) {
+    public  Body(Bitmap bmp) {
         this.bmp = bmp;
 
         width = bmp.getWidth() / sheet_cols;
         height = bmp.getHeight() / sheet_rows;
 
-        srcX = 0;//currentFrame % sheet_cols * width;
-        srcY = bodyNumber / sheet_cols * height;
-
-        scalex = width * (3 / 2);
-        scaley = height * (3 / 2);
+        srcX = Enemy.hurt;
+        srcY = sheet_cols * height;
     }
 
     public void draw(Canvas canvas) {

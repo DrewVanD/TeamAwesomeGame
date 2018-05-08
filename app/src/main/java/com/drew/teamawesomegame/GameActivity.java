@@ -109,7 +109,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Bitmap bmp;
         Bitmap bit;
-        Sprite character;
+        Body character;
         //sprite test for background
         BackGround background;
 
@@ -124,7 +124,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
-            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.body);
+            bmp = BitmapFactory.decodeResource(getResources(), R.drawable.body2);
             bit = BitmapFactory.decodeResource(getResources(), R.drawable.ring2);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
@@ -133,10 +133,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             background.x = 0;
             background.y = 0;
 
-            character = new Sprite(bmp);
+            character = new Body(bmp);
 
 
-            character.x = 400;
+            character.x = 200;
             character.y = 1000;//TODO : need to fix to make sure its in center and at bottom on all screens
         }
 
