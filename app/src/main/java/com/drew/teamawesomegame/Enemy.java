@@ -15,8 +15,11 @@ public class Enemy {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Enemy(String enemyName, int health, int damage, int coinReward, int expReward, int timeBetweenSwings, int hurt, int facenum) {
 =======
+=======
+>>>>>>> 8f6237d776fd3325ed10e397297719bc42ca05ca
 
     public Enemy(String enemyName, int health, int damage, int coinReward, int expReward, int timeBetweenSwings, int hurt) {
 >>>>>>> 8f6237d776fd3325ed10e397297719bc42ca05ca
