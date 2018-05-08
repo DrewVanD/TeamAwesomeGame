@@ -141,8 +141,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             character.y = 1000;
 
             face = new Face(bim);
-            face.x = 375;
-            face.y = 660;
+            face.x = 345;
+            face.y = 550;
         }
 
         private void updateLogic() {

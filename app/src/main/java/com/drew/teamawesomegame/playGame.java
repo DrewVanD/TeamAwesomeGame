@@ -68,7 +68,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                startActivity(m);
                break;
            case R.id.randyButton:
-               Body.bodyNumber = 2;
+               Body.bodyNumber = 1;
                Enemy randy = new Enemy("Macho 'Stan The Van' Savage",200,10,100,100,1,0,4);
                Intent n = new Intent(this, GameActivity.class);
                startActivity(n);

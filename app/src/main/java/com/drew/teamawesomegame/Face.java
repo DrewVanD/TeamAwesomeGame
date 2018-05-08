@@ -17,7 +17,6 @@ public class Face {
     private final Bitmap bim;
     private int srcX = 0;
     private int srcY = 0;
-    //private int currentFrame = 7;
 
     public Face(Bitmap bim) {
         this.bim = bim;
