@@ -21,12 +21,18 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".mainMenu" />
-        <activity android:name=".playGame" />
-        <activity android:name=".playerStats" />
-        <activity android:name=".storePage" />
-        <activity android:name=".aboutPage" />
-        <activity android:name=".GameActivity"></activity>
+        <activity android:name=".mainMenu"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".playGame"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".playerStats"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".storePage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".aboutPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".GameActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
