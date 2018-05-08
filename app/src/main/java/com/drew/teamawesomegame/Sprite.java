@@ -17,6 +17,7 @@ public class Sprite {
     private final Bitmap bmp;
     private int srcX = 0;
     private int srcY = 0;
+    public static int bodyNumber = 0;
     //private int currentFrame = 7;
 
     public  Sprite(Bitmap bmp) {
@@ -26,7 +27,7 @@ public class Sprite {
         height = bmp.getHeight() / sheet_rows;
 
         srcX = 0;//currentFrame % sheet_cols * width;
-        srcY = 0;//currentFrame / sheet_cols * height;
+        srcY = bodyNumber / sheet_cols * height;
     }
 
     public void draw(Canvas canvas) {
