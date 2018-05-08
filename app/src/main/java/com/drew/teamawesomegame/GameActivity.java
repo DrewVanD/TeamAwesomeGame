@@ -36,7 +36,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        Button buttonQuit = findViewById(R.id.buttonQuit);
+        /*Button buttonQuit = findViewById(R.id.buttonQuit);
         buttonQuit.setOnClickListener(this);
 
         Button buttonLeft = findViewById(R.id.buttonLeft);
@@ -61,7 +61,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         buttonPunch5.setOnClickListener(this);
 
         Button buttonPunch6 = findViewById(R.id.test6);
-        buttonPunch6.setOnClickListener(this);
+        buttonPunch6.setOnClickListener(this);*/
 
         spriteView = new SpriteView(this);
         setContentView(spriteView);
@@ -69,7 +69,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        /*switch (v.getId()) {
             case R.id.buttonQuit:
                 Intent i = new Intent(this, mainMenu.class);
                 startActivity(i);
@@ -99,7 +99,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 //punch();
                 break;
                 //TODO replace buttons with touch surface to detect if player is hitting enemy.
-        }
+        }*/
     }
     class SpriteView extends SurfaceView implements  Runnable {
 
