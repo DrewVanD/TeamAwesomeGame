@@ -22,4 +22,5 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
         Intent i = new Intent(this, mainMenu.class);
         startActivity(i);
     }
+    //TODO: Link all store pages
 }
