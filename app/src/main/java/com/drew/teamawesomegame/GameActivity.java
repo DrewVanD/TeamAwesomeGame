@@ -109,7 +109,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         Bitmap bmp;
         Bitmap bit;
+        Bitmap bim;
         Body character;
+        Face face;
         //sprite test for background
         BackGround background;
 
@@ -126,6 +128,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             options.inScaled = false;
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.body2);
             bit = BitmapFactory.decodeResource(getResources(), R.drawable.ring2);
+            bim = BitmapFactory.decodeResource(getResources(), R.drawable.faces);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -134,10 +137,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             background.y = 0;
 
             character = new Body(bmp);
-
-
             character.x = 200;
-            character.y = 1000;//TODO : need to fix to make sure its in center and at bottom on all screens
+            character.y = 1000;
+
+            face = new Face(bim);
+            face.x = 375;
+            face.y = 660;
         }
 
         private void updateLogic() {
@@ -152,6 +157,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
                 background.draw(canvas);
                 character.draw(canvas);
+                face.draw(canvas);
                 //paint.setColor(Color.argb(255,255,255,255));
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);

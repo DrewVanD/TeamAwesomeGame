@@ -14,26 +14,25 @@ public class Face {
     int sheet_cols = 2;
     //TODO fix sizing and such
 
-    private final Bitmap bmp;
+    private final Bitmap bim;
     private int srcX = 0;
     private int srcY = 0;
-    public static int bodyNumber = 0;
     //private int currentFrame = 7;
 
-    public  Body(Bitmap bmp) {
-        this.bmp = bmp;
+    public Face(Bitmap bim) {
+        this.bim = bim;
 
-        width = bmp.getWidth() / sheet_cols;
-        height = bmp.getHeight() / sheet_rows;
+        width = bim.getWidth() / sheet_cols;
+        height = bim.getHeight() / sheet_rows;
 
-        srcX = Enemy.hurt;
-        srcY = sheet_cols * height;
+        srcX = Enemy.hurt * width;
+        srcY = Enemy.facenum * height;
     }
 
     public void draw(Canvas canvas) {
         Rect srcRect = new Rect(srcX,srcY,srcX+width,srcY+height);
         Rect dstRect = new Rect(x,y,x+width,y+height);
 
-        canvas.drawBitmap(bmp, srcRect, dstRect, null);
+        canvas.drawBitmap(bim, srcRect, dstRect, null);
     }
 }
