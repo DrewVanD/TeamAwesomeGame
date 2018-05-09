@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="150dp"
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="37dp"
         android:layout_marginTop="26dp" />
+=======
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Button" />
+>>>>>>> 525a688f000a0db33f9097a41c00fd88a9302c98
 </RelativeLayout>
