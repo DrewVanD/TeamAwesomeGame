@@ -14,6 +14,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Random;
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
@@ -163,7 +165,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         private void updateLogic() {
-            //character.y += 1;
+            Random rand = new Random();
+            int r = rand.nextInt(30) - 30;
+            int l = rand.nextInt(30) - 30;
+            if(rightGlove.y < background.height && rightGlove.y > 500) {
+                rightGlove.y = rightGlove.y + r;
+            }
+            if(leftGlove.y < background.height && leftGlove.y > 500) {
+                leftGlove.y = leftGlove.y + l;
+            }
+
         }
 
         private void drawCanvas(){
