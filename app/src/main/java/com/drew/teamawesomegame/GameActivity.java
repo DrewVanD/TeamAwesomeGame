@@ -14,6 +14,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.Random;
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
@@ -110,8 +112,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Bitmap bmp;
         Bitmap bit;
         Bitmap bim;
+        Bitmap rGlove;
+        Bitmap lGlove;
         Body character;
         Face face;
+        LeftGlove leftGlove;
+        RightGlove rightGlove;
         //sprite test for background
         BackGround background;
 
@@ -129,6 +135,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.body2);
             bit = BitmapFactory.decodeResource(getResources(), R.drawable.ring2);
             bim = BitmapFactory.decodeResource(getResources(), R.drawable.faces);
+            rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
+            lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -143,10 +151,30 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             face = new Face(bim);
             face.x = (background.width / 2) - (face.width / 2) + 60;
             face.y = background.height / 2;
+
+            rightGlove = new RightGlove(rGlove);
+            rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
+            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) - 100;
+
+            leftGlove = new LeftGlove(lGlove);
+            leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
+            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) - 100;
+
+
+
         }
 
         private void updateLogic() {
-            //character.y += 1;
+            Random rand = new Random();
+            int r = rand.nextInt(30) - 30;
+            int l = rand.nextInt(30) - 30;
+            if(rightGlove.y < background.height && rightGlove.y > 500) {
+                rightGlove.y = rightGlove.y + r;
+            }
+            if(leftGlove.y < background.height && leftGlove.y > 500) {
+                leftGlove.y = leftGlove.y + l;
+            }
+
         }
 
         private void drawCanvas(){
@@ -158,6 +186,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
+                rightGlove.draw(canvas);
+                leftGlove.draw(canvas);
                 //paint.setColor(Color.argb(255,255,255,255));
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
