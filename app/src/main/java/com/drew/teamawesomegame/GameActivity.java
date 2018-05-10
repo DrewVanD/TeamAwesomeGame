@@ -72,13 +72,21 @@ public class GameActivity extends AppCompatActivity implements View.OnTouchListe
         setContentView(spriteView);
     }
 
-
+    public void damageEnemy(){
+        if(Enemy.health >= 0) {
+            Enemy.health -= playerStats.baseDamage;
+        }
+    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction() & MotionEvent.ACTION_MASK){
             case MotionEvent.ACTION_DOWN:
-
+                if(Enemy.health <= 0) {
+                    Intent exit = new Intent(this, mainMenu.class);
+                    startActivity(exit);
+                }
+                damageEnemy();
                 break;
             case MotionEvent.ACTION_UP:
 
@@ -92,7 +100,7 @@ public class GameActivity extends AppCompatActivity implements View.OnTouchListe
 
         Thread thread = null;
         final SurfaceHolder holder;
-        //final Paint paint;
+        final Paint paint;
 
         Bitmap bmp;
         Bitmap bit;
@@ -115,7 +123,7 @@ public class GameActivity extends AppCompatActivity implements View.OnTouchListe
             super(context);
 
             holder = getHolder();
-            //paint = new Paint();
+            paint = new Paint();
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
@@ -205,7 +213,9 @@ public class GameActivity extends AppCompatActivity implements View.OnTouchListe
                 face.draw(canvas);
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
-                //paint.setColor(Color.argb(255,255,255,255));
+
+                paint.setColor(Color.BLACK);
+
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
