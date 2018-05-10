@@ -8,6 +8,13 @@ import android.widget.Button;
 
 public class playerStats extends AppCompatActivity implements View.OnClickListener{
 
+    public static int playerHealth = 100;
+    public static int playerMaxHealth = 100;
+    public static int baseDamage = 10;
+    public static int playerStam = 100;
+    public static int playerMaxStam = 100;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

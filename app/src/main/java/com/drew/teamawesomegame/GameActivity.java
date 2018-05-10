@@ -9,14 +9,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+public class GameActivity extends AppCompatActivity implements View.OnTouchListener {
 //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
     SpriteView spriteView;
@@ -69,40 +72,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(spriteView);
     }
 
+
+
     @Override
-    public void onClick(View v) {
-        /*switch (v.getId()) {
-            case R.id.buttonQuit:
-                Intent i = new Intent(this, mainMenu.class);
-                startActivity(i);
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction() & MotionEvent.ACTION_MASK){
+            case MotionEvent.ACTION_DOWN:
+
                 break;
-            case R.id.buttonLeft:
-                //dodge();
+            case MotionEvent.ACTION_UP:
+
                 break;
-            case R.id.buttonRight:
-                //dodge();
-                break;
-            case R.id.test1:
-                //punch();
-                break;
-            case R.id.test2:
-                //punch();
-                break;
-            case R.id.test3:
-                //punch();
-                break;
-            case R.id.test4:
-                //punch();
-                break;
-            case R.id.test5:
-                //punch();
-                break;
-            case R.id.test6:
-                //punch();
-                break;
-                //TODO replace buttons with touch surface to detect if player is hitting enemy.
-        }*/
+        }
+
+        return false;
     }
+
     class SpriteView extends SurfaceView implements  Runnable {
 
         Thread thread = null;
@@ -120,6 +105,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
+
+        Timer timer = new Timer();
 
         long lastFrameTime;
         int fps;
@@ -164,15 +151,45 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+
+
         private void updateLogic() {
+            timer.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    Random rand = new Random();
+                    int flip = -1;
+                    int r = rand.nextInt(30) + 1;
+                    int l = rand.nextInt(30) + 1;
+                    if(rightGlove.y < background.height && rightGlove.y > 500) {
+                        rightGlove.y += r;
+                    }
+                    else{
+                        rightGlove.y += (r * flip);
+                    }
+                    if(leftGlove.y < background.height && leftGlove.y > 500) {
+                        leftGlove.y += l;
+                    }
+                    else{
+                        leftGlove.y += (l * flip);
+                    }
+                }
+            },1000,500);
             Random rand = new Random();
-            int r = rand.nextInt(30) - 30;
-            int l = rand.nextInt(30) - 30;
+            int flip = -1;
+            int r = rand.nextInt(90)+ 1;
+            int l = rand.nextInt(90) + 1;
             if(rightGlove.y < background.height && rightGlove.y > 500) {
-                rightGlove.y = rightGlove.y + r;
+                rightGlove.y += r;
+            }
+            else{
+               rightGlove.y += (r * flip);
             }
             if(leftGlove.y < background.height && leftGlove.y > 500) {
-                leftGlove.y = leftGlove.y + l;
+                leftGlove.y += l;
+            }
+            else{
+               leftGlove.y += (l * flip);
             }
 
         }
