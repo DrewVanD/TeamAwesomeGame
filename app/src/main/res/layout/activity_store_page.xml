@@ -44,7 +44,7 @@
 
     <Button
         android:id="@+id/healthButton"
-        android:layout_width="77dp"
+        android:layout_width="58dp"
         android:layout_height="37dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/exitButton"
@@ -58,11 +58,11 @@
 
     <Button
         android:id="@+id/staminaButton"
-        android:layout_width="wrap_content"
+        android:layout_width="78dp"
         android:layout_height="38dp"
-        android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/healthButton"
-        android:layout_marginStart="111dp"
+        android:layout_marginEnd="-8dp"
+        android:layout_toStartOf="@+id/textView9"
         android:background="@android:color/transparent"
         android:text="Stamina"
         android:textAppearance="@android:style/TextAppearance.Large"
@@ -72,11 +72,11 @@
 
     <Button
         android:id="@+id/glovesButton"
-        android:layout_width="78dp"
+        android:layout_width="64dp"
         android:layout_height="38dp"
-        android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/healthButton"
-        android:layout_marginEnd="119dp"
+        android:layout_marginStart="-9dp"
+        android:layout_toEndOf="@+id/textView9"
         android:background="@android:color/transparent"
         android:text="Gloves"
         android:textAppearance="@android:style/TextAppearance.Large"
@@ -86,11 +86,11 @@
 
     <Button
         android:id="@+id/trainButton"
-        android:layout_width="78dp"
+        android:layout_width="44dp"
         android:layout_height="38dp"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/healthButton"
-        android:layout_marginEnd="18dp"
+        android:layout_marginEnd="30dp"
         android:background="@android:color/transparent"
         android:text="Train"
         android:textAppearance="@android:style/TextAppearance.Large"
@@ -98,61 +98,59 @@
         android:textStyle="bold|italic"
         android:visibility="visible" />
 
-    <ImageButton
-        android:id="@+id/bottle"
-        android:layout_width="44dp"
+    <Button
+        android:id="@+id/upButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="261dp"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/drink" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="268dp"
+        android:text="Up" />
 
-    <ImageButton
-        android:id="@+id/trunks"
-        android:layout_width="52dp"
-        android:layout_height="66dp"
-        android:layout_alignBottom="@+id/bottle"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/trunks" />
+    <Button
+        android:id="@+id/downButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/itemView"
+        android:layout_alignParentEnd="true"
+        android:text="down" />
 
-    <ImageButton
-        android:id="@+id/heavyGlove"
-        android:layout_width="53dp"
-        android:layout_height="70dp"
+    <ImageView
+        android:id="@+id/itemView"
+        android:layout_width="138dp"
+        android:layout_height="191dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="261dp"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="216dp"
         app:srcCompat="@drawable/heavyglove" />
 
-    <ImageButton
-        android:id="@+id/pelletGlove"
-        android:layout_width="53dp"
-        android:layout_height="70dp"
-        android:layout_alignTop="@+id/bottle"
-        android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/pelletgloves" />
-
-    <ImageButton
-        android:id="@+id/barbGllove"
-        android:layout_width="53dp"
-        android:layout_height="70dp"
+    <Button
+        android:id="@+id/purchaseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="164dp"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/barbedgloves" />
+        android:layout_marginBottom="120dp"
+        android:text="purchase" />
 
-    <ImageButton
-        android:id="@+id/trainer"
-        android:layout_width="60dp"
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/bottle"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/trainer" />
+        android:layout_marginBottom="200dp"
+        android:text="Price"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/purchaseButton"
+        android:layout_centerHorizontal="true"
+        android:text="TextView" />
 
 </RelativeLayout>
