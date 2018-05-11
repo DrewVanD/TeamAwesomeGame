@@ -86,7 +86,7 @@ public class GameActivity extends AppCompatActivity {
                     Intent exit = new Intent(this, mainMenu.class);
                     startActivity(exit);
                 }
-                damageEnemy();
+                //damageEnemy();
                 break;
             case MotionEvent.ACTION_UP:
 
