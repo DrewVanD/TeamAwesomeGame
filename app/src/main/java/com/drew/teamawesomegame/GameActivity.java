@@ -161,7 +161,7 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-        private void updateLogic() {
+        private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
@@ -170,16 +170,16 @@ public class GameActivity extends AppCompatActivity {
                     int r = rand.nextInt(30) + 1;
                     int l = rand.nextInt(30) + 1;
                     if(rightGlove.y < background.height && rightGlove.y > (background.height/2)){//test 500) {
-                        rightGlove.y += r;
+                        rightGlove.y = r;// test += r;
                     }
                     else{
-                        rightGlove.y += (r * flip);
+                        rightGlove.y = r * -1;//test += (r * flip);
                     }
                     if(leftGlove.y < background.height && leftGlove.y > (background.height/2)){//test 500) {
-                        leftGlove.y += l;
+                        leftGlove.y = l;// test += l;
                     }
                     else{
-                        leftGlove.y += (l * flip);
+                        leftGlove.y = l * -1;//test += (l * flip);
                     }
                 }
             },1000,500);
@@ -191,13 +191,13 @@ public class GameActivity extends AppCompatActivity {
                 rightGlove.y += r;
             }
             else{
-               rightGlove.y += (r * flip);
+               rightGlove.y = r * -1;//test += (r * flip);
             }
             if(leftGlove.y < background.height && leftGlove.y > (background.height/2)){//test 500) {
                 leftGlove.y += l;
             }
             else{
-               leftGlove.y += (l * flip);
+               leftGlove.y = l * -1;//test += (l * flip);
             }
 
         }
