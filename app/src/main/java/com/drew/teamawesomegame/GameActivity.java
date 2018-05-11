@@ -169,13 +169,13 @@ public class GameActivity extends AppCompatActivity {
                     int flip = -1;
                     int r = rand.nextInt(30) + 1;
                     int l = rand.nextInt(30) + 1;
-                    if(rightGlove.y < background.height && rightGlove.y > 500) {
+                    if(rightGlove.y < background.height && rightGlove.y > (background.height/2)){//test 500) {
                         rightGlove.y += r;
                     }
                     else{
                         rightGlove.y += (r * flip);
                     }
-                    if(leftGlove.y < background.height && leftGlove.y > 500) {
+                    if(leftGlove.y < background.height && leftGlove.y > (background.height/2)){//test 500) {
                         leftGlove.y += l;
                     }
                     else{
@@ -187,13 +187,13 @@ public class GameActivity extends AppCompatActivity {
             int flip = -1;
             int r = rand.nextInt(90)+ 1;
             int l = rand.nextInt(90) + 1;
-            if(rightGlove.y < background.height && rightGlove.y > 500) {
+            if(rightGlove.y < background.height && rightGlove.y > (background.height/2)){//test 500) {
                 rightGlove.y += r;
             }
             else{
                rightGlove.y += (r * flip);
             }
-            if(leftGlove.y < background.height && leftGlove.y > 500) {
+            if(leftGlove.y < background.height && leftGlove.y > (background.height/2)){//test 500) {
                 leftGlove.y += l;
             }
             else{
