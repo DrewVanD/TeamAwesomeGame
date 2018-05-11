@@ -19,7 +19,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class GameActivity extends AppCompatActivity implements View.OnTouchListener {
+public class GameActivity extends AppCompatActivity {
 //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
     SpriteView spriteView;
@@ -79,7 +79,7 @@ public class GameActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction() & MotionEvent.ACTION_MASK){
             case MotionEvent.ACTION_DOWN:
                 if(Enemy.health <= 0) {
