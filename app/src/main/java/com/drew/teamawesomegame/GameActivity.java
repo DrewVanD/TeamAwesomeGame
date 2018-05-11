@@ -72,11 +72,11 @@ public class GameActivity extends AppCompatActivity {
         setContentView(spriteView);
     }
 
-    public void damageEnemy(){
+    /*public void damageEnemy(){
         if(Enemy.health >= 0) {
             Enemy.health -= playerStats.baseDamage;
         }
-    }
+    }*/
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
