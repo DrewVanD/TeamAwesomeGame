@@ -86,8 +86,7 @@ public class GameActivity extends AppCompatActivity {
                     Intent exit = new Intent(this, mainMenu.class);
                     startActivity(exit);
                 }
-                //damageEnemy();
-                Enemy.health -= playerStats.baseDamage;
+                damageEnemy();
                 break;
             case MotionEvent.ACTION_UP:
 
@@ -115,7 +114,7 @@ public class GameActivity extends AppCompatActivity {
         //sprite test for background
         BackGround background;
 
-        //Timer timer = new Timer();
+        Timer timer = new Timer();
 
         long lastFrameTime;
         int fps;
@@ -163,7 +162,7 @@ public class GameActivity extends AppCompatActivity {
 
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
-           /* timer.scheduleAtFixedRate(new TimerTask() {
+            timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
                     Random rand = new Random();
@@ -199,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
             }
             else{
                leftGlove.y = l * -1;//test += (l * flip);
-            }*/
+            }
 
         }
 
