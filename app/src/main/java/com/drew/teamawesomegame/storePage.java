@@ -101,6 +101,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
     public void setImage(){
         ImageView itemImage = findViewById(R.id.itemView);
         TextView itemPrice = findViewById(R.id.itemPrice);
+        //can change price anytime
         TextView itemName = findViewById(R.id.itemName);
 
         switch(itemCol) {
@@ -176,7 +177,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.trainer);
-                        itemName.setText("Coach Goku");
+                        itemName.setText("Coach Burger King");
                         itemPrice.setText("($)Food");
                         break;
                 }
