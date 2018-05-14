@@ -78,23 +78,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }*/
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction() & MotionEvent.ACTION_MASK){
-            case MotionEvent.ACTION_DOWN:
-                if(Enemy.health <= 0) {
-                    Intent exit = new Intent(this, mainMenu.class);
-                    startActivity(exit);
-                }
-                //damageEnemy();
-                break;
-            case MotionEvent.ACTION_UP:
 
-                break;
-        }
-
-        return false;
-    }
 
     class SpriteView extends SurfaceView implements  Runnable {
 
@@ -118,8 +102,8 @@ public class GameActivity extends AppCompatActivity {
 
         long lastFrameTime;
         int fps;
-        int rvy = 0;
-        int lvy = 0;
+        int rvy = 1;
+        int lvy = 1;
 
         public SpriteView(Context context) {
             super(context);
@@ -151,22 +135,50 @@ public class GameActivity extends AppCompatActivity {
 
             rightGlove = new RightGlove(rGlove);
             rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
-            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) + 100;
+            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) - 150;
 
             leftGlove = new LeftGlove(lGlove);
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
-            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) + 100;
+            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) - 150;
 
 
 
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            switch (event.getAction() & MotionEvent.ACTION_MASK){
+                case MotionEvent.ACTION_DOWN:
+                    rvy = 5;
+                    lvy = 5;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    rvy = 1;
+                    lvy = 1;
+                    break;
+            }
+
+            return false;
         }
 
 
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
+           if(rightGlove.y > background.height){
+               rvy *= -1;
+           }
+           else if (rightGlove.y < (background.height / 2)) {
+              // rightGlove.y += rvy;
+           }
+            if(leftGlove.y > background.height){
+                rvy *= -1;
+            }
+            else if (leftGlove.y < (background.height / 2)) {
+               // leftGlove.y += rvy;
+            }
+            leftGlove.y += lvy;
             rightGlove.y += rvy;
-        leftGlove.y += lvy;
 
 
         }
@@ -184,7 +196,7 @@ public class GameActivity extends AppCompatActivity {
                 leftGlove.draw(canvas);
 
                 paint.setColor(Color.BLACK);
-
+                canvas.drawRect(350,0,200,20,paint);
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
