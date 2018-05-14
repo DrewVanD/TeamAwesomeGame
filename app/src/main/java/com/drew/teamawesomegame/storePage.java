@@ -112,12 +112,12 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                         itemPrice.setText("$100");
                         break;
                     case 2:
-                        itemImage.setImageResource(R.drawable.trunks);
+                        itemImage.setImageResource(R.drawable.trunks2);
                         itemName.setText("Gold/Black Trunks");
                         itemPrice.setText("$200");
                         break;
                     case 3:
-                        itemImage.setImageResource(R.drawable.trunks);
+                        itemImage.setImageResource(R.drawable.trunks3);
                         itemName.setText("Pink/Gold Trunks");
                         itemPrice.setText("$300");
                         break;
@@ -132,12 +132,12 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                         itemPrice.setText("$100");
                         break;
                     case 2:
-                        itemImage.setImageResource(R.drawable.drink);
+                        itemImage.setImageResource(R.drawable.drink2);
                         itemName.setText("Energy Drink");
                         itemPrice.setText("$200");
                         break;
                     case 3:
-                        itemImage.setImageResource(R.drawable.drink);
+                        itemImage.setImageResource(R.drawable.drink3);
                         itemName.setText("Booster Drink");
                         itemPrice.setText("$300");
                         break;
