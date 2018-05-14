@@ -168,17 +168,17 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                     case 1:
                         itemImage.setImageResource(R.drawable.trainer);
                         itemName.setText("Coach Racist Coach");
-                        itemPrice.setText("($)Fried Rice");
+                        itemPrice.setText("$200");
                         break;
                     case 2:
-                        itemImage.setImageResource(R.drawable.trainer);
-                        itemName.setText("Coach Future Trunks");
-                        itemPrice.setText("($)A Small Loan");
+                        itemImage.setImageResource(R.drawable.trainer2);
+                        itemName.setText("Coach Kernal Sandas");
+                        itemPrice.setText("$400");
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.trainer);
-                        itemName.setText("Coach Burger King");
-                        itemPrice.setText("($)Food");
+                        itemName.setText("Coach Burgher Kingg");
+                        itemPrice.setText("$600");
                         break;
                 }
             break;
