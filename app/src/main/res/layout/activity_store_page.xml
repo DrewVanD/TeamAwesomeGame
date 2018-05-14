@@ -147,11 +147,21 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/price"
+        android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/purchaseButton"
+        android:layout_below="@+id/textView9"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="-200dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="233dp"
         android:text="TextView" />
 
 </RelativeLayout>
