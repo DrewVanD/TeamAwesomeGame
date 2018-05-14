@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class storePage extends AppCompatActivity implements View.OnClickListener{
 
@@ -99,6 +100,8 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
 
     public void setImage(){
         ImageView itemImage = findViewById(R.id.itemView);
+        TextView itemPrice = findViewById(R.id.itemPrice);
+        TextView itemName = findViewById(R.id.itemName);
 
         switch(itemCol) {
             case 1:
@@ -132,6 +135,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                 switch (item){
                     case 1:
                         itemImage.setImageResource(R.drawable.heavyglove);
+                        itemName.setText("Heavy Glove");
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.pelletgloves);
