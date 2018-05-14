@@ -107,13 +107,19 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
             case 1:
                 switch(item){
                     case 1:
-                        itemImage.setImageResource(R.drawable.drink);
+                        itemImage.setImageResource(R.drawable.trunks);
+                        itemName.setText("Blue/White Trunks");
+                        itemPrice.setText("$100");
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.trunks);
+                        itemName.setText("Gold/Black Trunks");
+                        itemPrice.setText("$200");
                         break;
                     case 3:
-                        itemImage.setImageResource(R.drawable.trainer);
+                        itemImage.setImageResource(R.drawable.trunks);
+                        itemName.setText("Pink/Gold Trunks");
+                        itemPrice.setText("$300");
                         break;
 
                 }
@@ -122,12 +128,18 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                 switch(item){
                     case 1:
                         itemImage.setImageResource(R.drawable.drink);
+                        itemName.setText("Water Bottle");
+                        itemPrice.setText("$100");
                         break;
                     case 2:
-                        itemImage.setImageResource(R.drawable.trunks);
+                        itemImage.setImageResource(R.drawable.drink);
+                        itemName.setText("Energy Drink");
+                        itemPrice.setText("$200");
                         break;
                     case 3:
-                        itemImage.setImageResource(R.drawable.trainer);
+                        itemImage.setImageResource(R.drawable.drink);
+                        itemName.setText("Booster Drink");
+                        itemPrice.setText("$300");
                         break;
                 }
             break;
@@ -136,25 +148,36 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                     case 1:
                         itemImage.setImageResource(R.drawable.heavyglove);
                         itemName.setText("Heavy Glove");
+                        itemPrice.setText("$100");
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.pelletgloves);
+                        itemName.setText("Pellet Glove");
+                        itemPrice.setText("$200");
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.barbedgloves);
+                        itemName.setText("Barbed Gloves");
+                        itemPrice.setText("$300");
                         break;
                 }
             break;
             case 4:
                 switch (item){
                     case 1:
-                        itemImage.setImageResource(R.drawable.drink);
+                        itemImage.setImageResource(R.drawable.trainer);
+                        itemName.setText("Coach Racist Coach");
+                        itemPrice.setText("($)Fried Rice");
                         break;
                     case 2:
-                        itemImage.setImageResource(R.drawable.trunks);
+                        itemImage.setImageResource(R.drawable.trainer);
+                        itemName.setText("Coach Future Trunks");
+                        itemPrice.setText("($)A Small Loan");
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.trainer);
+                        itemName.setText("Coach Goku");
+                        itemPrice.setText("($)Food");
                         break;
                 }
             break;
