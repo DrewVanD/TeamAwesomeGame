@@ -118,6 +118,8 @@ public class GameActivity extends AppCompatActivity {
 
         long lastFrameTime;
         int fps;
+        int rvy = 0;
+        int lvy = 0;
 
         public SpriteView(Context context) {
             super(context);
@@ -149,11 +151,11 @@ public class GameActivity extends AppCompatActivity {
 
             rightGlove = new RightGlove(rGlove);
             rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
-            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) - 100;
+            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) + 100;
 
             leftGlove = new LeftGlove(lGlove);
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
-            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) - 100;
+            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) + 100;
 
 
 
@@ -162,43 +164,10 @@ public class GameActivity extends AppCompatActivity {
 
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    Random rand = new Random();
-                    int flip = -1;
-                    int r = rand.nextInt(30) + 1;
-                    int l = rand.nextInt(30) + 1;
-                    if(rightGlove.y < background.height && rightGlove.y > (background.height/2)){//test 500) {
-                        rightGlove.y = r;// test += r;
-                    }
-                    else{
-                        rightGlove.y = r * -1;//test += (r * flip);
-                    }
-                    if(leftGlove.y < background.height && leftGlove.y > (background.height/2)){//test 500) {
-                        leftGlove.y = l;// test += l;
-                    }
-                    else{
-                        leftGlove.y = l * -1;//test += (l * flip);
-                    }
-                }
-            },1000,500);
-            Random rand = new Random();
-            int flip = -1;
-            int r = rand.nextInt(90)+ 1;
-            int l = rand.nextInt(90) + 1;
-            if(rightGlove.y < background.height && rightGlove.y > (background.height/2)){//test 500) {
-                rightGlove.y += r;
-            }
-            else{
-               rightGlove.y = r * -1;//test += (r * flip);
-            }
-            if(leftGlove.y < background.height && leftGlove.y > (background.height/2)){//test 500) {
-                leftGlove.y += l;
-            }
-            else{
-               leftGlove.y = l * -1;//test += (l * flip);
-            }
+
+            rightGlove.y += rvy;
+        leftGlove.y += lvy;
+
 
         }
 
