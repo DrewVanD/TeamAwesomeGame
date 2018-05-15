@@ -107,6 +107,7 @@ public class GameActivity extends AppCompatActivity {
         int percentage = enemyHealth / enemyMaxHealth;
 
         long lastFrameTime;
+        long deltaTime;
         int fps;
         int rvy = 4;
         int lvy = 4;
@@ -203,6 +204,8 @@ public class GameActivity extends AppCompatActivity {
                 rightGlove.y += rvy;
             }
 
+            jeff.update(deltaTime);
+
             /*if(leftGlove.y < background.height / 2){
                 leftGlove.y += lvy;
             }
@@ -251,9 +254,11 @@ public class GameActivity extends AppCompatActivity {
         public void controlFPS() {
             long timeThisFrame = (System.nanoTime() / 1000000 - lastFrameTime);
             long timeToSleep = 15 - timeThisFrame;
+            deltaTime = 0;
 
             if (timeThisFrame > 0){
                 fps = (int) (1000/ timeThisFrame);
+                deltaTime = timeThisFrame;
             }
 
             if (timeToSleep > 0){
