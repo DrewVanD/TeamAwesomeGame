@@ -17,7 +17,7 @@ public class jeffBartender {
 
         HashMap<String, Animation> animations;
         private Animation currentAnimation = null;
-        private int currentFrame = 7;
+        private int currentFrame = 0;
         private long currentFrameTime = 0;
         private long frameTime = 0;
         private boolean playing = false;
@@ -61,6 +61,10 @@ public class jeffBartender {
 
             canvas.drawBitmap(jiff, srcRect, dstRect, null);
         }
+
+    public void addAnimation (String name, int startFrame, int frameCount, int fps, int cellWidth, int cellHeight, boolean looping){
+        animations.put(name, new Animation(name,startFrame,frameCount,fps,cellWidth,cellHeight,looping));
+    }
 
     public boolean setAnimation(String name){
         currentAnimation = animations.get(name);
