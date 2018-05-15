@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -97,13 +98,13 @@ public class GameActivity extends AppCompatActivity {
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
-
-        Timer timer = new Timer();
+        int percentage = Enemy.health / Enemy.maxHealth;
+        int baseDmg = 10;
 
         long lastFrameTime;
         int fps;
-        int rvy = 1;
-        int lvy = 1;
+        int rvy = 4;
+        int lvy = 4;
 
         public SpriteView(Context context) {
             super(context);
@@ -135,50 +136,68 @@ public class GameActivity extends AppCompatActivity {
 
             rightGlove = new RightGlove(rGlove);
             rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
-            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) - 150;
+            rightGlove.y = (background.height / 2) + (rightGlove.height) - 100;
 
             leftGlove = new LeftGlove(lGlove);
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
-            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) - 150;
+            leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
 
 
 
+        }
+
+        public void damageEnemy(){
+            Enemy.health -= baseDmg;
         }
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
-                    rvy = 5;
-                    lvy = 5;
+                    damageEnemy();
                     break;
                 case MotionEvent.ACTION_UP:
-                    rvy = 1;
-                    lvy = 1;
+
                     break;
             }
 
             return false;
         }
 
+        public void updateHealthBars(){
+            Rect healthBarBack = new Rect();
+            Rect healthBarFront = new Rect();
 
+
+
+        }
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
-           if(rightGlove.y > background.height){
-               rvy *= -1;
-           }
-           else if (rightGlove.y < (background.height / 2)) {
-              // rightGlove.y += rvy;
-           }
-            if(leftGlove.y > background.height){
-                rvy *= -1;
+            if(leftGlove.y > background.height - leftGlove.height - 50){
+
+                lvy = lvy * -1;
+                leftGlove.y += lvy;
+            }else if (leftGlove.y < background.height / 2){
+
+                lvy = lvy * -1;
+                leftGlove.y += lvy;
             }
-            else if (leftGlove.y < (background.height / 2)) {
-               // leftGlove.y += rvy;
+            if(rightGlove.y > background.height - rightGlove.height - 50) {
+                rvy = rvy * -1;
+                rightGlove.y += rvy;
+            }else if (rightGlove.y < background.height / 2){
+
+                rvy = rvy * -1;
+                rightGlove.y += rvy;
             }
-            leftGlove.y += lvy;
-            rightGlove.y += rvy;
+
+            /*if(leftGlove.y < background.height / 2){
+                leftGlove.y += lvy;
+            }
+            if(rightGlove.y < background.height / 2){
+                rightGlove.y += lvy;
+            }*/
 
 
         }
@@ -188,15 +207,21 @@ public class GameActivity extends AppCompatActivity {
                 canvas = holder.lockCanvas();
                 //canvas.drawColor(Color.TRANSPARENT);
                 //canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),background);
-
+                int barWidth = 250 * percentage;
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
 
+                paint.setColor(Color.RED);
+                paint.setTextSize(30);
+                paint.setFakeBoldText(true);
                 paint.setColor(Color.BLACK);
-                canvas.drawRect(350,0,200,20,paint);
+                canvas.drawRect(0,350,250,400,paint);
+                canvas.drawText("Enemy Health",10,340,paint);
+                paint.setColor(Color.RED);
+                canvas.drawRect(0,350,barWidth,400,paint);
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
