@@ -244,8 +244,8 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.YELLOW);
                 canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight() - 250, canvas.getWidth(),canvas.getHeight(),paint);//player stambar
                 paint.setColor(Color.WHITE);
-                canvas.drawText("Enemy Health",10,(canvas.getHeight() / 4) + 50,paint);
-                canvas.drawText("Player Health",canvas.getWidth() - 250,(canvas.getHeight() / 4) + 50,paint);//paint.setTextSize(45);
+                canvas.drawText("Enemy Health",10,(canvas.getHeight() / 4),paint);
+                canvas.drawText("Player Health",canvas.getWidth() - 250,(canvas.getHeight() / 4),paint);//paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
             }
