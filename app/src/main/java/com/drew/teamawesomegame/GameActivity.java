@@ -15,6 +15,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Timer;
@@ -98,8 +99,10 @@ public class GameActivity extends AppCompatActivity {
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
-        int percentage = Enemy.health / Enemy.maxHealth;
         int baseDmg = 10;
+        int enemyHealth = 100;
+        int enemyMaxHealth = 100;
+        int percentage = enemyHealth / enemyMaxHealth;
 
         long lastFrameTime;
         int fps;
@@ -147,7 +150,11 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void damageEnemy(){
-            Enemy.health -= baseDmg;
+            if(enemyHealth <= 0)
+            {
+                Toast.makeText(getApplicationContext(), "Enemy Dead", Toast.LENGTH_LONG).show();
+            }
+            enemyHealth -= baseDmg;
         }
 
         @Override
@@ -166,7 +173,9 @@ public class GameActivity extends AppCompatActivity {
 
         public void updateHealthBars(){
             Rect healthBarBack = new Rect();
-            Rect healthBarFront = new Rect();
+            Rect healthBarFront = new Rect(0,350,250,400);
+
+
 
 
 
@@ -207,7 +216,7 @@ public class GameActivity extends AppCompatActivity {
                 canvas = holder.lockCanvas();
                 //canvas.drawColor(Color.TRANSPARENT);
                 //canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),background);
-                int barWidth = 250 * percentage;
+
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
@@ -218,10 +227,18 @@ public class GameActivity extends AppCompatActivity {
                 paint.setTextSize(30);
                 paint.setFakeBoldText(true);
                 paint.setColor(Color.BLACK);
-                canvas.drawRect(0,350,250,400,paint);
+                canvas.drawRect(canvas.getWidth() - 250,350,canvas.getWidth(),400,paint);//player black bar
+                canvas.drawRect(0,350,250,400,paint);//enemy black bar
+                canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight(), canvas.getWidth(),canvas.getHeight(),paint);//pplayer black stam bar
+                paint.setColor(Color.WHITE);
                 canvas.drawText("Enemy Health",10,340,paint);
+                canvas.drawText("Player Health",canvas.getWidth() - 250,340,paint);
                 paint.setColor(Color.RED);
-                canvas.drawRect(0,350,barWidth,400,paint);
+                canvas.drawRect(0,350,250 * percentage,400,paint);//enemy red bar
+                paint.setColor(Color.GREEN);
+                canvas.drawRect(canvas.getWidth() - 250,350,canvas.getWidth(),400,paint);//player red bar
+                paint.setColor(Color.YELLOW);
+                canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight() - 250, canvas.getWidth(),canvas.getHeight(),paint);//player stambar
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
