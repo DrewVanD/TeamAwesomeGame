@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -135,11 +136,11 @@ public class GameActivity extends AppCompatActivity {
 
             rightGlove = new RightGlove(rGlove);
             rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
-            rightGlove.y = (background.height / 2) + (rightGlove.height) - 150;
+            rightGlove.y = (background.height / 2) + (rightGlove.height) - 100;
 
             leftGlove = new LeftGlove(lGlove);
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
-            leftGlove.y = (background.height / 2) + (leftGlove.height) - 150;
+            leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
 
 
 
@@ -163,13 +164,33 @@ public class GameActivity extends AppCompatActivity {
             return false;
         }
 
+        public void updateHealthBars(){
+            Rect healthBarBack = new Rect();
+            Rect healthBarFront = new Rect();
 
+
+
+        }
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
+            if(leftGlove.y > background.height - leftGlove.height - 50){
+                leftGlove.y += -lvy;
+            }else{
+                leftGlove.y += lvy;
+            }
+            if(rightGlove.y > background.height - rightGlove.height - 50) {
+                rightGlove.y += -rvy;
+            }else{
+                rightGlove.y += rvy;
+            }
 
-            leftGlove.y += lvy;
-            rightGlove.y += rvy;
+            if(leftGlove.y < background.height / 2){
+                leftGlove.y += lvy;
+            }
+            if(rightGlove.y < background.height / 2){
+                rightGlove.y += lvy;
+            }
 
 
         }
@@ -179,7 +200,7 @@ public class GameActivity extends AppCompatActivity {
                 canvas = holder.lockCanvas();
                 //canvas.drawColor(Color.TRANSPARENT);
                 //canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),background);
-
+                int barWidth = 250 * percentage;
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
@@ -193,7 +214,7 @@ public class GameActivity extends AppCompatActivity {
                 canvas.drawRect(0,350,250,400,paint);
                 canvas.drawText("Enemy Health",10,340,paint);
                 paint.setColor(Color.RED);
-                canvas.drawRect(0,350,250 * percentage,400,paint);
+                canvas.drawRect(0,350,barWidth,400,paint);
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
