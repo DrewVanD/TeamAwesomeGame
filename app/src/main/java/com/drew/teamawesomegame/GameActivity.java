@@ -171,15 +171,7 @@ public class GameActivity extends AppCompatActivity {
             return false;
         }
 
-        public void updateHealthBars(){
-            Rect healthBarBack = new Rect();
-            Rect healthBarFront = new Rect(0,350,250,400);
-
-
-
-
-
-        }
+        
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
