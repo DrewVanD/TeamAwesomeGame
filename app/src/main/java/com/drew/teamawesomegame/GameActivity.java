@@ -93,6 +93,8 @@ public class GameActivity extends AppCompatActivity {
         Bitmap bim;
         Bitmap rGlove;
         Bitmap lGlove;
+        Bitmap jiff;
+        jeffBartender jeff;
         Body character;
         Face face;
         LeftGlove leftGlove;
@@ -122,6 +124,7 @@ public class GameActivity extends AppCompatActivity {
             bim = BitmapFactory.decodeResource(getResources(), R.drawable.faces);
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
+            jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -144,6 +147,10 @@ public class GameActivity extends AppCompatActivity {
             leftGlove = new LeftGlove(lGlove);
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
             leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
+
+            jeff = new jeffBartender(jiff);
+            jeff.x = (background.width / 2);
+            jeff.y = 20;
 
 
 
@@ -214,6 +221,7 @@ public class GameActivity extends AppCompatActivity {
                 face.draw(canvas);
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
+                jeff.draw(canvas);
 
                 paint.setColor(Color.RED);
                 paint.setTextSize(30);
