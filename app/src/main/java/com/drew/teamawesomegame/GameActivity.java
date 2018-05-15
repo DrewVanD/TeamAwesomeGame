@@ -161,6 +161,9 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void damageEnemy(){
+            if (enemyHealth <= enemyMaxHealth / 2){
+                Enemy.hurt = 1;//not changing face yet
+            }
             if(enemyHealth <= 0)
             {
                 Toast.makeText(getApplicationContext(), "Enemy Dead", Toast.LENGTH_LONG).show();
