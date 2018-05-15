@@ -103,8 +103,8 @@ public class GameActivity extends AppCompatActivity {
 
         long lastFrameTime;
         int fps;
-        int rvy = 1;
-        int lvy = 2;
+        int rvy = 4;
+        int lvy = 4;
 
         public SpriteView(Context context) {
             super(context);
@@ -175,19 +175,21 @@ public class GameActivity extends AppCompatActivity {
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
             if(leftGlove.y > background.height - leftGlove.height - 50){
-                leftGlove.y += lvy;
+
                 lvy = lvy * -1;
+                leftGlove.y += lvy;
             }else if (leftGlove.y < background.height / 2){
-                leftGlove.y += lvy;
+
                 lvy = lvy * -1;
+                leftGlove.y += lvy;
             }
             if(rightGlove.y > background.height - rightGlove.height - 50) {
-                rightGlove.y += rvy;
                 rvy = rvy * -1;
+                rightGlove.y += rvy;
             }else if (rightGlove.y < background.height / 2){
-                rightGlove.y += rvy;
-                rightGlove.y = background.height / 2 + 10;
+
                 rvy = rvy * -1;
+                rightGlove.y += rvy;
             }
 
             /*if(leftGlove.y < background.height / 2){
