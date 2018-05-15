@@ -149,8 +149,8 @@ public class GameActivity extends AppCompatActivity {
             leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
 
             jeff = new jeffBartender(jiff);
-            jeff.x = (background.width / 2);
-            jeff.y = 20;
+            jeff.x = (background.width / 2) + 100;
+            jeff.y = 120;
 
 
 
