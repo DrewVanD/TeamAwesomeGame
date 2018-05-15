@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="43dp"
-        android:layout_marginStart="17dp"
+        android:layout_marginBottom="54dp"
+        android:layout_marginStart="18dp"
         android:background="@android:color/transparent"
         android:text="Exit"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +124,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="216dp"
-        app:srcCompat="@drawable/heavyglove" />
+        app:srcCompat="@drawable/textbubble" />
 
     <Button
         android:id="@+id/purchaseButton"
@@ -154,7 +154,7 @@
         android:layout_below="@+id/textView9"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-200dp"
-        android:text="TextView" />
+        android:text="Enjoy" />
 
     <TextView
         android:id="@+id/itemName"
@@ -163,7 +163,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="233dp"
-        android:text="TextView" />
+        android:text="Welcome" />
 
 </RelativeLayout>
 
