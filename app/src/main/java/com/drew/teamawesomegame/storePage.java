@@ -49,6 +49,8 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+        TextView itemName = findViewById(R.id.frontPageText);
+
         switch(v.getId()){
             case R.id.exitButton:
                 itemCol = 1;
@@ -57,6 +59,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 break;
             case R.id.upButton:
+                itemName.setText(" ");
                 if(item < 3) {
                     item++;
                 }
@@ -66,6 +69,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                 setImage();
                 break;
             case R.id.downButton:
+                itemName.setText(" ");
                 if(item > 1) {
                     item--;
                 }
@@ -75,21 +79,25 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                 setImage();
                 break;
             case R.id.healthButton:
+                itemName.setText(" ");
                 itemCol = 1;
                 item = 1;
                 setImage();
                 break;
             case R.id.staminaButton:
+                itemName.setText(" ");
                 itemCol = 2;
                 item = 1;
                 setImage();
                 break;
             case R.id.glovesButton:
+                itemName.setText(" ");
                 itemCol = 3;
                 item = 1;
                 setImage();
                 break;
             case R.id.trainButton:
+                itemName.setText(" ");
                 itemCol = 4;
                 item = 1;
                 setImage();
@@ -103,61 +111,71 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
         TextView itemPrice = findViewById(R.id.itemPrice);
         //can change price anytime
         TextView itemName = findViewById(R.id.itemName);
+        TextView itemDesc = findViewById(R.id.itemDesc);
 
         switch(itemCol) {
             case 1:
+            switch(item){
+                case 1:
+                    itemImage.setImageResource(R.drawable.drink);
+                    itemDesc.setText("Small Increase To Health");
+                    itemName.setText("Water Bottle");
+                    itemPrice.setText("$100");
+                    break;
+                case 2:
+                    itemImage.setImageResource(R.drawable.drink2);
+                    itemDesc.setText("Medium Increase To Health");
+                    itemName.setText("Energy Drink");
+                    itemPrice.setText("$200");
+                    break;
+                case 3:
+                    itemImage.setImageResource(R.drawable.drink3);
+                    itemDesc.setText("Large Increase To Health");
+                    itemName.setText("Booster Drink");
+                    itemPrice.setText("$300");
+                    break;
+            }
+            break;
+            case 2:
                 switch(item){
                     case 1:
                         itemImage.setImageResource(R.drawable.trunks);
+                        itemDesc.setText("Small Increase To Stamina");
                         itemName.setText("Blue/White Trunks");
                         itemPrice.setText("$100");
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.trunks2);
+                        itemDesc.setText("Medium Increase To Stamina");
                         itemName.setText("Gold/Black Trunks");
                         itemPrice.setText("$200");
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.trunks3);
+                        itemDesc.setText("Large Increase To Stamina");
                         itemName.setText("Pink/Gold Trunks");
                         itemPrice.setText("$300");
                         break;
 
                 }
             break;
-            case 2:
-                switch(item){
-                    case 1:
-                        itemImage.setImageResource(R.drawable.drink);
-                        itemName.setText("Water Bottle");
-                        itemPrice.setText("$100");
-                        break;
-                    case 2:
-                        itemImage.setImageResource(R.drawable.drink2);
-                        itemName.setText("Energy Drink");
-                        itemPrice.setText("$200");
-                        break;
-                    case 3:
-                        itemImage.setImageResource(R.drawable.drink3);
-                        itemName.setText("Booster Drink");
-                        itemPrice.setText("$300");
-                        break;
-                }
-            break;
             case 3:
                 switch (item){
                     case 1:
                         itemImage.setImageResource(R.drawable.heavyglove);
+                        itemDesc.setText("Small Increase To Damage");
                         itemName.setText("Heavy Glove");
                         itemPrice.setText("$100");
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.pelletgloves);
+                        itemDesc.setText("Medium Increase To Damage");
                         itemName.setText("Pellet Glove");
                         itemPrice.setText("$200");
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.barbedgloves);
+                        itemDesc.setText("Large Increase To Damage");
                         itemName.setText("Barbed Gloves");
                         itemPrice.setText("$300");
                         break;
@@ -167,16 +185,19 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                 switch (item){
                     case 1:
                         itemImage.setImageResource(R.drawable.trainer);
-                        itemName.setText("Coach Racist Coach");
+                        itemDesc.setText("Small Increase To Rewards");
+                        itemName.setText("Coach Master Roshi");
                         itemPrice.setText("$200");
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.trainer2);
+                        itemDesc.setText("Medium Increase To Rewards");
                         itemName.setText("Coach Kernal Sandas");
                         itemPrice.setText("$400");
                         break;
                     case 3:
                         itemImage.setImageResource(R.drawable.trainer3);
+                        itemDesc.setText("Large Increase To Rewards");
                         itemName.setText("Coach Burgher Kingg");
                         itemPrice.setText("$600");
                         break;
