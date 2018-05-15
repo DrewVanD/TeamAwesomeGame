@@ -233,19 +233,19 @@ public class GameActivity extends AppCompatActivity {
                 paint.setTextSize(30);
                 paint.setFakeBoldText(true);
                 paint.setColor(Color.BLACK);
-                canvas.drawRect(canvas.getWidth() - 250,350,canvas.getWidth(),400,paint);//player black bar
-                canvas.drawRect(0,350,250,400,paint);//enemy black bar
+                canvas.drawRect(canvas.getWidth() - 250,(canvas.getHeight() / 4),canvas.getWidth(),400,paint);//player black bar
+                canvas.drawRect(0,(canvas.getHeight() / 4),250,400,paint);//enemy black bar
                 canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight(), canvas.getWidth(),canvas.getHeight(),paint);//pplayer black stam bar
-                paint.setColor(Color.WHITE);
-                canvas.drawText("Enemy Health",10,340,paint);
-                canvas.drawText("Player Health",canvas.getWidth() - 250,340,paint);
+
                 paint.setColor(Color.RED);
-                canvas.drawRect(0,350,250 * percentage,400,paint);//enemy red bar
+                canvas.drawRect(0,(canvas.getHeight() / 4),250 * percentage,400,paint);//enemy red bar
                 paint.setColor(Color.GREEN);
-                canvas.drawRect(canvas.getWidth() - 250,350,canvas.getWidth(),400,paint);//player red bar
+                canvas.drawRect(canvas.getWidth() - 250,(canvas.getHeight() / 4),canvas.getWidth(),400,paint);//player red bar
                 paint.setColor(Color.YELLOW);
                 canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight() - 250, canvas.getWidth(),canvas.getHeight(),paint);//player stambar
-                //paint.setTextSize(45);
+                paint.setColor(Color.WHITE);
+                canvas.drawText("Enemy Health",10,(canvas.getHeight() / 4) + 50,paint);
+                canvas.drawText("Player Health",canvas.getWidth() - 250,(canvas.getHeight() / 4) + 50,paint);//paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
             }
