@@ -117,6 +117,18 @@
         android:layout_alignParentEnd="true"
         android:text="down" />
 
+    <TextView
+        android:id="@+id/frontPageText"
+        android:layout_width="104dp"
+        android:layout_height="68dp"
+        android:layout_alignTop="@+id/upButton"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="You lookin' for upgrades?"
+        android:textAllCaps="true"
+        android:textSize="14sp"
+        android:textStyle="bold|italic" />
+
     <ImageView
         android:id="@+id/itemView"
         android:layout_width="138dp"
@@ -136,12 +148,22 @@
         android:text="purchase" />
 
     <TextView
+        android:id="@+id/itemDesc"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemName"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:textSize="10sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/itemDesc"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="200dp"
         android:text="Price"
         android:textColor="#000"
         android:textSize="18sp"
@@ -153,17 +175,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView9"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-200dp"
         android:text="Enjoy" />
 
     <TextView
         android:id="@+id/itemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/downButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="233dp"
-        android:text="Welcome" />
+        android:text="Welcome"
+        android:textSize="18sp" />
 
 </RelativeLayout>
 
