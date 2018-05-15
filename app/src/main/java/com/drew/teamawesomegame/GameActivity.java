@@ -97,8 +97,8 @@ public class GameActivity extends AppCompatActivity {
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
-
-        Timer timer = new Timer();
+        int percentage = Enemy.health / Enemy.maxHealth;
+        int baseDmg = 10;
 
         long lastFrameTime;
         int fps;
@@ -135,26 +135,28 @@ public class GameActivity extends AppCompatActivity {
 
             rightGlove = new RightGlove(rGlove);
             rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
-            rightGlove.y = (background.height / 2) + (rightGlove.height * 2) - 150;
+            rightGlove.y = (background.height / 2) + (rightGlove.height) - 150;
 
             leftGlove = new LeftGlove(lGlove);
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
-            leftGlove.y = (background.height / 2) + (leftGlove.height * 2) - 150;
+            leftGlove.y = (background.height / 2) + (leftGlove.height) - 150;
 
 
 
+        }
+
+        public void damageEnemy(){
+            Enemy.health -= baseDmg;
         }
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
-                    rvy = 5;
-                    lvy = 5;
+                    damageEnemy();
                     break;
                 case MotionEvent.ACTION_UP:
-                    rvy = 1;
-                    lvy = 1;
+
                     break;
             }
 
@@ -165,18 +167,7 @@ public class GameActivity extends AppCompatActivity {
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
-           if(rightGlove.y > background.height){
-               rvy *= -1;
-           }
-           else if (rightGlove.y < (background.height / 2)) {
-              // rightGlove.y += rvy;
-           }
-            if(leftGlove.y > background.height){
-                rvy *= -1;
-            }
-            else if (leftGlove.y < (background.height / 2)) {
-               // leftGlove.y += rvy;
-            }
+
             leftGlove.y += lvy;
             rightGlove.y += rvy;
 
@@ -195,8 +186,14 @@ public class GameActivity extends AppCompatActivity {
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
 
+                paint.setColor(Color.RED);
+                paint.setTextSize(30);
+                paint.setFakeBoldText(true);
                 paint.setColor(Color.BLACK);
-                canvas.drawRect(350,0,200,20,paint);
+                canvas.drawRect(0,350,250,400,paint);
+                canvas.drawText("Enemy Health",10,340,paint);
+                paint.setColor(Color.RED);
+                canvas.drawRect(0,350,250 * percentage,400,paint);
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
