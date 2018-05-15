@@ -186,7 +186,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                     case 1:
                         itemImage.setImageResource(R.drawable.trainer);
                         itemDesc.setText("Small Increase To Rewards");
-                        itemName.setText("Coach Racist Coach");
+                        itemName.setText("Coach Master Roshi");
                         itemPrice.setText("$200");
                         break;
                     case 2:
