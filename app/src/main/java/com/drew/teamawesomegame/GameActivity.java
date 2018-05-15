@@ -15,6 +15,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Timer;
@@ -92,16 +93,21 @@ public class GameActivity extends AppCompatActivity {
         Bitmap bim;
         Bitmap rGlove;
         Bitmap lGlove;
+        Bitmap jiff;
+        jeffBartender jeff;
         Body character;
         Face face;
         LeftGlove leftGlove;
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
-        int percentage = Enemy.health / Enemy.maxHealth;
         int baseDmg = 10;
+        int enemyHealth = 100;
+        int enemyMaxHealth = 100;
+        int percentage = enemyHealth / enemyMaxHealth;
 
         long lastFrameTime;
+        long deltaTime;
         int fps;
         int rvy = 4;
         int lvy = 4;
@@ -119,6 +125,7 @@ public class GameActivity extends AppCompatActivity {
             bim = BitmapFactory.decodeResource(getResources(), R.drawable.faces);
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
+            jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -142,12 +149,23 @@ public class GameActivity extends AppCompatActivity {
             leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
             leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
 
+            jeff = new jeffBartender(jiff);
+            jeff.addAnimation("bar",0,3,7,110,96,true);
+            jeff.setAnimation("bar");
+
+            jeff.x = (background.width / 2) + 100;
+            jeff.y = 120;
+
 
 
         }
 
         public void damageEnemy(){
-            Enemy.health -= baseDmg;
+            if(enemyHealth <= 0)
+            {
+                Toast.makeText(getApplicationContext(), "Enemy Dead", Toast.LENGTH_LONG).show();
+            }
+            enemyHealth -= baseDmg;
         }
 
         @Override
@@ -164,13 +182,7 @@ public class GameActivity extends AppCompatActivity {
             return false;
         }
 
-        public void updateHealthBars(){
-            Rect healthBarBack = new Rect();
-            Rect healthBarFront = new Rect();
-
-
-
-        }
+        
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
@@ -192,6 +204,8 @@ public class GameActivity extends AppCompatActivity {
                 rightGlove.y += rvy;
             }
 
+            jeff.update(deltaTime);
+
             /*if(leftGlove.y < background.height / 2){
                 leftGlove.y += lvy;
             }
@@ -207,21 +221,30 @@ public class GameActivity extends AppCompatActivity {
                 canvas = holder.lockCanvas();
                 //canvas.drawColor(Color.TRANSPARENT);
                 //canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),background);
-                int barWidth = 250 * percentage;
+
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
+                jeff.draw(canvas);
 
                 paint.setColor(Color.RED);
                 paint.setTextSize(30);
                 paint.setFakeBoldText(true);
                 paint.setColor(Color.BLACK);
-                canvas.drawRect(0,350,250,400,paint);
+                canvas.drawRect(canvas.getWidth() - 250,350,canvas.getWidth(),400,paint);//player black bar
+                canvas.drawRect(0,350,250,400,paint);//enemy black bar
+                canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight(), canvas.getWidth(),canvas.getHeight(),paint);//pplayer black stam bar
+                paint.setColor(Color.WHITE);
                 canvas.drawText("Enemy Health",10,340,paint);
+                canvas.drawText("Player Health",canvas.getWidth() - 250,340,paint);
                 paint.setColor(Color.RED);
-                canvas.drawRect(0,350,barWidth,400,paint);
+                canvas.drawRect(0,350,250 * percentage,400,paint);//enemy red bar
+                paint.setColor(Color.GREEN);
+                canvas.drawRect(canvas.getWidth() - 250,350,canvas.getWidth(),400,paint);//player red bar
+                paint.setColor(Color.YELLOW);
+                canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight() - 250, canvas.getWidth(),canvas.getHeight(),paint);//player stambar
                 //paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
@@ -231,9 +254,11 @@ public class GameActivity extends AppCompatActivity {
         public void controlFPS() {
             long timeThisFrame = (System.nanoTime() / 1000000 - lastFrameTime);
             long timeToSleep = 15 - timeThisFrame;
+            deltaTime = 0;
 
             if (timeThisFrame > 0){
                 fps = (int) (1000/ timeThisFrame);
+                deltaTime = timeThisFrame;
             }
 
             if (timeToSleep > 0){
