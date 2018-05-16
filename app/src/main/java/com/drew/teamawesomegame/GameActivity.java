@@ -145,9 +145,9 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
-            wussoutButton = BitmapFactory.decodeResource(getResources(),R.drawable.wussoutbutton);
+            /*wussoutButton = BitmapFactory.decodeResource(getResources(),R.drawable.wussoutbutton);
             dodgeRButton = BitmapFactory.decodeResource(getResources(), R.drawable.dodgeright);
-            dodgeLButton = BitmapFactory.decodeResource(getResources(),R.drawable.dodgeleft);
+            dodgeLButton = BitmapFactory.decodeResource(getResources(),R.drawable.dodgeleft);*/
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -178,7 +178,7 @@ public class GameActivity extends AppCompatActivity {
             jeff.x = (background.width / 2) + 100;
             jeff.y = 120;
 
-            wussoutButton = new UI(wussoutButton);
+
 
 
 
@@ -214,28 +214,12 @@ public class GameActivity extends AppCompatActivity {
         
 
         private void updateLogic() {
-
-<<<<<<< HEAD
-            /*if(leftGlove.y > background.height - leftGlove.height - 50){
-=======
-            //lvy = lvy * rand;
-            //rvy = rvy * rand;
-
             leftGlove.y += lvy;
             rightGlove.y += rvy;
-
-            /*if (lvy == 0){
-                lvy = 1;
-            }
-            if (rvy == 0){
-                rvy = 1;
-            }*/
-            if(leftGlove.y >  screenHeight - leftGlove.height){
->>>>>>> 7654116cde300a64e8d4d09b479214e867d34d66
-
+            if(leftGlove.y > screenHeight - leftGlove.height){
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
-            }else if (leftGlove.y < screenHeight / 2){
+            }else if(leftGlove.y < screenHeight / 2){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
@@ -243,17 +227,13 @@ public class GameActivity extends AppCompatActivity {
             if(rightGlove.y > screenHeight - rightGlove.height) {
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
-            }else if (rightGlove.y < screenHeight / 2){
+            }else if (rightGlove.y < screenHeight / 2)
 
-                rvy = rvy * -1;
-                rightGlove.y += rvy;
-<<<<<<< HEAD
-            }*/
+        {
 
-=======
-            }
-            //Log.d("com.drew.teamawesomegam", "leftGlove.y: " + leftGlove.y + " background.height / 2: " + (background.height / 2));
->>>>>>> 7654116cde300a64e8d4d09b479214e867d34d66
+            rvy = rvy * -1;
+            rightGlove.y += rvy;
+        }
             jeff.update(deltaTime);
 
             /*if(leftGlove.y < background.height / 2){
