@@ -2,6 +2,8 @@ package com.drew.teamawesomegame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,6 +11,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -19,14 +23,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
-//TODO determine how to grab canvas for the original surface view
+    //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
     SpriteView spriteView;
+
+    private SoundPool soundPool;
+    int Punch1 = -1;
+    int Punch2 = -1;
+    int Punch3 = -1;
+    int Punch4 = -1;
+    int Punch5 = -1;
+    int Punch6 = -1;
+    int Punch7 = -1;
+    int Punch8 = -1;
 
     @Override
     protected void onPause() {
@@ -45,33 +60,29 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        /*Button buttonQuit = findViewById(R.id.buttonQuit);
-        buttonQuit.setOnClickListener(this);
+        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor descriptor;
 
-        Button buttonLeft = findViewById(R.id.buttonLeft);
-        buttonLeft.setOnClickListener(this);
-
-        Button buttonRight = findViewById(R.id.buttonRight);
-        buttonRight.setOnClickListener(this);
-
-        Button buttonPunch1 = findViewById(R.id.test1);
-        buttonPunch1.setOnClickListener(this);
-
-        Button buttonPunch2 = findViewById(R.id.test2);
-        buttonPunch2.setOnClickListener(this);
-
-        Button buttonPunch3 = findViewById(R.id.test3);
-        buttonPunch3.setOnClickListener(this);
-
-        Button buttonPunch4 = findViewById(R.id.test4);
-        buttonPunch4.setOnClickListener(this);
-
-        Button buttonPunch5 = findViewById(R.id.test5);
-        buttonPunch5.setOnClickListener(this);
-
-        Button buttonPunch6 = findViewById(R.id.test6);
-        buttonPunch6.setOnClickListener(this);*/
-
+            descriptor = assetManager.openFd("Punch1.wav");
+            Punch1 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch2.wav");
+            Punch2 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch3.wav");
+            Punch3 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch4.wav");
+            Punch4 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch5.wav");
+            Punch5 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch6.wav");
+            Punch6 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch7.wav");
+            Punch7 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Punch8.wav");
+            Punch8 = soundPool.load(descriptor, 0);
+        } catch (IOException e) {
+        }
         spriteView = new SpriteView(this);
         setContentView(spriteView);
     }
@@ -79,8 +90,7 @@ public class GameActivity extends AppCompatActivity {
     /*public void damageEnemy(){
         if(Enemy.health >= 0) {
             Enemy.health -= playerStats.baseDamage;
-        }
-    }*/
+        }*/
 
 
 
@@ -313,3 +323,4 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 }
+
