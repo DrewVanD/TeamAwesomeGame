@@ -7,9 +7,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -101,10 +104,15 @@ public class GameActivity extends AppCompatActivity {
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
+        Display display;
+        Random r = new Random();
+        int rand = (r.nextInt(3) - 1);
         int baseDmg = 10;
         int enemyHealth = 100;
         int enemyMaxHealth = 100;
         int percentage = enemyHealth / enemyMaxHealth;
+        int screenHeight;
+        int screenWidth;
 
         long lastFrameTime;
         long deltaTime;
@@ -117,6 +125,12 @@ public class GameActivity extends AppCompatActivity {
 
             holder = getHolder();
             paint = new Paint();
+
+            display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenHeight = size.y;
+            screenWidth = size.x;
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
@@ -187,26 +201,38 @@ public class GameActivity extends AppCompatActivity {
 
         
 
-        private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
+        private void updateLogic() {
 
-            if(leftGlove.y > background.height - leftGlove.height - 50){
+            //lvy = lvy * rand;
+            //rvy = rvy * rand;
+
+            leftGlove.y += lvy;
+            rightGlove.y += rvy;
+
+            /*if (lvy == 0){
+                lvy = 1;
+            }
+            if (rvy == 0){
+                rvy = 1;
+            }*/
+            if(leftGlove.y >  screenHeight - leftGlove.height){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
-            }else if (leftGlove.y < background.height / 2){
+            }else if (leftGlove.y < screenHeight / 2){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
             }
-            if(rightGlove.y > background.height - rightGlove.height - 50) {
+            if(rightGlove.y > screenHeight - rightGlove.height) {
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
-            }else if (rightGlove.y < background.height / 2){
+            }else if (rightGlove.y < screenHeight / 2){
 
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
             }
-
+            //Log.d("com.drew.teamawesomegam", "leftGlove.y: " + leftGlove.y + " background.height / 2: " + (background.height / 2));
             jeff.update(deltaTime);
 
             /*if(leftGlove.y < background.height / 2){
