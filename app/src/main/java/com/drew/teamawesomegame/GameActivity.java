@@ -97,7 +97,6 @@ public class GameActivity extends AppCompatActivity {
         Display display;
         int screenWidth;
         int screenHeight;
-
         long lastFrameTime;
         long deltaTime;
         int fps;
