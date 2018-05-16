@@ -62,6 +62,30 @@ public class GameActivity extends AppCompatActivity {
 
         spriteView = new SpriteView(this);
         setContentView(spriteView);
+
+        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor descriptor;
+
+            descriptor = assetManager.openFd("Punch1.wav");
+            Punch1 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch2.wav");
+            Punch2 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch3.wav");
+            Punch3 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch4.wav");
+            Punch4 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch5.wav");
+            Punch5 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch6.wav");
+            Punch6 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch7.wav");
+            Punch7 = soundPool.load(descriptor, 1);
+            descriptor = assetManager.openFd("Punch8.wav");
+            Punch8 = soundPool.load(descriptor, 1);
+        } catch (IOException e) {
+        }
     }
 
     /*public void damageEnemy(){
@@ -158,29 +182,35 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void damageEnemy(){
-            soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-            try {
-                AssetManager assetManager = getAssets();
-                AssetFileDescriptor descriptor;
+          Random soundNum = new Random();
+          int randNum = soundNum.nextInt(9) + 1;
 
-                descriptor = assetManager.openFd("Punch1.wav");
-                Punch1 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch2.wav");
-                Punch2 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch3.wav");
-                Punch3 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch4.wav");
-                Punch4 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch5.wav");
-                Punch5 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch6.wav");
-                Punch6 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch7.wav");
-                Punch7 = soundPool.load(descriptor, 1);
-                descriptor = assetManager.openFd("Punch8.wav");
-                Punch8 = soundPool.load(descriptor, 1);
-            } catch (IOException e) {
-            }
+          switch (randNum) {
+              case 1:
+                  soundPool.play(Punch1, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 2:
+                  soundPool.play(Punch2, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 3:
+                  soundPool.play(Punch3, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 4:
+                  soundPool.play(Punch4, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 5:
+                  soundPool.play(Punch5, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 6:
+                  soundPool.play(Punch6, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 7:
+                  soundPool.play(Punch7, 1, 1, 0, 0 ,0.5f);
+                  break;
+              case 8:
+                  soundPool.play(Punch8, 1, 1, 0, 0 ,0.5f);
+                  break;
+          }
 
             if (enemyHealth <= enemyMaxHealth / 2){
                 Enemy.hurt = 1;//not changing face yet
