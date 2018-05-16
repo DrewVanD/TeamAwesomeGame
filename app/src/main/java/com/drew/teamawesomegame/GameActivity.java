@@ -154,27 +154,27 @@ public class GameActivity extends AppCompatActivity {
             background.y = 0;
 
             character = new Body(bmp);
-            character.x = (background.width / 2) - (character.width / 2) + 60;
+            character.x = (screenWidth / 2) - (character.width / 2);
             character.y = (background.height / 2) + (character.height / 2);
 
             face = new Face(bim);
-            face.x = (background.width / 2) - (face.width / 2) + 60;
+            face.x = (screenWidth / 2) - (face.width / 2) + (screenWidth / 100);
             face.y = background.height / 2;
 
             rightGlove = new RightGlove(rGlove);
-            rightGlove.x = (background.width / 2) + (rightGlove.width) - 100;
+            rightGlove.x = (screenWidth / 5) * 3;
             rightGlove.y = (background.height / 2) + (rightGlove.height) - 100;
 
             leftGlove = new LeftGlove(lGlove);
-            leftGlove.x =(background.width / 2) - (leftGlove.width - 20) - 85;
+            leftGlove.x =screenWidth / 13;
             leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
 
             jeff = new jeffBartender(jiff);
             jeff.addAnimation("bar",0,3,7,110,96,true);
             jeff.setAnimation("bar");
 
-            jeff.x = (background.width / 2) + 100;
-            jeff.y = 120;
+            jeff.x = (screenWidth / 5) * 3;
+            jeff.y = screenHeight / 14;
 
 
 
