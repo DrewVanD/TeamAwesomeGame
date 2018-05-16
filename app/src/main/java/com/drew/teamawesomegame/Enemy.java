@@ -4,8 +4,8 @@ public class Enemy {
 
     String enemyName;
     //int enemyNumber;
-    public int health;
-    public int maxHealth;
+    public static int health;
+    public static int maxHealth;
     int damage;
     int coinReward;
     int expReward;

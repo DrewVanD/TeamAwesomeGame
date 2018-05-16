@@ -9,14 +9,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -101,27 +98,17 @@ public class GameActivity extends AppCompatActivity {
         Bitmap rGlove;
         Bitmap lGlove;
         Bitmap jiff;
-        UI wussoutButton;
-        UI dodgeRButton;
-        UI dodgeLButton;
-
         jeffBartender jeff;
         Body character;
         Face face;
         LeftGlove leftGlove;
         RightGlove rightGlove;
-
         //sprite test for background
         BackGround background;
-        Display display;
-        Random r = new Random();
-        int rand = (r.nextInt(3) - 1);
         int baseDmg = 10;
         int enemyHealth = 100;
         int enemyMaxHealth = 100;
         int percentage = enemyHealth / enemyMaxHealth;
-        int screenHeight;
-        int screenWidth;
 
         long lastFrameTime;
         long deltaTime;
@@ -135,12 +122,6 @@ public class GameActivity extends AppCompatActivity {
             holder = getHolder();
             paint = new Paint();
 
-            display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            screenHeight = size.y;
-            screenWidth = size.x;
-
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
             bmp = BitmapFactory.decodeResource(getResources(), R.drawable.body2);
@@ -149,9 +130,6 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
-            /*wussoutButton = BitmapFactory.decodeResource(getResources(),R.drawable.wussoutbutton);
-            dodgeRButton = BitmapFactory.decodeResource(getResources(), R.drawable.dodgeright);
-            dodgeLButton = BitmapFactory.decodeResource(getResources(),R.drawable.dodgeleft);*/
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -184,8 +162,6 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-
-
         }
 
         public void damageEnemy(){
@@ -201,8 +177,6 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
-            float x = event.getX();
-            float y = event.getY();
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
                     damageEnemy();
@@ -217,27 +191,26 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-        private void updateLogic() {
-            leftGlove.y += lvy;
-            rightGlove.y += rvy;
-            if(leftGlove.y > screenHeight - leftGlove.height){
+        private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
+
+            if(leftGlove.y > background.height - leftGlove.height - 50){
+
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
-            }else if(leftGlove.y < screenHeight / 2){
+            }else if (leftGlove.y < background.height / 2){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
             }
-            if(rightGlove.y > screenHeight - rightGlove.height) {
+            if(rightGlove.y > background.height - rightGlove.height - 50) {
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
-            }else if (rightGlove.y < screenHeight / 2)
+            }else if (rightGlove.y < background.height / 2){
 
-        {
+                rvy = rvy * -1;
+                rightGlove.y += rvy;
+            }
 
-            rvy = rvy * -1;
-            rightGlove.y += rvy;
-        }
             jeff.update(deltaTime);
 
             /*if(leftGlove.y < background.height / 2){
