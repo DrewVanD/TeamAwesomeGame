@@ -42,6 +42,7 @@ public class GameActivity extends AppCompatActivity {
     int Punch6 = -1;
     int Punch7 = -1;
     int Punch8 = -1;
+    Enemy currentEnemy;
 
     @Override
     protected void onPause() {
@@ -62,6 +63,31 @@ public class GameActivity extends AppCompatActivity {
 
         spriteView = new SpriteView(this);
         setContentView(spriteView);
+
+        Bundle bundle = getIntent().getBundleExtra("BUNDLE");
+
+        /*bundle.putInt("Health",200);
+        bundle.putInt("MaxHealth",200);
+        bundle.putInt("DamagePerSwing",12);
+        bundle.putInt("CoinReward",150);
+        bundle.putInt("ExpReward",75);
+        bundle.putInt("TimeBetweenSwings",4);
+        bundle.putInt("FaceDamage",0);
+        bundle.putInt("FaceNum",1);
+        bundle.putString("EnemyName","Alexx 'Quanterooni' Quan");*/
+
+        int health = bundle.getInt("Health",0);
+        int maxHealth = bundle.getInt("MaxHealth", 0);
+        int damagePerSwing = bundle.getInt("damagePerSwing", 0);
+        int coinReward = bundle.getInt("CoinReward", 0);
+        int expReward = bundle.getInt("ExpReward",0);
+        int timeBetweenSwings = bundle.getInt("TimeBetweenSwings",0);
+        int faceDamage = bundle.getInt("FaceDamage",0);
+        int faceNum = bundle.getInt("FaceNum",0);
+        String enemyName = bundle.getString("EnemyName");
+        currentEnemy = new Enemy(enemyName,health,maxHealth,damagePerSwing,coinReward,expReward,timeBetweenSwings,faceDamage,faceNum);
+
+
 
         soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         try {
@@ -86,7 +112,12 @@ public class GameActivity extends AppCompatActivity {
             Punch8 = soundPool.load(descriptor, 1);
         } catch (IOException e) {
         }
+
     }
+
+
+
+
 
     /*public void damageEnemy(){
         if(Enemy.health >= 0) {
@@ -114,10 +145,9 @@ public class GameActivity extends AppCompatActivity {
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
+
         int baseDmg = 10;
-        int enemyHealth = 100;
-        int enemyMaxHealth = 100;
-        int percentage = enemyHealth / enemyMaxHealth;
+        //int percentage = currentEnemy.health / currentEnemy.maxHealth;
         Display display;
         int screenWidth;
         int screenHeight;
@@ -211,14 +241,16 @@ public class GameActivity extends AppCompatActivity {
                   break;
           }
 
-            if (enemyHealth <= enemyMaxHealth / 2){
-                Enemy.hurt = 1;//not changing face yet
+            if (currentEnemy.health <= currentEnemy.maxHealth / 2){
+                currentEnemy.hurt = 1;//not changing face yet
             }
-            if(enemyHealth <= 0)
+            if(currentEnemy.health <= 0)
             {
-                Toast.makeText(getApplicationContext(), "Enemy Dead", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
+                                                           + "\nCoin Reward: " + currentEnemy.coinReward
+                                                            + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
             }
-            enemyHealth -= baseDmg;
+            currentEnemy.health -= baseDmg;
         }
 
         @Override
@@ -296,7 +328,7 @@ public class GameActivity extends AppCompatActivity {
                 canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight(), canvas.getWidth(),canvas.getHeight(),paint);//pplayer black stam bar
 
                 paint.setColor(Color.RED);
-                canvas.drawRect(0,(canvas.getHeight() / 4),250 * percentage,400,paint);//enemy red bar
+                canvas.drawRect(0,(canvas.getHeight() / 4),250,400,paint);//enemy red bar
                 paint.setColor(Color.GREEN);
                 canvas.drawRect(canvas.getWidth() - 250,(canvas.getHeight() / 4),canvas.getWidth(),400,paint);//player red bar
                 paint.setColor(Color.YELLOW);
