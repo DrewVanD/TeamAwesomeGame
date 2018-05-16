@@ -61,7 +61,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        /*soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         try {
             AssetManager assetManager = getAssets();
             AssetFileDescriptor descriptor;
@@ -84,7 +84,7 @@ public class GameActivity extends AppCompatActivity {
             Punch8 = soundPool.load(descriptor, 0);
         }catch (IOException e){
             //TODO:Handle IO Exception
-            }
+            }*/
         }
 
 
@@ -189,6 +189,32 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void damageEnemy(){
+
+            soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+            try {
+                AssetManager assetManager = getAssets();
+                AssetFileDescriptor descriptor;
+
+                descriptor = assetManager.openFd("Punch1.wav");
+                Punch1 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch2.wav");
+                Punch2 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch3.wav");
+                Punch3 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch4.wav");
+                Punch4 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch5.wav");
+                Punch5 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch6.wav");
+                Punch6 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch7.wav");
+                Punch7 = soundPool.load(descriptor, 0);
+                descriptor = assetManager.openFd("Punch8.wav");
+                Punch8 = soundPool.load(descriptor, 0);
+            }catch (IOException e){
+                //TODO:Handle IO Exception
+            }
+
             if (enemyHealth <= enemyMaxHealth / 2){
                 Enemy.hurt = 1;//not changing face yet
             }
