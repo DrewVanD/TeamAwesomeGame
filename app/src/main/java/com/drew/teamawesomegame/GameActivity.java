@@ -7,9 +7,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -105,6 +107,9 @@ public class GameActivity extends AppCompatActivity {
         int enemyHealth = 100;
         int enemyMaxHealth = 100;
         int percentage = enemyHealth / enemyMaxHealth;
+        Display display;
+        int screenWidth;
+        int screenHeight;
 
         long lastFrameTime;
         long deltaTime;
@@ -117,6 +122,11 @@ public class GameActivity extends AppCompatActivity {
 
             holder = getHolder();
             paint = new Paint();
+            display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            screenHeight = size.y;
+            screenWidth = size.x;
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inScaled = false;
@@ -189,19 +199,22 @@ public class GameActivity extends AppCompatActivity {
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
-            if(leftGlove.y > background.height - leftGlove.height - 50){
+            leftGlove.y += lvy;
+            rightGlove.y += rvy;
+
+            if(leftGlove.y > screenHeight - leftGlove.height){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
-            }else if (leftGlove.y < background.height / 2){
+            }else if (leftGlove.y < screenHeight / 2){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
             }
-            if(rightGlove.y > background.height - rightGlove.height - 50) {
+            if(rightGlove.y > screenHeight - rightGlove.height) {
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
-            }else if (rightGlove.y < background.height / 2){
+            }else if (rightGlove.y < screenHeight / 2){
 
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
