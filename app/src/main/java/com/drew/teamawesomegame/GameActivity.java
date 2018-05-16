@@ -94,11 +94,16 @@ public class GameActivity extends AppCompatActivity {
         Bitmap rGlove;
         Bitmap lGlove;
         Bitmap jiff;
+        UI wussoutButton;
+        UI dodgeRButton;
+        UI dodgeLButton;
+
         jeffBartender jeff;
         Body character;
         Face face;
         LeftGlove leftGlove;
         RightGlove rightGlove;
+
         //sprite test for background
         BackGround background;
         int baseDmg = 10;
@@ -126,6 +131,9 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
+            wussoutButton = BitmapFactory.decodeResource(getResources(),R.drawable.wussoutbutton);
+            dodgeRButton = BitmapFactory.decodeResource(getResources(), R.drawable.dodgeright);
+            dodgeLButton = BitmapFactory.decodeResource(getResources(),R.drawable.dodgeleft);
 
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
@@ -156,6 +164,8 @@ public class GameActivity extends AppCompatActivity {
             jeff.x = (background.width / 2) + 100;
             jeff.y = 120;
 
+            wussoutButton = new UI(wussoutButton);
+
 
 
         }
@@ -170,6 +180,8 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX();
+            float y = event.getY();
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
                     damageEnemy();
@@ -186,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
 
         private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
 
-            if(leftGlove.y > background.height - leftGlove.height - 50){
+            /*if(leftGlove.y > background.height - leftGlove.height - 50){
 
                 lvy = lvy * -1;
                 leftGlove.y += lvy;
@@ -202,7 +214,7 @@ public class GameActivity extends AppCompatActivity {
 
                 rvy = rvy * -1;
                 rightGlove.y += rvy;
-            }
+            }*/
 
             jeff.update(deltaTime);
 
