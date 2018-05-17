@@ -9,7 +9,7 @@ public class Enemy {
     int damage;
     int coinReward;
     int expReward;
-    int timeBetweenSwings;
+    public static int timeBetweenSwings;
     public static int hurt;
     public static int facenum;
 

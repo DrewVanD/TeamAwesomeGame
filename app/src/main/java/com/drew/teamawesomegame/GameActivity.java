@@ -163,7 +163,7 @@ public class GameActivity extends AppCompatActivity {
         long stamTimer = 0;
         long stamTime = 1000;
         long punchTimer = 0;
-        long punchTime = currentEnemy.timeBetweenSwings * 1000;
+        long punchTime = Enemy.timeBetweenSwings * 1000;
 
 
         float playerHealth = playerStats.playerHealth;

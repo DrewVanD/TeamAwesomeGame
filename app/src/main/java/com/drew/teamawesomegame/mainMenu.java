@@ -48,7 +48,7 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
                 AssetManager assetManager = getAssets();
                 AssetFileDescriptor descriptor;
 
-                descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
+                descriptor = assetManager.openFd("eyeoftiger8bit.ogg");
                 eyeoftiger8bit = menuMusic.load(descriptor,0);
 
             } catch (IOException e) {
@@ -63,22 +63,41 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
             switch (v.getId()) {
                 case R.id.playButton:
                     Intent i = new Intent(this, playGame.class);
+                    menuMusic.stop(eyeoftiger8bit);
                     startActivity(i);
                     break;
                 case R.id.statsButton:
                     Intent j = new Intent(this, playerStats.class);
+                    menuMusic.stop(eyeoftiger8bit);
                     startActivity(j);
                     break;
                 case R.id.storeButton:
                     Intent k = new Intent(this, storePage.class);
+                    menuMusic.stop(eyeoftiger8bit);
                     startActivity(k);
                     break;
                 case R.id.aboutButton:
                     Intent l = new Intent(this, aboutPage.class);
+                    menuMusic.stop(eyeoftiger8bit);
                     startActivity(l);
                 default:
                     break;
 
             }
         }
+
+        public void resume() {
+            menuMusic.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+                    soundPool.play(sampleId, 1, 1, 1, -1, 1);
+                    Log.d("*****", "play music");
+                }
+            });
+
+    }
+
+     public void pause(){
+         menuMusic.stop(eyeoftiger8bit);
+    }
 }
