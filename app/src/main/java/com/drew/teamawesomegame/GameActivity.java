@@ -116,16 +116,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
-
-
-
-    /*public void damageEnemy(){
-        if(Enemy.health >= 0) {
-            Enemy.health -= playerStats.baseDamage;
-        }*/
-
-
-
     class SpriteView extends SurfaceView implements  Runnable {
 
         Thread thread = null;
@@ -156,6 +146,7 @@ public class GameActivity extends AppCompatActivity {
         int fps;
         int rvy = 4;
         int lvy = 4;
+        int exp = 0;
 
         public SpriteView(Context context) {
             super(context);
@@ -246,11 +237,21 @@ public class GameActivity extends AppCompatActivity {
             }
             if(currentEnemy.health <= 0)
             {
+                exp += currentEnemy.expReward;
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
                                                            + "\nCoin Reward: " + currentEnemy.coinReward
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
+                levelUp();
             }
             currentEnemy.health -= baseDmg;
+        }
+
+        public void levelUp() {
+            if (exp % 1000 == 0){
+                playerStats.playerMaxHealth += 10;
+                playerStats.playerMaxStam += 10;
+                playerStats.baseDamage += 1;
+            }
         }
 
         @Override
@@ -269,7 +270,7 @@ public class GameActivity extends AppCompatActivity {
 
         
 
-        private void updateLogic() {// Matts test moved gloves to top instead of bottom?? comments are originals
+        private void updateLogic() {
 
             leftGlove.y += lvy;
             rightGlove.y += rvy;
@@ -293,22 +294,11 @@ public class GameActivity extends AppCompatActivity {
             }
 
             jeff.update(deltaTime);
-
-            /*if(leftGlove.y < background.height / 2){
-                leftGlove.y += lvy;
-            }
-            if(rightGlove.y < background.height / 2){
-                rightGlove.y += lvy;
-            }*/
-
-
         }
 
         private void drawCanvas(){
             if(holder.getSurface().isValid()){
                 canvas = holder.lockCanvas();
-                //canvas.drawColor(Color.TRANSPARENT);
-                //canvas.drawRect(0,0,canvas.getWidth(),canvas.getHeight(),background);
 
                 background.draw(canvas);
                 character.draw(canvas);
