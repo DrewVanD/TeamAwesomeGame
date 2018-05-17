@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity {
     SpriteView spriteView;
 
     private SoundPool soundPool;
+    int eyeoftiger8bit = -1;
     int realPunch = -1;
     int PUNCH = -1;
     int jabPunch = -1;
@@ -45,14 +46,13 @@ public class GameActivity extends AppCompatActivity {
     Enemy currentEnemy;
 
 
-    private  SoundPool backgroundMusic;
-    int eyeoftiger8bit = -1;
+
+
 
     @Override
     protected void onPause() {
         super.onPause();
         spriteView.pause();
-        backgroundMusic.pause(eyeoftiger8bit);
 
 
     }
@@ -135,7 +135,7 @@ public class GameActivity extends AppCompatActivity {
         } catch (IOException e) {
         }
 
-        soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
+
 
     }
 
@@ -240,7 +240,7 @@ public class GameActivity extends AppCompatActivity {
             jeff.x = (screenWidth / 5) * 3;
             jeff.y = screenHeight / 14;
 
-
+            //soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
 
         }
 
