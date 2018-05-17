@@ -93,7 +93,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                bundle.putInt("ExpReward",100);
                bundle.putInt("TimeBetweenSwings",3);
                bundle.putInt("FaceDamage",0);
-               bundle.putInt("FaceNum",2);
+               bundle.putInt("FaceNum",3);
                bundle.putString("EnemyName","Drew Van Doom");
                l.putExtra("BUNDLE",bundle);
                startActivity(l);
@@ -111,7 +111,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                bundle.putInt("ExpReward",150);
                bundle.putInt("TimeBetweenSwings",2);
                bundle.putInt("FaceDamage",0);
-               bundle.putInt("FaceNum",3);
+               bundle.putInt("FaceNum",2);
                bundle.putString("EnemyName","Matt 'Oca' Agostino");
                m.putExtra("BUNDLE",bundle);
                startActivity(m);
