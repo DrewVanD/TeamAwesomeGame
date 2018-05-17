@@ -155,8 +155,13 @@ public class GameActivity extends AppCompatActivity {
         RightGlove rightGlove;
         //sprite test for background
         BackGround background;
+        //Timers
         long stamTimer = 0;
         long stamTime = 1000;
+        long punchTimer = 0;
+        long punchTime = currentEnemy.timeBetweenSwings * 1000;
+
+
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
         float playerStam = playerStats.playerStam;
@@ -323,6 +328,13 @@ public class GameActivity extends AppCompatActivity {
         
 
         private void updateLogic() {
+            punchTimer += deltaTime;
+            if(punchTimer > punchTime){
+                playerHealth -= currentEnemy.damage;
+                playerHealthPercentage = playerHealth / playerMaxHealth;
+                punchTimer = 0;
+            }
+
 
             stamTimer += deltaTime;
             if(stamTimer > stamTime){
