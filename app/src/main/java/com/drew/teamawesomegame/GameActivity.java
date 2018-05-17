@@ -35,6 +35,7 @@ public class GameActivity extends AppCompatActivity {
     SpriteView spriteView;
 
     private SoundPool soundPool;
+    int EyeOfTiger8Bit = -1;
     int realPunch = -1;
     int PUNCH = -1;
     int jabPunch = -1;
@@ -94,6 +95,8 @@ public class GameActivity extends AppCompatActivity {
             AssetManager assetManager = getAssets();
             AssetFileDescriptor descriptor;
 
+            /*descriptor = assetManager.openFd("EyeOfTiger8Bit.mp3");
+            EyeOfTiger8Bit = soundPool.load(descriptor, 0);*/
             descriptor = assetManager.openFd("realPunch.wav");
             realPunch = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("PUNCH.wav");
@@ -397,6 +400,7 @@ public class GameActivity extends AppCompatActivity {
 
             thread = new Thread(this);
             thread.start();
+           /* soundPool.play(EyeOfTiger8Bit, 1, 1, 0, -1 ,1);*/
         }
 
         public void pause(){
