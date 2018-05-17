@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,14 +35,14 @@ public class GameActivity extends AppCompatActivity {
     SpriteView spriteView;
 
     private SoundPool soundPool;
-    int Punch1 = -1;
-    int Punch2 = -1;
-    int Punch3 = -1;
-    int Punch4 = -1;
-    int Punch5 = -1;
-    int Punch6 = -1;
-    int Punch7 = -1;
-    int Punch8 = -1;
+    int realPunch = -1;
+    int PUNCH = -1;
+    int jabPunch = -1;
+    int Hit_Hurt = -1;
+    int Hit_Hurt3 = -1;
+    int Hit_Hurt4 = -1;
+    int Hit_Hurt5 = -1;
+    int Hit_Hurt6 = -1;
     Enemy currentEnemy;
 
     @Override
@@ -88,28 +89,27 @@ public class GameActivity extends AppCompatActivity {
         currentEnemy = new Enemy(enemyName,health,maxHealth,damagePerSwing,coinReward,expReward,timeBetweenSwings,faceDamage,faceNum);
 
 
-
         soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
         try {
             AssetManager assetManager = getAssets();
             AssetFileDescriptor descriptor;
 
-            descriptor = assetManager.openFd("Punch1.wav");
-            Punch1 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch2.wav");
-            Punch2 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch3.wav");
-            Punch3 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch4.wav");
-            Punch4 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch5.wav");
-            Punch5 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch6.wav");
-            Punch6 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch7.wav");
-            Punch7 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Punch8.wav");
-            Punch8 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("realPunch.wav");
+            realPunch = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("PUNCH.wav");
+            PUNCH = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("jabPunch.wav");
+            jabPunch = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Hit_Hurt.wav");
+            Hit_Hurt = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Hit_Hurt3.wav");
+            Hit_Hurt3 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Hit_Hurt4.wav");
+            Hit_Hurt4 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Hit_Hurt5.wav");
+            Hit_Hurt5 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Hit_Hurt6.wav");
+            Hit_Hurt6 = soundPool.load(descriptor, 0);
         } catch (IOException e) {
         }
 
@@ -268,28 +268,28 @@ public class GameActivity extends AppCompatActivity {
 
                     switch (randNum) {
                         case 1:
-                            soundPool.play(Punch1, 1, 1, 0, 0 ,1);
+                            soundPool.play(realPunch, 1, 1, 0, 0 ,1);
                             break;
                         case 2:
-                            soundPool.play(Punch2, 1, 1, 0, 0 ,1);
+                            soundPool.play(PUNCH, 1, 1, 0, 0 ,1);
                             break;
                         case 3:
-                            soundPool.play(Punch3, 1, 1, 0, 0 ,1);
+                            soundPool.play(jabPunch, 1, 1, 0, 0 ,1);
                             break;
                         case 4:
-                            soundPool.play(Punch4, 1, 1, 0, 0 ,1);
+                            soundPool.play(Hit_Hurt, 1, 1, 0, 0 ,1);
                             break;
                         case 5:
-                            soundPool.play(Punch5, 1, 1, 0, 0 ,1);
+                            soundPool.play(Hit_Hurt3, 1, 1, 0, 0 ,1);
                             break;
                         case 6:
-                            soundPool.play(Punch6, 1, 1, 0, 0 ,1);
+                            soundPool.play(Hit_Hurt4, 1, 1, 0, 0 ,1);
                             break;
                         case 7:
-                            soundPool.play(Punch7, 1, 1, 0, 0 ,1);
+                            soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
                             break;
                         case 8:
-                            soundPool.play(Punch8, 1, 1, 0, 0 ,1);
+                            soundPool.play(Hit_Hurt6, 1, 1, 0, 0 ,1);
                             break;
                     }
                     break;
