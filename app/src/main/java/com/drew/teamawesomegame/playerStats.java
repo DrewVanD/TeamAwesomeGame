@@ -8,11 +8,13 @@ import android.widget.Button;
 
 public class playerStats extends AppCompatActivity implements View.OnClickListener{
 
-    public static int playerHealth = 100;
-    public static int playerMaxHealth = 100;
-    public static int baseDamage = 10;
-    public static int playerStam = 100;
-    public static int playerMaxStam = 100;
+    public static float playerHealth = 100;
+    public static float playerMaxHealth = 100;
+    public static float baseDamage = 10;
+    public static float playerStam = 100;
+    public static float playerMaxStam = 100;
+    public static int playerStamRegen = 5;
+    public static int PunchCost = 20;
 
 
     @Override
