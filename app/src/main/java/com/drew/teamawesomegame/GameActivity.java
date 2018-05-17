@@ -95,21 +95,21 @@ public class GameActivity extends AppCompatActivity {
             AssetFileDescriptor descriptor;
 
             descriptor = assetManager.openFd("Punch1.wav");
-            Punch1 = soundPool.load(descriptor, 1);
+            Punch1 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch2.wav");
-            Punch2 = soundPool.load(descriptor, 1);
+            Punch2 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch3.wav");
-            Punch3 = soundPool.load(descriptor, 1);
+            Punch3 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch4.wav");
-            Punch4 = soundPool.load(descriptor, 1);
+            Punch4 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch5.wav");
-            Punch5 = soundPool.load(descriptor, 1);
+            Punch5 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch6.wav");
-            Punch6 = soundPool.load(descriptor, 1);
+            Punch6 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch7.wav");
-            Punch7 = soundPool.load(descriptor, 1);
+            Punch7 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Punch8.wav");
-            Punch8 = soundPool.load(descriptor, 1);
+            Punch8 = soundPool.load(descriptor, 0);
         } catch (IOException e) {
         }
 
@@ -204,7 +204,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void damageEnemy(){
-          Random soundNum = new Random();
+          /*Random soundNum = new Random();
           int randNum = soundNum.nextInt(9) + 1;
 
           switch (randNum) {
@@ -232,7 +232,7 @@ public class GameActivity extends AppCompatActivity {
               case 8:
                   soundPool.play(Punch8, 1, 1, 0, 0 ,0.5f);
                   break;
-          }
+          }*/
 
             if (currentEnemy.health <= currentEnemy.maxHealth / 2){
                 currentEnemy.hurt = 1;//not changing face yet
@@ -263,6 +263,35 @@ public class GameActivity extends AppCompatActivity {
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
                     damageEnemy();
+                    Random soundNum = new Random();
+                    int randNum = soundNum.nextInt(9) + 1;
+
+                    switch (randNum) {
+                        case 1:
+                            soundPool.play(Punch1, 1, 1, 0, 0 ,1);
+                            break;
+                        case 2:
+                            soundPool.play(Punch2, 1, 1, 0, 0 ,1);
+                            break;
+                        case 3:
+                            soundPool.play(Punch3, 1, 1, 0, 0 ,1);
+                            break;
+                        case 4:
+                            soundPool.play(Punch4, 1, 1, 0, 0 ,1);
+                            break;
+                        case 5:
+                            soundPool.play(Punch5, 1, 1, 0, 0 ,1);
+                            break;
+                        case 6:
+                            soundPool.play(Punch6, 1, 1, 0, 0 ,1);
+                            break;
+                        case 7:
+                            soundPool.play(Punch7, 1, 1, 0, 0 ,1);
+                            break;
+                        case 8:
+                            soundPool.play(Punch8, 1, 1, 0, 0 ,1);
+                            break;
+                    }
                     break;
                 case MotionEvent.ACTION_UP:
 
@@ -365,6 +394,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void resume() {
+
             thread = new Thread(this);
             thread.start();
         }
