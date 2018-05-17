@@ -61,7 +61,6 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         spriteView.resume();
-        backgroundMusic.play(1,2,2,0,1,eyeoftiger8bit);
 
 /*
         soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
@@ -135,8 +134,8 @@ public class GameActivity extends AppCompatActivity {
             eyeoftiger8bit = soundPool.load(descriptor,0);
         } catch (IOException e) {
         }
-        backgroundMusic = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
 
+        soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
 
     }
 
@@ -429,11 +428,16 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public void run(){
+
+
+
             while (true){
                 updateLogic();
                 drawCanvas();
                 controlFPS();
             }
+
+
         }
 
         public void resume() {
