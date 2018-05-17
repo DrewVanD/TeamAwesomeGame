@@ -23,7 +23,6 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.Random;
 import java.util.Timer;
@@ -35,7 +34,6 @@ public class GameActivity extends AppCompatActivity {
     SpriteView spriteView;
 
     private SoundPool soundPool;
-    int EyeOfTiger8Bit = -1;
     int realPunch = -1;
     int PUNCH = -1;
     int jabPunch = -1;
@@ -46,16 +44,34 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt6 = -1;
     Enemy currentEnemy;
 
+    int eyeoftiger8bit = -1;
+
+
     @Override
     protected void onPause() {
         super.onPause();
         spriteView.pause();
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         spriteView.resume();
+
+/*
+        soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor descriptor;
+
+            descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
+            eyeoftiger8bit = soundPool.load(descriptor, 0);
+        }catch (IOException e){
+
+        }*/
+
     }
 
     @Override
@@ -95,8 +111,6 @@ public class GameActivity extends AppCompatActivity {
             AssetManager assetManager = getAssets();
             AssetFileDescriptor descriptor;
 
-            /*descriptor = assetManager.openFd("EyeOfTiger8Bit.mp3");
-            EyeOfTiger8Bit = soundPool.load(descriptor, 0);*/
             descriptor = assetManager.openFd("realPunch.wav");
             realPunch = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("PUNCH.wav");
@@ -113,6 +127,8 @@ public class GameActivity extends AppCompatActivity {
             Hit_Hurt5 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Hit_Hurt6.wav");
             Hit_Hurt6 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
+            eyeoftiger8bit = soundPool.load(descriptor,0);
         } catch (IOException e) {
         }
 
@@ -397,10 +413,9 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void resume() {
-
             thread = new Thread(this);
             thread.start();
-           /* soundPool.play(EyeOfTiger8Bit, 1, 1, 0, -1 ,1);*/
+
         }
 
         public void pause(){
