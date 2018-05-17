@@ -156,7 +156,7 @@ public class GameActivity extends AppCompatActivity {
         BackGround background;
 
         int baseDmg = 10;
-        //int percentage = currentEnemy.health / currentEnemy.maxHealth;
+        int percentage = currentEnemy.health / currentEnemy.maxHealth;
         Display display;
         int screenWidth;
         int screenHeight;
@@ -283,7 +283,7 @@ public class GameActivity extends AppCompatActivity {
                 case MotionEvent.ACTION_DOWN:
                     damageEnemy();
                     Random soundNum = new Random();
-                    int randNum = soundNum.nextInt(9) + 1;
+                    int randNum = soundNum.nextInt(4) + 1;
 
                     switch (randNum) {
                         case 1:
