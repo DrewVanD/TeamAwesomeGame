@@ -326,6 +326,7 @@ public class GameActivity extends AppCompatActivity {
 
             stamTimer += deltaTime;
             if(stamTimer > stamTime){
+                if(playerStam != playerMaxStam)
                 playerStam += playerStamRegen;
                 playerStamPercentage = playerStam / playerMaxStam;
                 stamTimer = 0;
