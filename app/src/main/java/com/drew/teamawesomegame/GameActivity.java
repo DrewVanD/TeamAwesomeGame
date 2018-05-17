@@ -147,6 +147,8 @@ public class GameActivity extends AppCompatActivity {
         int rvy = 4;
         int lvy = 4;
         int exp = 0;
+        int playerlvl = 1;
+        int expincrement = 1000 + (500 * playerlvl);
 
         public SpriteView(Context context) {
             super(context);
@@ -247,10 +249,12 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void levelUp() {
-            if (exp % 1000 == 0){
+            if (exp >= expincrement){
                 playerStats.playerMaxHealth += 10;
                 playerStats.playerMaxStam += 10;
                 playerStats.baseDamage += 1;
+                exp = 0;
+                playerlvl ++;
             }
         }
 
