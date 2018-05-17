@@ -43,14 +43,16 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt5 = -1;
     int Hit_Hurt6 = -1;
     Enemy currentEnemy;
-/*
-    int eyeoftiger8bit = -1;*/
 
+
+    private  SoundPool backgroundMusic;
+    int eyeoftiger8bit = -1;
 
     @Override
     protected void onPause() {
         super.onPause();
         spriteView.pause();
+        backgroundMusic.pause(eyeoftiger8bit);
 
 
     }
@@ -59,6 +61,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         spriteView.resume();
+        backgroundMusic.play(1,2,2,0,1,eyeoftiger8bit);
 
 /*
         soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
@@ -128,10 +131,12 @@ public class GameActivity extends AppCompatActivity {
             Hit_Hurt5 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Hit_Hurt6.wav");
             Hit_Hurt6 = soundPool.load(descriptor, 0);
- /*           descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
-            eyeoftiger8bit = soundPool.load(descriptor,0);*/
+            descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
+            eyeoftiger8bit = soundPool.load(descriptor,0);
         } catch (IOException e) {
         }
+        backgroundMusic = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+
 
     }
 
