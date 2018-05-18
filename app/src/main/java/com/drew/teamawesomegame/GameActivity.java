@@ -170,7 +170,7 @@ public class GameActivity extends AppCompatActivity {
         long stamTimer = 0;
         long stamTime = 1000;
         long punchTimer = 0;
-        long punchTime = Enemy.timeBetweenSwings * 1000;
+        long punchTime = currentEnemy.timeBetweenSwings * 1000;
 
 
         float playerHealth = playerStats.playerHealth;
@@ -274,6 +274,13 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
+        public void damagePlayer(){
+            if(playerHealth <= 0){
+                onDestroy();
+            }
+            playerHealth -= currentEnemy.damage;
+        }
+
         public void levelUp() {
             if (exp >= expincrement){
                 playerStats.playerMaxHealth += 10;
@@ -344,7 +351,7 @@ public class GameActivity extends AppCompatActivity {
         private void updateLogic() {
             punchTimer += deltaTime;
             if(punchTimer > punchTime){
-                playerHealth -= currentEnemy.damage;
+                damagePlayer();
                 playerHealthPercentage = playerHealth / playerMaxHealth;
                 punchTimer = 0;
             }
