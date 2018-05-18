@@ -51,8 +51,12 @@ public class GameActivity extends AppCompatActivity {
     protected  void onDestroy(){
         super.onDestroy();
         spriteView.destroy();
+<<<<<<< HEAD
 
         startActivity(finish);
+=======
+        //MainActivity.player.stop();
+>>>>>>> backgroundmusic
     }
 
 
@@ -61,6 +65,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         spriteView.pause();
+        //if (MainActivity.player.isPlaying())
+         //   MainActivity.player.pause();
 
 
     }
@@ -69,6 +75,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         spriteView.resume();
+        //if (!MainActivity.player.isPlaying())
+        //MainActivity.player.start();
 
 /*
         soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
