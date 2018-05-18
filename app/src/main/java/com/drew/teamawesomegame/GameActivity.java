@@ -97,7 +97,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
+        //MainActivity.player.setVolume(0.5f,0.5f);
+        //MainActivity.player.start();
 
 
         Bundle bundle = getIntent().getBundleExtra("BUNDLE");
