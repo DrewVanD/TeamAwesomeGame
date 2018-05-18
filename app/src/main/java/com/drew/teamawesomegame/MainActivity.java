@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent i = new Intent(this, mainMenu.class);
         startActivity(i);
-        /*player = MediaPlayer.create(this, R.raw.eyeoftiger8bit);
+        player = MediaPlayer.create(this, R.raw.eyeoftiger8bit);
         player.setLooping(true); // Set looping
         player.setVolume(100,100);
-        player.start();*/
+        player.start();
     }
 }

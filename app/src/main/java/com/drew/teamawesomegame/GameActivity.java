@@ -51,12 +51,11 @@ public class GameActivity extends AppCompatActivity {
     protected  void onDestroy(){
         super.onDestroy();
         spriteView.destroy();
-<<<<<<< HEAD
+
 
         startActivity(finish);
-=======
         //MainActivity.player.stop();
->>>>>>> backgroundmusic
+
     }
 
 
