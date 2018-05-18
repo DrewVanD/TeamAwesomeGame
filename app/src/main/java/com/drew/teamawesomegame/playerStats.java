@@ -15,6 +15,7 @@ public class playerStats extends AppCompatActivity implements View.OnClickListen
     public static float playerMaxStam = 100;
     public static int playerStamRegen = 5;
     public static int PunchCost = 20;
+    public static int coins = 0;
 
 
     @Override

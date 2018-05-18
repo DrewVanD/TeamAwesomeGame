@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +16,8 @@ import java.io.IOException;
 
 public class mainMenu extends AppCompatActivity implements View.OnClickListener {
 
-    private SoundPool menuMusic;
-    int eyeoftiger8bit = -1;
+
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +36,9 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
             Button aboutButton = findViewById(R.id.aboutButton);
             aboutButton.setOnClickListener(this);
             Log.d("*****", "dasdsa");
-            menuMusic = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-            menuMusic.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-                @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                    soundPool.play(sampleId, 1, 1, 1, -1, 1);
-                    Log.d("*****", "play music");
-                }
-            });
 
-            try {
-                AssetManager assetManager = getAssets();
-                AssetFileDescriptor descriptor;
 
-                descriptor = assetManager.openFd("eyeoftiger8bit.ogg");
-                eyeoftiger8bit = menuMusic.load(descriptor,0);
 
-            } catch (IOException e) {
-
-            }
         }
 
 
@@ -63,22 +48,22 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
             switch (v.getId()) {
                 case R.id.playButton:
                     Intent i = new Intent(this, playGame.class);
-                    menuMusic.stop(eyeoftiger8bit);
+
                     startActivity(i);
                     break;
                 case R.id.statsButton:
                     Intent j = new Intent(this, playerStats.class);
-                    menuMusic.stop(eyeoftiger8bit);
+
                     startActivity(j);
                     break;
                 case R.id.storeButton:
                     Intent k = new Intent(this, storePage.class);
-                    menuMusic.stop(eyeoftiger8bit);
+
                     startActivity(k);
                     break;
                 case R.id.aboutButton:
                     Intent l = new Intent(this, aboutPage.class);
-                    menuMusic.stop(eyeoftiger8bit);
+
                     startActivity(l);
                 default:
                     break;
@@ -87,17 +72,13 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
         }
 
         public void resume() {
-            menuMusic.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
-                @Override
-                public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-                    soundPool.play(sampleId, 1, 1, 1, -1, 1);
-                    Log.d("*****", "play music");
-                }
-            });
+
 
     }
 
      public void pause(){
-         menuMusic.stop(eyeoftiger8bit);
+
     }
 }
+
+

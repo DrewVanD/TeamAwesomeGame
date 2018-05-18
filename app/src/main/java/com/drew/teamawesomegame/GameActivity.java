@@ -1,5 +1,6 @@
 package com.drew.teamawesomegame;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -44,8 +45,12 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt5 = -1;
     int Hit_Hurt6 = -1;
     Enemy currentEnemy;
-
-
+    Intent finish = new Intent(this,mainMenu.class);
+    @Override
+    protected  void onDestroy(){
+        super.onDestroy();
+        spriteView.destroy();
+    }
 
 
 
@@ -75,6 +80,8 @@ public class GameActivity extends AppCompatActivity {
         }*/
 
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,10 +259,13 @@ public class GameActivity extends AppCompatActivity {
             if(Enemy.health <= 0)
             {
                 exp += currentEnemy.expReward;
+                playerStats.coins += currentEnemy.coinReward;
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
                                                            + "\nCoin Reward: " + currentEnemy.coinReward
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
                 levelUp();
+               onDestroy();
+
             }
             Enemy.health -= baseDmg;
             enemyPercentage = Enemy.health / Enemy.maxHealth;
@@ -440,12 +450,18 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
+
+
         public void resume() {
             thread = new Thread(this);
             thread.start();
 
         }
 
+        public void destroy(){
+
+            startActivity(finish);
+        }
         public void pause(){
             try {
                 thread.join();
