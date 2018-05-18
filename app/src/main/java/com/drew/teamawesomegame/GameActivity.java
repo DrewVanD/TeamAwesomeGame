@@ -15,6 +15,7 @@ import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Display;
@@ -50,6 +51,8 @@ public class GameActivity extends AppCompatActivity {
     protected  void onDestroy(){
         super.onDestroy();
         spriteView.destroy();
+
+        startActivity(finish);
     }
 
 
@@ -104,7 +107,7 @@ public class GameActivity extends AppCompatActivity {
 
         int health = bundle.getInt("Health",0);
         int maxHealth = bundle.getInt("MaxHealth", 0);
-        int damagePerSwing = bundle.getInt("damagePerSwing", 0);
+        int damagePerSwing = bundle.getInt("DamagePerSwing", 0);
         int coinReward = bundle.getInt("CoinReward", 0);
         int expReward = bundle.getInt("ExpReward",0);
         int timeBetweenSwings = bundle.getInt("TimeBetweenSwings",0);
@@ -170,8 +173,8 @@ public class GameActivity extends AppCompatActivity {
         long stamTimer = 0;
         long stamTime = 1000;
         long punchTimer = 0;
-        long punchTime = currentEnemy.timeBetweenSwings * 1000;
-
+        long punchTime = Enemy.timeBetweenSwings * 1000;
+        boolean punched = false;
 
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
@@ -276,9 +279,41 @@ public class GameActivity extends AppCompatActivity {
 
         public void damagePlayer(){
             if(playerHealth <= 0){
-                onDestroy();
+                finish();
             }
             playerHealth -= currentEnemy.damage;
+            playerHealthPercentage = playerHealth / playerMaxHealth;
+            Random soundNum = new Random();
+            int randNum = soundNum.nextInt(4) + 1;
+
+            switch (randNum) {
+                case 1:
+                    soundPool.play(realPunch, 1, 1, 0, 0 ,1);
+                    break;
+                case 2:
+                    soundPool.play(PUNCH, 1, 1, 0, 0 ,1);
+                    break;
+                case 3:
+                    soundPool.play(jabPunch, 1, 1, 0, 0 ,1);
+                    break;
+                case 4:
+                    soundPool.play(Hit_Hurt, 1, 1, 0, 0 ,1);
+                    break;
+                case 5:
+                    soundPool.play(Hit_Hurt3, 1, 1, 0, 0 ,1);
+                    break;
+                case 6:
+                    soundPool.play(Hit_Hurt4, 1, 1, 0, 0 ,1);
+                    break;
+                case 7:
+                    soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
+                    break;
+                case 8:
+                    soundPool.play(Hit_Hurt6, 1, 1, 0, 0 ,1);
+                    break;
+            }
+
+
         }
 
         public void levelUp() {
@@ -303,6 +338,7 @@ public class GameActivity extends AppCompatActivity {
                     }
                     if(canPunch) {
                         damageEnemy();
+                        punched = true;
                         playerStam = playerStam - punchCost;
                         playerStamPercentage = playerStam / playerMaxStam;
                         Random soundNum = new Random();
@@ -349,13 +385,15 @@ public class GameActivity extends AppCompatActivity {
         
 
         private void updateLogic() {
-            punchTimer += deltaTime;
-            if(punchTimer > punchTime){
-                damagePlayer();
-                playerHealthPercentage = playerHealth / playerMaxHealth;
-                punchTimer = 0;
+            if(punched) {
+                punchTimer += deltaTime;
+                if (punchTimer > punchTime) {
+                    damagePlayer();
+                    Toast.makeText(getApplicationContext(), "Ouch", Toast.LENGTH_SHORT).show();
+                    playerHealthPercentage = playerHealth / playerMaxHealth;
+                    punchTimer = 0;
+                }
             }
-
 
             stamTimer += deltaTime;
             if(stamTimer > stamTime){
@@ -412,7 +450,7 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.RED);
                 canvas.drawRect(0,(canvas.getHeight() / 4),(int)(250f * enemyPercentage),400,paint);//enemy red bar
                 paint.setColor(Color.GREEN);
-                canvas.drawRect(canvas.getWidth() - 250,(canvas.getHeight() / 4),(int)(canvas.getWidth() * playerHealthPercentage),400,paint);//player red bar
+                canvas.drawRect(canvas.getWidth() - (int)(250f * playerHealthPercentage),(canvas.getHeight() / 4),screenWidth,400,paint);//player red bar
                 paint.setColor(Color.YELLOW);
                 canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight() - (int)(250f * playerStamPercentage), canvas.getWidth(),canvas.getHeight(),paint);//player stambar
                 paint.setColor(Color.WHITE);
@@ -445,16 +483,14 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public void run(){
-
-
-
+            Looper.prepare();
+            //Looper.loop();
             while (true){
+
                 updateLogic();
                 drawCanvas();
                 controlFPS();
             }
-
-
         }
 
 
