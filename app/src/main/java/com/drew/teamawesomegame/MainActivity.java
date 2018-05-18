@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(i);
         player = MediaPlayer.create(this, R.raw.eyeoftiger8bit);
         player.setLooping(true); // Set looping
-        player.setVolume(100,100);
         player.start();
     }
 }
