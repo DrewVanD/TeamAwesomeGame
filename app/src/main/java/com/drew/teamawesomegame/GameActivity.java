@@ -1,6 +1,5 @@
 package com.drew.teamawesomegame;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
@@ -11,9 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -22,13 +19,9 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GameActivity extends AppCompatActivity {
     //TODO determine how to grab canvas for the original surface view
@@ -207,6 +200,12 @@ public class GameActivity extends AppCompatActivity {
         int exp = 0;
         int playerlvl = 1;
         int expincrement = 1000 + (500 * playerlvl);
+        /*int glovewidth = leftGlove.width;
+        int gloveheight = leftGlove.height;
+        int lgloveoriginH = leftGlove.y;
+        int rgloveoriginH = rightGlove.y;
+        int lgloveoriginW = leftGlove.x;
+        int rgloveoriginW = rightGlove.x;*/
 
 
         public SpriteView(Context context) {
@@ -289,6 +288,28 @@ public class GameActivity extends AppCompatActivity {
             if(playerHealth <= 0){
                 finish();
             }
+            /*leftGlove.height += 2;                        //test for making gloves grow
+            leftGlove.y -= 1;
+            rightGlove.height += 2;
+            rightGlove.y -= 1;
+            leftGlove.width += 2;
+            leftGlove.x -= 1;
+            rightGlove.width += 2;
+            rightGlove.x -= 1;
+
+            if (leftGlove.height >= (gloveheight + 20)){
+                leftGlove.height = gloveheight;
+                leftGlove.width = glovewidth;
+                leftGlove.y = lgloveoriginH;
+                leftGlove.x = lgloveoriginW;
+            }
+            if (rightGlove.height >= (gloveheight + 20)){
+                rightGlove.height = gloveheight;
+                rightGlove.width = glovewidth;
+                rightGlove.y = rgloveoriginH;
+                rightGlove.x = rgloveoriginW;
+            }*/
+
             playerHealth -= currentEnemy.damage;
             playerHealthPercentage = playerHealth / playerMaxHealth;
             Random soundNum = new Random();
@@ -451,19 +472,19 @@ public class GameActivity extends AppCompatActivity {
                 paint.setTextSize(30);
                 paint.setFakeBoldText(true);
                 paint.setColor(Color.BLACK);
-                canvas.drawRect(canvas.getWidth() - 250,(canvas.getHeight() / 4),canvas.getWidth(),400,paint);//player black bar
-                canvas.drawRect(0,(canvas.getHeight() / 4),250,400,paint);//enemy black bar
-                canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight(), canvas.getWidth(),canvas.getHeight(),paint);//pplayer black stam bar
+                canvas.drawRect(screenWidth - 250,(screenHeight / 4),screenWidth,400,paint);//player black bar   need to play around with values to adjust position
+                canvas.drawRect(0,(screenHeight / 4),250,400,paint);//enemy black bar
+                canvas.drawRect(screenWidth - 50, screenHeight, screenWidth,screenHeight,paint);//player black stam bar
 
                 paint.setColor(Color.RED);
-                canvas.drawRect(0,(canvas.getHeight() / 4),(int)(250f * enemyPercentage),400,paint);//enemy red bar
+                canvas.drawRect(0,(screenHeight / 4),(int)(250f * enemyPercentage),400,paint);//enemy red bar
                 paint.setColor(Color.GREEN);
-                canvas.drawRect(canvas.getWidth() - (int)(250f * playerHealthPercentage),(canvas.getHeight() / 4),screenWidth,400,paint);//player red bar
+                canvas.drawRect(screenWidth - (int)(250f * playerHealthPercentage),(screenHeight / 4),screenWidth,400,paint);//player red bar
                 paint.setColor(Color.YELLOW);
-                canvas.drawRect(canvas.getWidth() - 50, canvas.getHeight() - (int)(250f * playerStamPercentage), canvas.getWidth(),canvas.getHeight(),paint);//player stambar
+                canvas.drawRect(screenWidth - 50,screenHeight - (int)(250f * playerStamPercentage), screenWidth,screenHeight,paint);//player stambar
                 paint.setColor(Color.WHITE);
-                canvas.drawText(currentEnemy.enemyName,10,(canvas.getHeight() / 4),paint);
-                canvas.drawText("Player Health",canvas.getWidth() - 250,(canvas.getHeight() / 4),paint);//paint.setTextSize(45);
+                canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
+                canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
                 //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
             }
