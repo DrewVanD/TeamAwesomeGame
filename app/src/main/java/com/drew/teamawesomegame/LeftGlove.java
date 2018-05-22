@@ -22,9 +22,16 @@ public class LeftGlove {
         height = lGlove.getHeight();
     }
 
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas, boolean scaled) {
         Rect srcRect = new Rect(srcX,srcY,srcX+width,srcY+height);
-        Rect dstRect = new Rect(x,y,x+width,y+height);
+        Rect dstRect;
+
+        if (!scaled) {
+            dstRect = new Rect(x, y, x + width, y + height);
+        }
+        else {
+            dstRect = new Rect(-width / 2, -height / 2, width / 2, height / 2);
+        }
 
         canvas.drawBitmap(lGlove, srcRect, dstRect, null);
     }

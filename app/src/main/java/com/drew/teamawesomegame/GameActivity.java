@@ -173,6 +173,9 @@ public class GameActivity extends AppCompatActivity {
         long punchTimer = 0;
         long punchTime = Enemy.timeBetweenSwings * 1000;
         boolean punched = false;
+        boolean enemypunch = false;
+        boolean punchanim = false;
+        boolean scaleUp = true;
 
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
@@ -203,6 +206,7 @@ public class GameActivity extends AppCompatActivity {
         int rgloveoriginH = rightGlove.y;
         int lgloveoriginW = leftGlove.x;
         int rgloveoriginW = rightGlove.x;*/
+        float scale = 1.0f;
 
 
         public SpriteView(Context context) {
@@ -283,9 +287,12 @@ public class GameActivity extends AppCompatActivity {
 
         public void damagePlayer(){
             Toast.makeText(getApplicationContext(), "Ouch", Toast.LENGTH_LONG).show();
+            enemypunch = true;
+            punchanim = true;
             if(playerHealth <= 0){
                 finish();
             }
+
             /*leftGlove.height += 2;                        //test for making gloves grow
             leftGlove.y -= 1;
             rightGlove.height += 2;
@@ -416,11 +423,14 @@ public class GameActivity extends AppCompatActivity {
         private void updateLogic() {
             if(punched) {
                 punchTimer += deltaTime;
-                if (punchTimer > punchTime) {
+                if (punchTimer > punchTime && !punchanim) {
                     damagePlayer();
 
                     playerHealthPercentage = playerHealth / playerMaxHealth;
                     punchTimer = 0;
+                }
+                else {
+                    enemypunch = false;
                 }
 
             }
@@ -459,12 +469,39 @@ public class GameActivity extends AppCompatActivity {
         private void drawCanvas(){
             if(holder.getSurface().isValid()){
                 canvas = holder.lockCanvas();
+                if (punchanim) {
+
+                    if (scaleUp) {
+                        scale += 0.5f;
+                    }
+                    else {
+                        scale -= 0.5f;
+                    }
+
+                    if (scale >= 2.0f) {
+                        scaleUp = false;
+                    }
+                    else if (scale <= 1.0f) {
+                        scale = 1.0f;
+                        scaleUp = true;
+                        punchanim = false;
+                    }
+                }
 
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
-                rightGlove.draw(canvas);
-                leftGlove.draw(canvas);
+                if (punchanim){
+                    canvas.save();
+                    canvas.translate(rightGlove.x -(rightGlove.width/2), rightGlove.y-(rightGlove.height/2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.scale(scale,scale);
+                    rightGlove.draw(canvas, true);
+                    canvas.restore();
+                }
+                else {
+                    rightGlove.draw(canvas, false);
+                }
+                leftGlove.draw(canvas, false);
                 if(Enemy.facenum != 6) {
                     jeff.draw(canvas);
                 }
