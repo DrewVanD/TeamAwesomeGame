@@ -39,6 +39,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         Bundle bundle = new Bundle();
+        MainActivity.player.setVolume(0.25f,0.25f);
        switch(v.getId()){
            case R.id.exitButton:
                Intent i = new Intent(this, mainMenu.class);
