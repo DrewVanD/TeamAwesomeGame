@@ -27,7 +27,7 @@ public class GameActivity extends AppCompatActivity {
     //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
     SpriteView spriteView;
-
+    boolean running = true;
     private SoundPool soundPool;
     int realPunch = -1;
     int PUNCH = -1;
@@ -39,8 +39,18 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt6 = -1;
     Enemy currentEnemy;
     Intent finish = new Intent(this,mainMenu.class);
+
+    @Override
+    protected void onStop(){
+        running = false;
+      super.onStop();
+      spriteView.destroy();
+      finish();
+      startActivity(finish);
+    }
     @Override
     protected  void onDestroy(){
+        running = false;
         super.onDestroy();
         spriteView.destroy();
 
@@ -54,6 +64,7 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+        running = false;
         super.onPause();
         spriteView.pause();
         if (MainActivity.player.isPlaying())
@@ -271,7 +282,8 @@ public class GameActivity extends AppCompatActivity {
                                                            + "\nCoin Reward: " + currentEnemy.coinReward
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
                 levelUp();
-               onDestroy();
+               //onDestroy();
+                onStop();
 
             }
             Enemy.health -= baseDmg;
@@ -284,7 +296,8 @@ public class GameActivity extends AppCompatActivity {
         public void damagePlayer(){
             Toast.makeText(getApplicationContext(), "Ouch", Toast.LENGTH_LONG).show();
             if(playerHealth <= 0){
-                finish();
+                //finish();
+                onStop();
             }
             /*leftGlove.height += 2;                        //test for making gloves grow
             leftGlove.y -= 1;
@@ -516,7 +529,7 @@ public class GameActivity extends AppCompatActivity {
         public void run(){
             Looper.prepare();
             //Looper.loop();
-            while (true){
+            while (running){
 
                 updateLogic();
                 drawCanvas();
