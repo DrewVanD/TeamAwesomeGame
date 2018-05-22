@@ -53,10 +53,10 @@ public class GameActivity extends AppCompatActivity {
         running = false;
         super.onDestroy();
         spriteView.destroy();
-
+        MainActivity.player.stop();
 
         startActivity(finish);
-        MainActivity.player.stop();
+
 
     }
 
@@ -67,7 +67,7 @@ public class GameActivity extends AppCompatActivity {
         running = false;
         super.onPause();
         spriteView.pause();
-        if (MainActivity.player.isPlaying())
+        //if (MainActivity.player.isPlaying())
             MainActivity.player.pause();
 
 
@@ -77,7 +77,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         spriteView.resume();
-        if (!MainActivity.player.isPlaying())
+        //if (!MainActivity.player.isPlaying())
             MainActivity.player.start();
 
 /*
