@@ -285,6 +285,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         public void damagePlayer(){
+            Toast.makeText(getApplicationContext(), "Ouch", Toast.LENGTH_LONG).show();
             if(playerHealth <= 0){
                 finish();
             }
@@ -311,6 +312,7 @@ public class GameActivity extends AppCompatActivity {
             }*/
 
             playerHealth -= currentEnemy.damage;
+
             playerHealthPercentage = playerHealth / playerMaxHealth;
             Random soundNum = new Random();
             int randNum = soundNum.nextInt(4) + 1;
@@ -361,6 +363,7 @@ public class GameActivity extends AppCompatActivity {
                 case MotionEvent.ACTION_DOWN:
                     if(playerStam <= punchCost){
                         canPunch = false;
+                        Toast.makeText(getApplicationContext(), "No Stamina Chill Out!", Toast.LENGTH_LONG).show();
                     }
                     else{
                         canPunch = true;
@@ -418,10 +421,11 @@ public class GameActivity extends AppCompatActivity {
                 punchTimer += deltaTime;
                 if (punchTimer > punchTime) {
                     damagePlayer();
-                    Toast.makeText(getApplicationContext(), "Ouch", Toast.LENGTH_SHORT).show();
+
                     playerHealthPercentage = playerHealth / playerMaxHealth;
                     punchTimer = 0;
                 }
+
             }
 
             stamTimer += deltaTime;
@@ -485,7 +489,6 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.WHITE);
                 canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
                 canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
-                //canvas.drawText("FPS: " + fps,10,40, paint);
                 holder.unlockCanvasAndPost(canvas);
             }
         }
