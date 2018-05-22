@@ -29,7 +29,6 @@ public class GameActivity extends AppCompatActivity {
     SpriteView spriteView;
 
     private SoundPool soundPool;
-    int eyeoftiger8bit = -1;
     int realPunch = -1;
     int PUNCH = -1;
     int jabPunch = -1;
@@ -47,7 +46,7 @@ public class GameActivity extends AppCompatActivity {
 
 
         startActivity(finish);
-        //MainActivity.player.stop();
+        MainActivity.player.stop();
 
     }
 
@@ -57,8 +56,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         spriteView.pause();
-        //if (MainActivity.player.isPlaying())
-         //   MainActivity.player.pause();
+        if (MainActivity.player.isPlaying())
+            MainActivity.player.pause();
 
 
     }
@@ -67,8 +66,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         spriteView.resume();
-        //if (!MainActivity.player.isPlaying())
-        //MainActivity.player.start();
+        if (!MainActivity.player.isPlaying())
+            MainActivity.player.start();
 
 /*
         soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
@@ -141,8 +140,6 @@ public class GameActivity extends AppCompatActivity {
             Hit_Hurt5 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Hit_Hurt6.wav");
             Hit_Hurt6 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
-            eyeoftiger8bit = soundPool.load(descriptor,0);
         } catch (IOException e) {
         }
 
@@ -487,16 +484,10 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.YELLOW);
                 canvas.drawRect(screenWidth - 50,screenHeight - (int)(250f * playerStamPercentage), screenWidth,screenHeight,paint);//player stambar
                 paint.setColor(Color.WHITE);
-<<<<<<< HEAD
-
                 canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
                 canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
-                
-
-=======
                 canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
                 canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
->>>>>>> parent of 20102d1... Merge branch 'Mattcantbranch' of https://github.com/DrewVanD/TeamAwesomeGame into Mattcantbranch
                 holder.unlockCanvasAndPost(canvas);
             }
         }
