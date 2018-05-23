@@ -274,7 +274,7 @@ public class GameActivity extends AppCompatActivity {
 
             exit = new Exit(ex);
             
-            exit.x = 0;
+            exit.x = (screenWidth/2) - (exit.width/2);
             exit.y = screenHeight - exit.height;
 
 
