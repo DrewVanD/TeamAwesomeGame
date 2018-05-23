@@ -196,6 +196,7 @@ public class GameActivity extends AppCompatActivity {
         boolean enemypunch = false;
         boolean punchanim = false;
         boolean scaleUp = true;
+        boolean dodamage = true;
 
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
@@ -315,7 +316,9 @@ public class GameActivity extends AppCompatActivity {
                 onStop();
 
             }
-            Enemy.health -= baseDmg;
+            if (dodamage) {
+                Enemy.health -= baseDmg;
+            }
             enemyPercentage = Enemy.health / Enemy.maxHealth;
 
 
@@ -382,56 +385,70 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX();
+            float y = event.getY();
+
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
-                    if(playerStam <= punchCost){
-                        canPunch = false;
-                        Toast.makeText(getApplicationContext(), "No Stamina Chill Out!", Toast.LENGTH_LONG).show();
+                    if (x >= rightGlove.x && x <= rightGlove.x + rightGlove.width && y >= rightGlove.y && y <= rightGlove.y + rightGlove.height ||
+                            x >= leftGlove.x && x <= leftGlove.x + leftGlove.width && y >= leftGlove.y && y <= leftGlove.y + leftGlove.height) {
+                            playerStam = playerStam - punchCost;
+                            dodamage = false;
+                            //TODO add thud sound effect
                     }
-                    else{
-                        canPunch = true;
-                    }
-                    if(canPunch) {
-                        damageEnemy();
-                        punched = true;
-                        playerStam = playerStam - punchCost;
-                        playerStamPercentage = playerStam / playerMaxStam;
-                        Random soundNum = new Random();
-                        int randNum = soundNum.nextInt(4) + 1;
-
-                        switch (randNum) {
-                            case 1:
-                                soundPool.play(realPunch, 1, 1, 0, 0 ,1);
-                                break;
-                            case 2:
-                                soundPool.play(PUNCH, 1, 1, 0, 0 ,1);
-                                break;
-                            case 3:
-                                soundPool.play(jabPunch, 1, 1, 0, 0 ,1);
-                                break;
-                            case 4:
-                                soundPool.play(Hit_Hurt, 1, 1, 0, 0 ,1);
-                                break;
-                            case 5:
-                                soundPool.play(Hit_Hurt3, 1, 1, 0, 0 ,1);
-                                break;
-                            case 6:
-                                soundPool.play(Hit_Hurt4, 1, 1, 0, 0 ,1);
-                                break;
-                            case 7:
-                                soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
-                                break;
-                            case 8:
-                                soundPool.play(Hit_Hurt6, 1, 1, 0, 0 ,1);
-                                break;
+                    else if (x >= face.x && x <= face.x + face.width && y >= face.y && y <= face.y + face.height ||
+                            x >= character.x && x <= character.x + character.width && y >= character.y && y <= character.y + character.height){
+                        dodamage = true;
+                        if(playerStam <= punchCost){
+                            canPunch = false;
+                            Toast.makeText(getApplicationContext(), "No Stamina Chill Out!", Toast.LENGTH_LONG).show();
                         }
-                        break;
+                        else{
+                            canPunch = true;
+                        }
+                        if(canPunch) {
+                            damageEnemy();
+                            punched = true;
+                            playerStam = playerStam - punchCost;
+                            playerStamPercentage = playerStam / playerMaxStam;
+                            Random soundNum = new Random();
+                            int randNum = soundNum.nextInt(4) + 1;
 
+                            switch (randNum) {
+                                case 1:
+                                    soundPool.play(realPunch, 1, 1, 0, 0, 1);
+                                    break;
+                                case 2:
+                                    soundPool.play(PUNCH, 1, 1, 0, 0, 1);
+                                    break;
+                                case 3:
+                                    soundPool.play(jabPunch, 1, 1, 0, 0, 1);
+                                    break;
+                                case 4:
+                                    soundPool.play(Hit_Hurt, 1, 1, 0, 0, 1);
+                                    break;
+                                case 5:
+                                    soundPool.play(Hit_Hurt3, 1, 1, 0, 0, 1);
+                                    break;
+                                case 6:
+                                    soundPool.play(Hit_Hurt4, 1, 1, 0, 0, 1);
+                                    break;
+                                case 7:
+                                    soundPool.play(Hit_Hurt5, 1, 1, 0, 0, 1);
+                                    break;
+                                case 8:
+                                    soundPool.play(Hit_Hurt6, 1, 1, 0, 0, 1);
+                                    break;
+                            }
+                        }
                     }
+
+                    if (x >= dodri.x)
+                    break;
                 case MotionEvent.ACTION_UP:
 
                     break;
-                    }
+            }
 
 
             return false;

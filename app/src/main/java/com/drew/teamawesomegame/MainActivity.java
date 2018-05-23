@@ -31,5 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player = MediaPlayer.create(this, R.raw.eyeoftiger8bit);
         player.setLooping(true); // Set looping
         player.start();
+        player = MediaPlayer.create(this, R.raw.takeonme);
     }
 }
