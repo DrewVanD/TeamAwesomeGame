@@ -478,10 +478,10 @@ public class GameActivity extends AppCompatActivity {
                 if (punchanim) {
 
                     if (scaleUp) {
-                        scale += 0.5f;
+                        scale += 0.2f;
                     }
                     else {
-                        scale -= 0.5f;
+                        scale -= 0.2f;
                     }
 
                     if (scale >= 2.0f) {
@@ -500,7 +500,7 @@ public class GameActivity extends AppCompatActivity {
 
                 if (punchanim && gloveNum == 1) {
                     canvas.save();
-                    canvas.translate(rightGlove.x - (rightGlove.width / 2), rightGlove.y - (rightGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.translate(rightGlove.x + (rightGlove.width / 2), rightGlove.y + (rightGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
                     canvas.scale(scale, scale);
                     rightGlove.draw(canvas, true);
                     canvas.restore();
@@ -510,7 +510,7 @@ public class GameActivity extends AppCompatActivity {
                 }
                 if (punchanim && gloveNum == 2){
                     canvas.save();
-                    canvas.translate(leftGlove.x + (leftGlove.width / 2), leftGlove.y - (leftGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.translate(leftGlove.x + (leftGlove.width / 2), leftGlove.y + (leftGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
                     canvas.scale(scale, scale);
                     leftGlove.draw(canvas, true);
                     canvas.restore();
