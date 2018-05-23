@@ -601,7 +601,7 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.GREEN);
                 canvas.drawRect(screenWidth - (int)(250f * playerHealthPercentage),(screenHeight / 4),screenWidth,400,paint);//player red bar
                 paint.setColor(Color.YELLOW);
-                canvas.drawRect(screenWidth - (int)(250f * playerStamPercentage),(screenHeight / 4) + 10, screenWidth,480,paint);//player stambar
+                canvas.drawRect(screenWidth - (int)(250f * playerStamPercentage),(screenHeight / 4) + 40, screenWidth,480,paint);//player stambar
                 paint.setColor(Color.WHITE);
                 canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
                 canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
