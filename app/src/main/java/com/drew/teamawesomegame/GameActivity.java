@@ -21,6 +21,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
@@ -40,14 +41,15 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt5 = -1;
     int Hit_Hurt6 = -1;
     Enemy currentEnemy;
-    Intent finish = new Intent(this,mainMenu.class);
+
 
     @Override
     protected void onStop(){
-        running = false;
+      running = false;
       super.onStop();
       spriteView.destroy();
       //finish();
+      Intent finish = new Intent(this,MainActivity.class);
       startActivity(finish);
     }
     @Override
@@ -57,7 +59,7 @@ public class GameActivity extends AppCompatActivity {
         spriteView.destroy();
         MainActivity.player.stop();
 
-        startActivity(finish);
+
 
 
     }
@@ -592,7 +594,7 @@ public class GameActivity extends AppCompatActivity {
 
         public void destroy(){
 
-            startActivity(finish);
+
         }
         public void pause(){
             try {
