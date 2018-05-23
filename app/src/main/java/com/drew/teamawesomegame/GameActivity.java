@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -540,6 +541,13 @@ public class GameActivity extends AppCompatActivity {
                 if(Enemy.facenum != 6) {
                     jeff.draw(canvas);
                 }
+                /*if(Enemy.facenum == 6){
+                    MainActivity.player.stop();
+                    MainActivity.player = MediaPlayer.create(context, R.raw.takeonme);
+                    MainActivity.player.isLooping();
+                    MainActivity.player.start();
+
+                }*/   // test tom change music for boss fight
 
                 paint.setColor(Color.RED);
                 paint.setTextSize(30);
