@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".playerStats">
 
-    <Button
-        android:id="@+id/exitButton"
-        android:layout_width="134dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="112dp"
-        android:background="@android:color/background_dark"
-        android:text="Main Menu"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="match_parent"
@@ -29,6 +13,62 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/stats" />
+
+    <TextView
+        android:id="@+id/healthBoost"
+        android:layout_width="73dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/playerStats"
+        android:layout_alignTop="@+id/healthBoostTitle"
+        android:background="@android:color/background_dark"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/healthBoostTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/moneyBoostTitle"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="136dp"
+        android:background="@android:color/transparent"
+        android:gravity="left|center_vertical"
+        android:text="Health Boost"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_dark"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/damageBoostTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/playerStats"
+        android:layout_marginTop="306dp"
+        android:background="@android:color/transparent"
+        android:gravity="center_vertical"
+        android:text="Damage Boost"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_dark"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/damageBoost"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/playerStats"
+        android:layout_alignTop="@+id/damageBoostTitle"
+        android:background="@android:color/background_dark"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:background="@android:color/background_dark" />
 
     <TextView
         android:id="@+id/playerStats"
@@ -47,150 +87,103 @@
         android:textStyle="bold|italic" />
 
     <TextView
-        android:id="@+id/money"
+        android:id="@+id/moneyTitle"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/moneyMultiplier"
+        android:layout_alignStart="@+id/moneyBoostTitle"
         android:layout_marginTop="170dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:text="Money"
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/moneyMultiplier"
+        android:id="@+id/moneyBoostTitle"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/stamina"
-        android:layout_marginTop="217dp"
+        android:layout_alignStart="@+id/playerStats"
+        android:layout_marginTop="211dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
-        android:text="Money X"
+        android:text="Money Boost"
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/dmg"
+        android:id="@+id/damageTitle"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/money"
-        android:layout_marginTop="263dp"
+        android:layout_alignStart="@+id/playerStats"
+        android:layout_marginTop="258dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:text="Damage"
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/stamina"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="74dp"
+        android:id="@+id/staminaTitle"
+        android:layout_width="92dp"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/playerStats"
+        android:layout_marginBottom="300dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:text="Stamina"
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/stmRegen"
+        android:id="@+id/staminaBoostTitle"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/money"
-        android:layout_marginBottom="262dp"
+        android:layout_alignStart="@+id/playerStats"
+        android:layout_marginBottom="244dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
-        android:text="Stamina Regen"
+        android:text="Stamina Boost"
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/health"
+        android:id="@+id/healthTitle"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/money"
-        android:layout_marginBottom="218dp"
+        android:layout_alignStart="@+id/playerStats"
+        android:layout_marginBottom="198dp"
         android:background="@android:color/transparent"
         android:gravity="left|center_vertical"
         android:text="Health "
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/knockout"
-        android:layout_width="wrap_content"
-        android:layout_height="37dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/money"
-        android:layout_marginBottom="173dp"
-        android:background="@android:color/transparent"
-        android:gravity="center_vertical"
-        android:text="Times KOed"
-        android:textAllCaps="true"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/moneyStat"
         android:layout_width="74dp"
-        android:layout_height="36dp"
-        android:layout_alignStart="@+id/multiplierStat2"
-        android:layout_alignTop="@+id/money"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/moneyBoost"
+        android:layout_alignTop="@+id/moneyTitle"
         android:background="@android:color/background_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="$"
-        android:textAllCaps="true"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:background="@android:color/background_dark" />
-
-    <TextView
-        android:id="@+id/multiplierStat2"
-        android:layout_width="74dp"
-        android:layout_height="36dp"
-        android:layout_alignStart="@+id/knockOuts"
-        android:layout_alignTop="@+id/moneyMultiplier"
-        android:background="@android:color/background_dark"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="1X"
-        android:textAllCaps="true"
-        android:textColor="@android:color/holo_orange_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:background="@android:color/background_dark" />
-
-    <TextView
-        android:id="@+id/knockOuts"
-        android:layout_width="74dp"
-        android:layout_height="36dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/knockout"
-        android:layout_marginEnd="71dp"
-        android:background="@android:color/background_dark"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="0KOs"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="18sp"
@@ -198,14 +191,13 @@
         tools:background="@android:color/background_dark" />
 
     <TextView
-        android:id="@+id/dmgMulti3"
+        android:id="@+id/moneyBoost"
         android:layout_width="74dp"
-        android:layout_height="36dp"
-        android:layout_alignStart="@+id/knockOuts"
-        android:layout_alignTop="@+id/dmg"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/moneyBoostTitle"
+        android:layout_alignEnd="@+id/playerStats"
         android:background="@android:color/background_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="10POW"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="18sp"
@@ -213,14 +205,13 @@
         tools:background="@android:color/background_dark" />
 
     <TextView
-        android:id="@+id/stM"
+        android:id="@+id/damage"
         android:layout_width="74dp"
-        android:layout_height="36dp"
-        android:layout_alignStart="@+id/knockOuts"
-        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/damageTitle"
+        android:layout_alignEnd="@+id/playerStats"
         android:background="@android:color/background_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="100STM"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="18sp"
@@ -228,30 +219,58 @@
         tools:background="@android:color/background_dark" />
 
     <TextView
-        android:id="@+id/Health"
+        android:id="@+id/stamina"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/playerStats"
+        android:layout_alignTop="@+id/staminaTitle"
+        android:background="@android:color/background_dark"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:background="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/health"
         android:layout_width="73dp"
-        android:layout_height="35dp"
-        android:layout_alignStart="@+id/knockOuts"
-        android:layout_alignTop="@+id/health"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/playerStats"
+        android:layout_alignTop="@+id/healthTitle"
         android:background="@android:color/background_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="100+"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/RGN"
+        android:id="@+id/staminaBoost"
         android:layout_width="73dp"
-        android:layout_height="35dp"
-        android:layout_alignStart="@+id/moneyStat"
-        android:layout_alignTop="@+id/stmRegen"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/playerStats"
+        android:layout_alignTop="@+id/staminaBoostTitle"
         android:background="@android:color/background_dark"
         android:gravity="center_vertical|center_horizontal"
-        android:text="5RGN"
         android:textAllCaps="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="@android:color/background_dark"
+        android:text="Main Menu"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>

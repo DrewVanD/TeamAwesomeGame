@@ -121,7 +121,7 @@
         android:id="@+id/frontPageText"
         android:layout_width="104dp"
         android:layout_height="68dp"
-        android:layout_alignTop="@+id/upButton"
+        android:layout_above="@+id/downButton"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical|center_horizontal"
         android:text="You lookin' for upgrades?"
@@ -132,10 +132,10 @@
     <ImageView
         android:id="@+id/itemView"
         android:layout_width="138dp"
-        android:layout_height="191dp"
+        android:layout_height="148dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="216dp"
+        android:layout_marginTop="225dp"
         app:srcCompat="@drawable/textbubble" />
 
     <Button
@@ -181,23 +181,23 @@
         android:id="@+id/coins"
         android:layout_width="103dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/healthButton"
-        android:layout_toStartOf="@+id/staminaButton"
+        android:layout_alignEnd="@+id/textView9"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="217dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="Coins = "
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/coinsNum"
         android:layout_width="77dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/staminaButton"
-        android:layout_below="@+id/healthButton"
+        android:layout_alignBottom="@+id/coins"
+        android:layout_alignEnd="@+id/glovesButton"
         android:gravity="center_vertical|center_horizontal"
-        android:text="0"
         android:textAllCaps="true"
         android:textColor="@android:color/background_dark"
         android:textSize="24sp"
