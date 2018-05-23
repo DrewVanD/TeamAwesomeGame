@@ -118,7 +118,7 @@
         android:layout_marginStart="113dp"
         android:background="#FFF"
         android:gravity="center"
-        android:text='Chris "Holly" Jarino \n Health: 100 \n Damage: 5/hit'
+        android:text='Chris "Holly" Jarino \n Health: 100 \n Damage: /hit'
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="14sp" />
 

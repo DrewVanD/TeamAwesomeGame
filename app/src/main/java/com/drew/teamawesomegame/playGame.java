@@ -57,7 +57,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                bundle.putInt("DamagePerSwing",10);
                bundle.putInt("CoinReward",100);
                bundle.putInt("ExpReward",50);
-               bundle.putInt("TimeBetweenSwings",5);
+               bundle.putInt("TimeBetweenSwings",4);
                bundle.putInt("FaceDamage",0);
                bundle.putInt("FaceNum",0);
                bundle.putString("EnemyName","Chris 'Holy' Jarino");
