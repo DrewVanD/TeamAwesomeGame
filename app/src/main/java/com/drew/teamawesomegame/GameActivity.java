@@ -519,10 +519,6 @@ public class GameActivity extends AppCompatActivity {
 
                     leftGlove.draw(canvas, false);
                 }
-
-
-                rightGlove.draw(canvas);
-                leftGlove.draw(canvas);
                 exit.draw(canvas);
 
 
