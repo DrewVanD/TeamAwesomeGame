@@ -313,7 +313,7 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
                                                            + "\nCoin Reward: " + currentEnemy.coinReward
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
-                levelUp();
+                //levelUp();
                //onDestroy();
                 onStop();
 
@@ -383,6 +383,7 @@ public class GameActivity extends AppCompatActivity {
                 playerStats.baseDamage += 1;
                 exp = 0;
                 playerlvl ++;
+                Toast.makeText(getApplicationContext(),"LEVEL UP!", Toast.LENGTH_LONG).show();
             }
         }
 
@@ -468,6 +469,8 @@ public class GameActivity extends AppCompatActivity {
         
 
         private void updateLogic() {
+            levelUp();
+
             if(punched) {
                 punchTimer += deltaTime;
                 if (punchTimer > punchTime && !punchanim) {
