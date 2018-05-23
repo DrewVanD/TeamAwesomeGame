@@ -10,7 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Looper;
@@ -20,7 +19,6 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.ImageButton;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
@@ -47,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
         running = false;
       super.onStop();
       spriteView.destroy();
-      //finish();
+      finish();
       startActivity(finish);
     }
     @Override
@@ -173,8 +171,6 @@ public class GameActivity extends AppCompatActivity {
         Bitmap rGlove;
         Bitmap lGlove;
         Bitmap jiff;
-        Bitmap ex;
-        Exit exit;
         jeffBartender jeff;
         Body character;
         Face face;
@@ -239,7 +235,7 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
-            ex = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
+
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
 
@@ -268,14 +264,6 @@ public class GameActivity extends AppCompatActivity {
 
             jeff.x = (screenWidth / 5) * 3;
             jeff.y = screenHeight / 14;
-
-            exit = new Exit(ex);
-            
-            exit.x = 0;
-            exit.y = screenHeight - exit.height;
-
-
-
 
             //soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
 
@@ -488,13 +476,8 @@ public class GameActivity extends AppCompatActivity {
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
-
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
-                exit.draw(canvas);
-
-
-
                 if(Enemy.facenum != 6) {
                     jeff.draw(canvas);
                 }
@@ -516,7 +499,8 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.WHITE);
                 canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
                 canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
-
+                canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
+                canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
                 holder.unlockCanvasAndPost(canvas);
             }
         }
