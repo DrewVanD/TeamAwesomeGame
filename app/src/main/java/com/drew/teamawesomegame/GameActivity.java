@@ -192,11 +192,13 @@ public class GameActivity extends AppCompatActivity {
         long stamTime = 1000;
         long punchTimer = 0;
         long punchTime = Enemy.timeBetweenSwings * 1000;
+        long dodgetimer = 0;
         boolean punched = false;
         boolean enemypunch = false;
         boolean punchanim = false;
         boolean scaleUp = true;
         boolean dodamage = true;
+        boolean dodge = false;
 
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
@@ -333,8 +335,9 @@ public class GameActivity extends AppCompatActivity {
                 //finish();
                 onStop();
             }
-
-            playerHealth -= currentEnemy.damage;
+            if (!dodge) {
+                playerHealth -= currentEnemy.damage;
+            }
 
             Random glove = new Random();
             gloveNum = glove.nextInt(2) + 1;
@@ -443,7 +446,11 @@ public class GameActivity extends AppCompatActivity {
                         }
                     }
 
-                    if (x >= dodri.x)
+                    if (x >= leftDod.x && x <= leftDod.x + leftDod.width && y >= leftDod.y && y <= leftDod.y + leftDod.height ||
+                            x >= rightDod.x && x <= rightDod.x + rightDod.width && y >= rightDod.y && y <= rightDod.y + rightDod.height){
+                        dodge = true;
+                        Toast.makeText(getApplicationContext(),"DODGE!", Toast.LENGTH_LONG).show();
+                    }
                     break;
                 case MotionEvent.ACTION_UP:
 
@@ -469,6 +476,13 @@ public class GameActivity extends AppCompatActivity {
                     enemypunch = false;
                 }
 
+            }
+            if (dodge) {
+                dodgetimer += deltaTime;
+                if (dodgetimer >= 500){
+                    dodge = false;
+                    dodgetimer = 0;
+                }
             }
 
             stamTimer += deltaTime;
