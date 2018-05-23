@@ -41,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt4 = -1;
     int Hit_Hurt5 = -1;
     int Hit_Hurt6 = -1;
+    int gloveHit = -1;
     Enemy currentEnemy;
 
 
@@ -152,8 +153,11 @@ public class GameActivity extends AppCompatActivity {
             Hit_Hurt4 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Hit_Hurt5.wav");
             Hit_Hurt5 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Hit_Hurt6.wav");
-            Hit_Hurt6 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("glovehit.wav");
+            gloveHit = soundPool.load(descriptor, 0);
+
+
+
         } catch (IOException e) {
         }
 
@@ -368,9 +372,6 @@ public class GameActivity extends AppCompatActivity {
                 case 7:
                     soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
                     break;
-                case 8:
-                    soundPool.play(Hit_Hurt6, 1, 1, 0, 0 ,1);
-                    break;
             }
 
 
@@ -402,7 +403,7 @@ public class GameActivity extends AppCompatActivity {
                             x >= leftGlove.x && x <= leftGlove.x + leftGlove.width && y >= leftGlove.y && y <= leftGlove.y + leftGlove.height) {
                             playerStam = playerStam - punchCost;
                             dodamage = false;
-                            //TODO add thud sound effect
+                            soundPool.play(gloveHit, 1,1,0,0,1);
                     }
                     else if (x >= face.x && x <= face.x + face.width && y >= face.y && y <= face.y + face.height ||
                             x >= character.x && x <= character.x + character.width && y >= character.y && y <= character.y + character.height){
@@ -443,9 +444,6 @@ public class GameActivity extends AppCompatActivity {
                                     break;
                                 case 7:
                                     soundPool.play(Hit_Hurt5, 1, 1, 0, 0, 1);
-                                    break;
-                                case 8:
-                                    soundPool.play(Hit_Hurt6, 1, 1, 0, 0, 1);
                                     break;
                             }
                         }
