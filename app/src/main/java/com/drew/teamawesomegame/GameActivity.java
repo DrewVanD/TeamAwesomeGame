@@ -238,12 +238,12 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
-<<<<<<< HEAD
 
-=======
+
+
             ex = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
             //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
->>>>>>> Store-Page
+
             background = new BackGround(bit);
 
             background.x = 0;
@@ -272,8 +272,6 @@ public class GameActivity extends AppCompatActivity {
             jeff.x = (screenWidth / 5) * 3;
             jeff.y = screenHeight / 14;
 
-<<<<<<< HEAD
-=======
             exit = new Exit(ex);
             
             exit.x = 0;
@@ -284,7 +282,7 @@ public class GameActivity extends AppCompatActivity {
 
             //soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
 
->>>>>>> Store-Page
+
         }
 
         public void damageEnemy(){
@@ -499,7 +497,7 @@ public class GameActivity extends AppCompatActivity {
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
-<<<<<<< HEAD
+
                 if (punchanim && gloveNum == 1) {
                     canvas.save();
                     canvas.translate(rightGlove.x - (rightGlove.width / 2), rightGlove.y - (rightGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
@@ -521,14 +519,14 @@ public class GameActivity extends AppCompatActivity {
 
                     leftGlove.draw(canvas, false);
                 }
-=======
+
 
                 rightGlove.draw(canvas);
                 leftGlove.draw(canvas);
                 exit.draw(canvas);
 
 
->>>>>>> Store-Page
+
 
                 if(Enemy.facenum != 6) {
                     jeff.draw(canvas);
