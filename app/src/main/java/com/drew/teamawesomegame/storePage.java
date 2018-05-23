@@ -48,7 +48,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
         Button trainButton = findViewById(R.id.trainButton);
         trainButton.setOnClickListener(this);
 
-        //coinsNum.setText(currentCoins);
+        coinsNum.setText("Coins: " + currentCoins);
 
     }
 
@@ -120,7 +120,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
         //can change price anytime
         TextView itemName = findViewById(R.id.itemName);
         TextView itemDesc = findViewById(R.id.itemDesc);
-        coinsNum.setText(currentCoins);
+        //coinsNum.setText(currentCoins);
         switch(itemCol) {
             case 1:
                 switch(item){
@@ -130,7 +130,6 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                         itemName.setText("Water Bottle");
                         itemPrice.setText("$100");
                         currentPrice = 100;
-
                         break;
                     case 2:
                         itemImage.setImageResource(R.drawable.drink2);
@@ -237,8 +236,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
         if(canBuy){
             currentCoins -= currentPrice;
         }
-    }
-    public void coinsNum(){
 
+        //coinsNum.setText("Coins: " + currentCoins);
     }
 }
