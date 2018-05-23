@@ -40,7 +40,8 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt3 = -1;
     int Hit_Hurt4 = -1;
     int Hit_Hurt5 = -1;
-    int Hit_Hurt6 = -1;
+    int swoosh = -1;
+    int gloveHit = -1;
     Enemy currentEnemy;
 
 
@@ -152,8 +153,13 @@ public class GameActivity extends AppCompatActivity {
             Hit_Hurt4 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Hit_Hurt5.wav");
             Hit_Hurt5 = soundPool.load(descriptor, 0);
-            descriptor = assetManager.openFd("Hit_Hurt6.wav");
-            Hit_Hurt6 = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("glovehit.wav");
+            gloveHit = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Swoosh.wav");
+            swoosh = soundPool.load(descriptor,0);
+
+
+
         } catch (IOException e) {
         }
 
@@ -192,10 +198,13 @@ public class GameActivity extends AppCompatActivity {
         long stamTime = 1000;
         long punchTimer = 0;
         long punchTime = Enemy.timeBetweenSwings * 1000;
+        long dodgetimer = 0;
         boolean punched = false;
         boolean enemypunch = false;
         boolean punchanim = false;
         boolean scaleUp = true;
+        boolean dodamage = true;
+        boolean dodge = false;
 
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
@@ -310,12 +319,14 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
                                                            + "\nCoin Reward: " + currentEnemy.coinReward
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
-                levelUp();
+                //levelUp();
                //onDestroy();
                 onStop();
 
             }
-            Enemy.health -= baseDmg;
+            if (dodamage) {
+                Enemy.health -= baseDmg;
+            }
             enemyPercentage = Enemy.health / Enemy.maxHealth;
 
 
@@ -330,8 +341,9 @@ public class GameActivity extends AppCompatActivity {
                 //finish();
                 onStop();
             }
-
-            playerHealth -= currentEnemy.damage;
+            if (!dodge) {
+                playerHealth -= currentEnemy.damage;
+            }
 
             Random glove = new Random();
             gloveNum = glove.nextInt(2) + 1;
@@ -362,9 +374,6 @@ public class GameActivity extends AppCompatActivity {
                 case 7:
                     soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
                     break;
-                case 8:
-                    soundPool.play(Hit_Hurt6, 1, 1, 0, 0 ,1);
-                    break;
             }
 
 
@@ -377,61 +386,82 @@ public class GameActivity extends AppCompatActivity {
                 playerStats.baseDamage += 1;
                 exp = 0;
                 playerlvl ++;
+                Toast.makeText(getApplicationContext(),"LEVEL UP!", Toast.LENGTH_LONG).show();
             }
         }
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
+            float x = event.getX();
+            float y = event.getY();
+
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
-                    if(playerStam <= punchCost){
-                        canPunch = false;
-                        Toast.makeText(getApplicationContext(), "No Stamina Chill Out!", Toast.LENGTH_LONG).show();
+                    if (x >= exit.x && x <= exit.x + exit.width && y >= exit.y && y <= exit.y + exit.width){
+                        //TODO make quit
                     }
-                    else{
-                        canPunch = true;
-                    }
-                    if(canPunch) {
-                        damageEnemy();
-                        punched = true;
-                        playerStam = playerStam - punchCost;
-                        playerStamPercentage = playerStam / playerMaxStam;
-                        Random soundNum = new Random();
-                        int randNum = soundNum.nextInt(4) + 1;
 
-                        switch (randNum) {
-                            case 1:
-                                soundPool.play(realPunch, 1, 1, 0, 0 ,1);
-                                break;
-                            case 2:
-                                soundPool.play(PUNCH, 1, 1, 0, 0 ,1);
-                                break;
-                            case 3:
-                                soundPool.play(jabPunch, 1, 1, 0, 0 ,1);
-                                break;
-                            case 4:
-                                soundPool.play(Hit_Hurt, 1, 1, 0, 0 ,1);
-                                break;
-                            case 5:
-                                soundPool.play(Hit_Hurt3, 1, 1, 0, 0 ,1);
-                                break;
-                            case 6:
-                                soundPool.play(Hit_Hurt4, 1, 1, 0, 0 ,1);
-                                break;
-                            case 7:
-                                soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
-                                break;
-                            case 8:
-                                soundPool.play(Hit_Hurt6, 1, 1, 0, 0 ,1);
-                                break;
+                    if (x >= rightGlove.x && x <= rightGlove.x + rightGlove.width && y >= rightGlove.y && y <= rightGlove.y + rightGlove.height ||
+                            x >= leftGlove.x && x <= leftGlove.x + leftGlove.width && y >= leftGlove.y && y <= leftGlove.y + leftGlove.height) {
+                            playerStam = playerStam - punchCost;
+                            dodamage = false;
+                            soundPool.play(gloveHit, 1,1,0,0,1);
+                    }
+                    else if (x >= face.x && x <= face.x + face.width && y >= face.y && y <= face.y + face.height ||
+                            x >= character.x && x <= character.x + character.width && y >= character.y && y <= character.y + character.height){
+                        dodamage = true;
+                        if(playerStam <= punchCost){
+                            canPunch = false;
+                            Toast.makeText(getApplicationContext(), "No Stamina Chill Out!", Toast.LENGTH_LONG).show();
                         }
-                        break;
+                        else{
+                            canPunch = true;
+                        }
+                        if(canPunch) {
+                            damageEnemy();
+                            punched = true;
+                            playerStam = playerStam - punchCost;
+                            playerStamPercentage = playerStam / playerMaxStam;
+                            Random soundNum = new Random();
+                            int randNum = soundNum.nextInt(4) + 1;
 
+                            switch (randNum) {
+                                case 1:
+                                    soundPool.play(realPunch, 1, 1, 0, 0, 1);
+                                    break;
+                                case 2:
+                                    soundPool.play(PUNCH, 1, 1, 0, 0, 1);
+                                    break;
+                                case 3:
+                                    soundPool.play(jabPunch, 1, 1, 0, 0, 1);
+                                    break;
+                                case 4:
+                                    soundPool.play(Hit_Hurt, 1, 1, 0, 0, 1);
+                                    break;
+                                case 5:
+                                    soundPool.play(Hit_Hurt3, 1, 1, 0, 0, 1);
+                                    break;
+                                case 6:
+                                    soundPool.play(Hit_Hurt4, 1, 1, 0, 0, 1);
+                                    break;
+                                case 7:
+                                    soundPool.play(Hit_Hurt5, 1, 1, 0, 0, 1);
+                                    break;
+                            }
+                        }
                     }
+
+                    if (x >= leftDod.x && x <= leftDod.x + leftDod.width && y >= leftDod.y && y <= leftDod.y + leftDod.height ||
+                            x >= rightDod.x && x <= rightDod.x + rightDod.width && y >= rightDod.y && y <= rightDod.y + rightDod.height){
+                        dodge = true;
+                        soundPool.play(swoosh,1,1,0,0,1);
+                        Toast.makeText(getApplicationContext(),"DODGE!", Toast.LENGTH_LONG).show();
+                    }
+                    break;
                 case MotionEvent.ACTION_UP:
 
                     break;
-                    }
+            }
 
 
             return false;
@@ -440,6 +470,8 @@ public class GameActivity extends AppCompatActivity {
         
 
         private void updateLogic() {
+            levelUp();
+
             if(punched) {
                 punchTimer += deltaTime;
                 if (punchTimer > punchTime && !punchanim) {
@@ -452,6 +484,13 @@ public class GameActivity extends AppCompatActivity {
                     enemypunch = false;
                 }
 
+            }
+            if (dodge) {
+                dodgetimer += deltaTime;
+                if (dodgetimer >= 500){
+                    dodge = false;
+                    dodgetimer = 0;
+                }
             }
 
             stamTimer += deltaTime;
@@ -562,7 +601,7 @@ public class GameActivity extends AppCompatActivity {
                 paint.setColor(Color.GREEN);
                 canvas.drawRect(screenWidth - (int)(250f * playerHealthPercentage),(screenHeight / 4),screenWidth,400,paint);//player red bar
                 paint.setColor(Color.YELLOW);
-                canvas.drawRect(screenWidth - 50,screenHeight - (int)(250f * playerStamPercentage), screenWidth,screenHeight,paint);//player stambar
+                canvas.drawRect(screenWidth - (int)(250f * playerStamPercentage),(screenHeight / 4) + 40, screenWidth,480,paint);//player stambar
                 paint.setColor(Color.WHITE);
                 canvas.drawText(currentEnemy.enemyName,10,(screenHeight / 4),paint);
                 canvas.drawText("Player Health",screenWidth - 250,(screenHeight / 4),paint);//paint.setTextSize(45);
