@@ -393,6 +393,10 @@ public class GameActivity extends AppCompatActivity {
 
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
+                    if (x >= exit.x && x <= exit.x + exit.width && y >= exit.y && y <= exit.y + exit.width){
+                        //TODO make quit
+                    }
+
                     if (x >= rightGlove.x && x <= rightGlove.x + rightGlove.width && y >= rightGlove.y && y <= rightGlove.y + rightGlove.height ||
                             x >= leftGlove.x && x <= leftGlove.x + leftGlove.width && y >= leftGlove.y && y <= leftGlove.y + leftGlove.height) {
                             playerStam = playerStam - punchCost;
