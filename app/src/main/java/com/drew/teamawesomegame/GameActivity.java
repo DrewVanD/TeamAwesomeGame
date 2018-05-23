@@ -196,16 +196,11 @@ public class GameActivity extends AppCompatActivity {
         int fps;
         int rvy = 4;
         int lvy = 4;
+        int gloveNum = 1;
 
         int exp = 0;
         int playerlvl = 1;
         int expincrement = 1000 + (500 * playerlvl);
-        /*int glovewidth = leftGlove.width;
-        int gloveheight = leftGlove.height;
-        int lgloveoriginH = leftGlove.y;
-        int rgloveoriginH = rightGlove.y;
-        int lgloveoriginW = leftGlove.x;
-        int rgloveoriginW = rightGlove.x;*/
         float scale = 1.0f;
 
 
@@ -229,7 +224,6 @@ public class GameActivity extends AppCompatActivity {
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
 
-            //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
             background = new BackGround(bit);
 
             background.x = 0;
@@ -257,8 +251,6 @@ public class GameActivity extends AppCompatActivity {
 
             jeff.x = (screenWidth / 5) * 3;
             jeff.y = screenHeight / 14;
-
-            //soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
 
         }
 
@@ -293,29 +285,10 @@ public class GameActivity extends AppCompatActivity {
                 finish();
             }
 
-            /*leftGlove.height += 2;                        //test for making gloves grow
-            leftGlove.y -= 1;
-            rightGlove.height += 2;
-            rightGlove.y -= 1;
-            leftGlove.width += 2;
-            leftGlove.x -= 1;
-            rightGlove.width += 2;
-            rightGlove.x -= 1;
-
-            if (leftGlove.height >= (gloveheight + 20)){
-                leftGlove.height = gloveheight;
-                leftGlove.width = glovewidth;
-                leftGlove.y = lgloveoriginH;
-                leftGlove.x = lgloveoriginW;
-            }
-            if (rightGlove.height >= (gloveheight + 20)){
-                rightGlove.height = gloveheight;
-                rightGlove.width = glovewidth;
-                rightGlove.y = rgloveoriginH;
-                rightGlove.x = rgloveoriginW;
-            }*/
-
             playerHealth -= currentEnemy.damage;
+
+            Random glove = new Random();
+            gloveNum = glove.nextInt(2) + 1;
 
             playerHealthPercentage = playerHealth / playerMaxHealth;
             Random soundNum = new Random();
@@ -491,17 +464,28 @@ public class GameActivity extends AppCompatActivity {
                 background.draw(canvas);
                 character.draw(canvas);
                 face.draw(canvas);
-                if (punchanim){
+                if (punchanim && gloveNum == 1) {
                     canvas.save();
-                    canvas.translate(rightGlove.x -(rightGlove.width/2), rightGlove.y-(rightGlove.height/2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
-                    canvas.scale(scale,scale);
+                    canvas.translate(rightGlove.x - (rightGlove.width / 2), rightGlove.y - (rightGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.scale(scale, scale);
                     rightGlove.draw(canvas, true);
                     canvas.restore();
                 }
                 else {
                     rightGlove.draw(canvas, false);
                 }
-                leftGlove.draw(canvas, false);
+                if (punchanim && gloveNum == 2){
+                    canvas.save();
+                    canvas.translate(leftGlove.x + (leftGlove.width / 2), leftGlove.y - (leftGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.scale(scale, scale);
+                    leftGlove.draw(canvas, true);
+                    canvas.restore();
+                }
+                else {
+
+                    leftGlove.draw(canvas, false);
+                }
+
                 if(Enemy.facenum != 6) {
                     jeff.draw(canvas);
                 }
