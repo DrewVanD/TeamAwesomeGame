@@ -174,7 +174,11 @@ public class GameActivity extends AppCompatActivity {
         Bitmap lGlove;
         Bitmap jiff;
         Bitmap ex;
+        Bitmap dodle;
+        Bitmap dodri;
         Exit exit;
+        LeftDodge leftDod;
+        RightDodge rightDod;
         jeffBartender jeff;
         Body character;
         Face face;
@@ -238,6 +242,8 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
+            dodle = BitmapFactory.decodeResource(getResources(),R.drawable.leftdodge);
+            dodri = BitmapFactory.decodeResource(getResources(), R.drawable.rightdodge);
 
 
 
@@ -277,7 +283,13 @@ public class GameActivity extends AppCompatActivity {
             exit.x = (screenWidth/2) - (exit.width/2);
             exit.y = screenHeight - exit.height;
 
+            leftDod = new LeftDodge(dodle);
+            leftDod.x = 0;
+            leftDod.y = screenHeight - leftDod.height;
 
+            rightDod = new RightDodge(dodri);
+            rightDod.x = screenWidth - rightDod.width;
+            rightDod.y = screenHeight - rightDod.height;
 
 
             //soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
@@ -520,7 +532,8 @@ public class GameActivity extends AppCompatActivity {
                     leftGlove.draw(canvas, false);
                 }
                 exit.draw(canvas);
-
+                leftDod.draw(canvas);
+                rightDod.draw(canvas);
 
 
 
