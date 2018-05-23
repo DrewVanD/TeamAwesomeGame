@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt3 = -1;
     int Hit_Hurt4 = -1;
     int Hit_Hurt5 = -1;
-    int Hit_Hurt6 = -1;
+    int swoosh = -1;
     int gloveHit = -1;
     Enemy currentEnemy;
 
@@ -155,6 +155,8 @@ public class GameActivity extends AppCompatActivity {
             Hit_Hurt5 = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("glovehit.wav");
             gloveHit = soundPool.load(descriptor, 0);
+            descriptor = assetManager.openFd("Swoosh.wav");
+            swoosh = soundPool.load(descriptor,0);
 
 
 
@@ -452,6 +454,7 @@ public class GameActivity extends AppCompatActivity {
                     if (x >= leftDod.x && x <= leftDod.x + leftDod.width && y >= leftDod.y && y <= leftDod.y + leftDod.height ||
                             x >= rightDod.x && x <= rightDod.x + rightDod.width && y >= rightDod.y && y <= rightDod.y + rightDod.height){
                         dodge = true;
+                        soundPool.play(swoosh,1,1,0,0,1);
                         Toast.makeText(getApplicationContext(),"DODGE!", Toast.LENGTH_LONG).show();
                     }
                     break;
