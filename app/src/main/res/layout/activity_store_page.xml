@@ -36,7 +36,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
         android:paddingTop="0dp"
-        android:text="STORE"
+        android:text="Store"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textColor="@android:color/background_dark"
         android:textSize="36sp"
@@ -176,6 +176,32 @@
         android:layout_below="@+id/textView9"
         android:layout_centerHorizontal="true"
         android:text="Enjoy" />
+
+    <TextView
+        android:id="@+id/coins"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/healthButton"
+        android:layout_toStartOf="@+id/staminaButton"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Coins = "
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/coinsNum"
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/staminaButton"
+        android:layout_below="@+id/healthButton"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="0"
+        android:textAllCaps="true"
+        android:textColor="@android:color/background_dark"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/itemName"
