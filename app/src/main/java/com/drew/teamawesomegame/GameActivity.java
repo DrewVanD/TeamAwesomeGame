@@ -47,9 +47,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onStop(){
       running = false;
       super.onStop();
-      spriteView.destroy();
-      //finish();
-      Intent finish = new Intent(this,MainActivity.class);
+      Intent finish = new Intent(this,storePage.class);
       startActivity(finish);
     }
     @Override
