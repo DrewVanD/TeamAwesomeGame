@@ -132,6 +132,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                bundle.putInt("FaceDamage",0);
                bundle.putInt("FaceNum",4);
                bundle.putString("EnemyName","Macho 'Stan The Van' Savage");
+               n.putExtra("BUNDLE",bundle);
                startActivity(n);
                break;
            case R.id.jeffButton:
@@ -148,6 +149,7 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
                bundle.putInt("FaceDamage",0);
                bundle.putInt("FaceNum",6);
                bundle.putString("EnemyName","Jeff 'The Demo Man' Gauvan");
+               o.putExtra("BUNDLE",bundle);
                startActivity(o);
                break;
        }
