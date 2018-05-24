@@ -50,6 +50,7 @@ public class GameActivity extends AppCompatActivity {
       running = false;
       super.onStop();
       spriteView.destroy();
+      MainActivity.player.stop();
       finish();
       Intent finish = new Intent(this,storePage.class);
       startActivity(finish);
@@ -59,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
         running = false;
         super.onDestroy();
         spriteView.destroy();
-        MainActivity.player.stop();
+
 
 
 

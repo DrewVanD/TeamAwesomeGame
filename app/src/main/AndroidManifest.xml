@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme"
         android:screenOrientation="portrait">
         <activity android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,15 +25,19 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".mainMenu"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity android:name=".playGame"
             android:screenOrientation="portrait"/>
         <activity android:name=".playerStats"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity android:name=".storePage"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity android:name=".aboutPage"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity android:name=".GameActivity"
             android:screenOrientation="portrait"/>
     </application>
