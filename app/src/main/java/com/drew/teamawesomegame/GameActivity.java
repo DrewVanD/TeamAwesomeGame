@@ -49,8 +49,7 @@ public class GameActivity extends AppCompatActivity {
         running = false;
         super.onPause();
         spriteView.pause();
-        //if (MainActivity.player.isPlaying())
-            MainActivity.player.pause();
+        MainActivity.player.pause();
 
 
     }
@@ -59,20 +58,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         spriteView.resume();
-        //if (!MainActivity.player.isPlaying())
-            MainActivity.player.start();
-
-/*
-        soundPool = new SoundPool(10,AudioManager.STREAM_MUSIC,0);
-        try {
-            AssetManager assetManager = getAssets();
-            AssetFileDescriptor descriptor;
-
-            descriptor = assetManager.openFd("eyeoftiger8bit.mp3");
-            eyeoftiger8bit = soundPool.load(descriptor, 0);
-        }catch (IOException e){
-
-        }*/
+        MainActivity.player.start();
 
     }
 
@@ -82,21 +68,9 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        //MainActivity.player.setVolume(0.5f,0.5f);
-        //MainActivity.player.start();
 
 
         Bundle bundle = getIntent().getBundleExtra("BUNDLE");
-
-        /*bundle.putInt("Health",200);
-        bundle.putInt("MaxHealth",200);
-        bundle.putInt("DamagePerSwing",12);
-        bundle.putInt("CoinReward",150);
-        bundle.putInt("ExpReward",75);
-        bundle.putInt("TimeBetweenSwings",4);
-        bundle.putInt("FaceDamage",0);
-        bundle.putInt("FaceNum",1);
-        bundle.putString("EnemyName","Alexx 'Quanterooni' Quan");*/
 
         int health = bundle.getInt("Health",0);
         int maxHealth = bundle.getInt("MaxHealth", 0);
@@ -135,8 +109,6 @@ public class GameActivity extends AppCompatActivity {
             gloveHit = soundPool.load(descriptor, 0);
             descriptor = assetManager.openFd("Swoosh.wav");
             swoosh = soundPool.load(descriptor,0);
-
-
 
         } catch (IOException e) {
         }
@@ -233,10 +205,7 @@ public class GameActivity extends AppCompatActivity {
             dodle = BitmapFactory.decodeResource(getResources(),R.drawable.leftdodge);
             dodri = BitmapFactory.decodeResource(getResources(), R.drawable.rightdodge);
 
-
-
             ex = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
-            //Canvas canvas = new Canvas(bit.copy(Bitmap.Config.ARGB_8888, true));
 
             background = new BackGround(bit);
 
@@ -279,10 +248,6 @@ public class GameActivity extends AppCompatActivity {
             rightDod.x = screenWidth - rightDod.width;
             rightDod.y = screenHeight - rightDod.height;
 
-
-            //soundPool.play(eyeoftiger8bit, 1, 1, 0, 1 ,1);
-
-
         }
 
         public void damageEnemy(){
@@ -297,9 +262,6 @@ public class GameActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
                                                            + "\nCoin Reward: " + currentEnemy.coinReward
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
-                //levelUp();
-               //onDestroy();
-               // onStop();
                 fightOver = true;
             }
             if (dodamage) {
@@ -316,8 +278,6 @@ public class GameActivity extends AppCompatActivity {
             enemypunch = true;
             punchanim = true;
             if(playerHealth <= 0){
-                //finish();
-                //onStop();
                 fightOver = true;
             }
             if (!dodge) {
@@ -328,34 +288,6 @@ public class GameActivity extends AppCompatActivity {
             gloveNum = glove.nextInt(2) + 1;
 
             playerHealthPercentage = playerHealth / playerMaxHealth;
-            Random soundNum = new Random();
-            int randNum = soundNum.nextInt(4) + 1;
-
-            switch (randNum) {
-                case 1:
-                    soundPool.play(realPunch, 1, 1, 0, 0 ,1);
-                    break;
-                case 2:
-                    soundPool.play(PUNCH, 1, 1, 0, 0 ,1);
-                    break;
-                case 3:
-                    soundPool.play(jabPunch, 1, 1, 0, 0 ,1);
-                    break;
-                case 4:
-                    soundPool.play(Hit_Hurt, 1, 1, 0, 0 ,1);
-                    break;
-                case 5:
-                    soundPool.play(Hit_Hurt3, 1, 1, 0, 0 ,1);
-                    break;
-                case 6:
-                    soundPool.play(Hit_Hurt4, 1, 1, 0, 0 ,1);
-                    break;
-                case 7:
-                    soundPool.play(Hit_Hurt5, 1, 1, 0, 0 ,1);
-                    break;
-            }
-
-
         }
 
         public void levelUp() {
@@ -377,7 +309,7 @@ public class GameActivity extends AppCompatActivity {
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
                     if (x >= exit.x && x <= exit.x + exit.width && y >= exit.y && y <= exit.y + exit.width){
-                        //TODO make quit
+                        fightOver = true;
                     }
 
                     if (x >= rightGlove.x && x <= rightGlove.x + rightGlove.width && y >= rightGlove.y && y <= rightGlove.y + rightGlove.height ||
@@ -441,7 +373,6 @@ public class GameActivity extends AppCompatActivity {
 
                     break;
             }
-
 
             return false;
         }
@@ -574,7 +505,7 @@ public class GameActivity extends AppCompatActivity {
                     MainActivity.player.isLooping();
                     MainActivity.player.start();
 
-                }*/   // test tom change music for boss fight
+                }*/   // test to change music for boss fight
 
                 paint.setColor(Color.RED);
                 paint.setTextSize(30);
@@ -645,10 +576,6 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
-        public void destroy(){
-
-
-        }
         public void pause(){
             try {
                 thread.join();
