@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:screenOrientation="portrait">
+        android:screenOrientation="portrait"
+        android:largeHeap="true">
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:noHistory="true">
@@ -25,19 +26,15 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".mainMenu"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".playGame"
             android:screenOrientation="portrait"/>
         <activity android:name=".playerStats"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".storePage"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".aboutPage"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:screenOrientation="portrait"/>
         <activity android:name=".GameActivity"
             android:screenOrientation="portrait"/>
     </application>

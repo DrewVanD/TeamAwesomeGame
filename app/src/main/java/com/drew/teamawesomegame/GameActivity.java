@@ -42,32 +42,7 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt5 = -1;
     int swoosh = -1;
     int gloveHit = -1;
-    Enemy currentEnemy;
-
-
-    @Override
-    protected void onStop(){
-      running = false;
-      super.onStop();
-      spriteView.destroy();
-      MainActivity.player.stop();
-      finish();
-      Intent finish = new Intent(this,storePage.class);
-      startActivity(finish);
-    }
-    @Override
-    protected  void onDestroy(){
-        running = false;
-        super.onDestroy();
-        spriteView.destroy();
-
-
-
-
-
-    }
-
-
+    volatile Enemy currentEnemy;
 
     @Override
     protected void onPause() {
@@ -202,13 +177,15 @@ public class GameActivity extends AppCompatActivity {
         long punchTimer = 0;
         long punchTime = Enemy.timeBetweenSwings * 1000;
         long dodgetimer = 0;
+        long waitTime = 0;
+        long waitTimer = 3000;
         boolean punched = false;
         boolean enemypunch = false;
         boolean punchanim = false;
         boolean scaleUp = true;
         boolean dodamage = true;
         boolean dodge = false;
-
+        boolean fightOver = false;
         float playerHealth = playerStats.playerHealth;
         float playerMaxHealth = playerStats.playerMaxHealth;
         float playerStam = playerStats.playerStam;
@@ -234,8 +211,6 @@ public class GameActivity extends AppCompatActivity {
         int playerlvl = 1;
         int expincrement = 1000 + (500 * playerlvl);
         float scale = 1.0f;
-
-
         public SpriteView(Context context) {
             super(context);
 
@@ -313,7 +288,7 @@ public class GameActivity extends AppCompatActivity {
         public void damageEnemy(){
 
             if (Enemy.health <= Enemy.maxHealth / 2){
-                currentEnemy.hurt = 1;//not changing face yet
+                Enemy.hurt = 1;//not changing face yet
             }
             if(Enemy.health <= 0)
             {
@@ -324,8 +299,8 @@ public class GameActivity extends AppCompatActivity {
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
                 //levelUp();
                //onDestroy();
-                onStop();
-
+               // onStop();
+                fightOver = true;
             }
             if (dodamage) {
                 Enemy.health -= baseDmg;
@@ -342,7 +317,8 @@ public class GameActivity extends AppCompatActivity {
             punchanim = true;
             if(playerHealth <= 0){
                 //finish();
-                onStop();
+                //onStop();
+                fightOver = true;
             }
             if (!dodge) {
                 playerHealth -= currentEnemy.damage;
@@ -470,10 +446,19 @@ public class GameActivity extends AppCompatActivity {
             return false;
         }
 
+
         
 
         private void updateLogic() {
             levelUp();
+
+            if(fightOver){
+                waitTimer += deltaTime;
+                if(waitTimer > waitTime){
+                    running = false;
+                }
+                return;
+            }
 
             if(punched) {
                 punchTimer += deltaTime;
@@ -642,6 +627,13 @@ public class GameActivity extends AppCompatActivity {
                 updateLogic();
                 drawCanvas();
                 controlFPS();
+            }
+            if(fightOver){
+                running = false;
+                MainActivity.player.stop();
+                Intent finish = new Intent(GameActivity.this,storePage.class);
+                startActivity(finish);
+                finish();
             }
         }
 
