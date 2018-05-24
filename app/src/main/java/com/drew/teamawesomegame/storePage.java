@@ -16,39 +16,46 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
     int currentCoins = playerStats.coins;
     int currentPrice = 0;
 
-    boolean canBuy = false;
+    boolean firstBuild = true;
+    @Override
+    protected void onStop(){
+        super.onStop();
+        finish();
 
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_page);
 
-        Button button = findViewById(R.id.exitButton);
-        button.setOnClickListener(this);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_store_page);
 
-        Button upButton = findViewById(R.id.upButton);
-        upButton.setOnClickListener(this);
+            Button button = findViewById(R.id.exitButton);
+            button.setOnClickListener(this);
 
-        Button downButton = findViewById(R.id.downButton);
-        downButton.setOnClickListener(this);
+            Button upButton = findViewById(R.id.upButton);
+            upButton.setOnClickListener(this);
 
-        Button purchaseButton = findViewById(R.id.purchaseButton);
-        purchaseButton.setOnClickListener(this);
+            Button downButton = findViewById(R.id.downButton);
+            downButton.setOnClickListener(this);
 
-        Button healthButton = findViewById(R.id.healthButton);
-        healthButton.setOnClickListener(this);
+            Button purchaseButton = findViewById(R.id.purchaseButton);
+            purchaseButton.setOnClickListener(this);
 
-        Button staminaButton = findViewById(R.id.staminaButton);
-        staminaButton.setOnClickListener(this);
+            Button healthButton = findViewById(R.id.healthButton);
+            healthButton.setOnClickListener(this);
 
-        Button glovesButton = findViewById(R.id.glovesButton);
-        glovesButton.setOnClickListener(this);
+            Button staminaButton = findViewById(R.id.staminaButton);
+            staminaButton.setOnClickListener(this);
 
-        Button trainButton = findViewById(R.id.trainButton);
-        trainButton.setOnClickListener(this);
+            Button glovesButton = findViewById(R.id.glovesButton);
+            glovesButton.setOnClickListener(this);
 
-        TextView coinTotal = findViewById(R.id.coinsNum);
-        coinTotal.setText("$" + currentCoins);
+            Button trainButton = findViewById(R.id.trainButton);
+            trainButton.setOnClickListener(this);
+
+            TextView coinTotal = findViewById(R.id.coinsNum);
+            coinTotal.setText("$" + currentCoins);
+
 
     }
 
@@ -60,8 +67,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
             case R.id.exitButton:
                 itemCol = 1;
                 item = 1;
-                Intent i = new Intent(this, mainMenu.class);
-                startActivity(i);
+                onStop();
                 break;
             case R.id.upButton:
                 itemName.setText(" ");
