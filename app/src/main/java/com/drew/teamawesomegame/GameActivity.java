@@ -191,8 +191,8 @@ public class GameActivity extends AppCompatActivity {
         int screenWidth;
         int screenHeight;
         int fps;
-        int rvy = 4;
-        int lvy = 4;
+        int rvy = 4 + Enemy.facenum;
+        int lvy = 4 + Enemy.facenum;
         int gloveNum = 1;
         float scale = 1.0f;
 
@@ -349,6 +349,22 @@ public class GameActivity extends AppCompatActivity {
 
             switch (event.getAction() & MotionEvent.ACTION_MASK){
                 case MotionEvent.ACTION_DOWN:
+                    Random glove = new Random();
+                    Random punch = new Random();
+                    int glovenum = glove.nextInt(2)+1;
+                    int punchnum = punch.nextInt(2)+1;
+
+                    if (glovenum == 1){
+                        if (punchnum == 2){
+                            lvy = lvy * -1;
+                        }
+                    }
+                    else if (glovenum == 2){
+                        if (punchnum == 2){
+                            rvy = rvy * -1;
+                        }
+                    }
+
                     if (x >= exit.x && x <= exit.x + exit.width && y >= exit.y && y <= exit.y + exit.width){
                         fightOver = true;
                     }

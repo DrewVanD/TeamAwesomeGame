@@ -12,7 +12,7 @@ public class playerStats extends AppCompatActivity implements View.OnClickListen
     public static float playerHealth = 100;
     public static float playerMaxHealth = 100;
     public static float baseDamage = 10;
-    public static float playerStam = 1000;//ADJUSTED FOR TESTING
+    public static float playerStam = 100;
     public static float playerMaxStam = 1000;
     public static int playerStamRegen = 5;
     public static int PunchCost = 20;
