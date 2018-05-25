@@ -11,9 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.graphics.Rect;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
@@ -22,14 +20,11 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
-    //TODO determine how to grab canvas for the original surface view
     Canvas canvas;
     SpriteView spriteView;
     boolean running = true;
@@ -52,7 +47,6 @@ public class GameActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     String dataName = "MyData";
     String intName = "MyInt";
-    int defaultInt = 0;
     int coinsSaved;
     int damageBoosts;
     int staminaBoosts;
@@ -129,9 +123,6 @@ public class GameActivity extends AppCompatActivity {
 
         } catch (IOException e) {
         }
-
-
-
     }
 
 
@@ -149,18 +140,18 @@ public class GameActivity extends AppCompatActivity {
         Bitmap lGlove;
         Bitmap jiff;
         Bitmap ex;
-        Bitmap dodle;
-        Bitmap dodri;
+        Bitmap dod;
+        Bitmap dod1;
 
         //Constructors
         Exit exit;
-        LeftDodge leftDod;
-        RightDodge rightDod;
+        Dodge leftDod;
+        Dodge rightDod;
         jeffBartender jeff;
         Body character;
         Face face;
-        LeftGlove leftGlove;
-        RightGlove rightGlove;
+        Glove LGlove;
+        Glove RGlove;
         BackGround background;
         Display display;
 
@@ -211,8 +202,6 @@ public class GameActivity extends AppCompatActivity {
         int expincrement = 1000 + (500 * playerlvl);
 
 
-
-
         public SpriteView(Context context) {
             super(context);
 
@@ -232,8 +221,8 @@ public class GameActivity extends AppCompatActivity {
             rGlove = BitmapFactory.decodeResource(getResources(), R.drawable.rglove);
             lGlove = BitmapFactory.decodeResource(getResources(), R.drawable.lglove);
             jiff = BitmapFactory.decodeResource(getResources(),R.drawable.jeffbackground);
-            dodle = BitmapFactory.decodeResource(getResources(),R.drawable.leftdodge);
-            dodri = BitmapFactory.decodeResource(getResources(), R.drawable.rightdodge);
+            dod = BitmapFactory.decodeResource(getResources(),R.drawable.leftdodge);
+            dod1 = BitmapFactory.decodeResource(getResources(), R.drawable.rightdodge);
 
             ex = BitmapFactory.decodeResource(getResources(), R.drawable.exit);
 
@@ -250,13 +239,13 @@ public class GameActivity extends AppCompatActivity {
             face.x = (screenWidth / 2) - (face.width / 2) + (screenWidth / 100);
             face.y = background.height / 2;
 
-            rightGlove = new RightGlove(rGlove);
-            rightGlove.x = (screenWidth / 5) * 3;
-            rightGlove.y = (background.height / 2) + (rightGlove.height) - 100;
+            RGlove = new Glove(rGlove);
+            RGlove.x = (screenWidth / 5) * 3;
+            RGlove.y = (background.height / 2) + (RGlove.height) - 100;
 
-            leftGlove = new LeftGlove(lGlove);
-            leftGlove.x =screenWidth / 13;
-            leftGlove.y = (background.height / 2) + (leftGlove.height) - 100;
+            LGlove = new Glove(lGlove);
+            LGlove.x =screenWidth / 13;
+            LGlove.y = (background.height / 2) + (LGlove.height) - 100;
 
             jeff = new jeffBartender(jiff);
             jeff.addAnimation("bar",0,3,7,110,96,true);
@@ -266,15 +255,14 @@ public class GameActivity extends AppCompatActivity {
             jeff.y = screenHeight / 14;
 
             exit = new Exit(ex);
-            
             exit.x = (screenWidth/2) - (exit.width/2);
             exit.y = screenHeight - exit.height;
 
-            leftDod = new LeftDodge(dodle);
+            leftDod = new Dodge(dod);
             leftDod.x = 0;
             leftDod.y = screenHeight - leftDod.height;
 
-            rightDod = new RightDodge(dodri);
+            rightDod = new Dodge(dod1);
             rightDod.x = screenWidth - rightDod.width;
             rightDod.y = screenHeight - rightDod.height;
 
@@ -283,7 +271,10 @@ public class GameActivity extends AppCompatActivity {
         public void damageEnemy(){
 
             if (Enemy.health <= Enemy.maxHealth / 2){
-                Enemy.hurt = 1;//not changing face yet
+                Enemy.hurt = 1;
+            }
+            else {
+                Enemy.hurt = 0;
             }
             if(Enemy.health <= 0)
             {
@@ -309,8 +300,6 @@ public class GameActivity extends AppCompatActivity {
                 Enemy.health -= playerStats.baseDamage + playerStats.damageMod;
             }
             enemyPercentage = Enemy.health / Enemy.maxHealth;
-
-
 
         }
 
@@ -364,8 +353,8 @@ public class GameActivity extends AppCompatActivity {
                         fightOver = true;
                     }
 
-                    if (x >= rightGlove.x && x <= rightGlove.x + rightGlove.width && y >= rightGlove.y && y <= rightGlove.y + rightGlove.height ||
-                            x >= leftGlove.x && x <= leftGlove.x + leftGlove.width && y >= leftGlove.y && y <= leftGlove.y + leftGlove.height) {
+                    if (x >= RGlove.x && x <= RGlove.x + RGlove.width && y >= RGlove.y && y <= RGlove.y + RGlove.height ||
+                            x >= LGlove.x && x <= LGlove.x + LGlove.width && y >= LGlove.y && y <= LGlove.y + LGlove.height) {
                             playerStam = playerStam - punchCost;
                             dodamage = false;
                             soundPool.play(gloveHit, 1,1,0,0,1);
@@ -435,6 +424,8 @@ public class GameActivity extends AppCompatActivity {
         private void updateLogic() {
             levelUp();
 
+            Face.srcX = Enemy.hurt * Face.width;
+
             if(fightOver){
                 waitTimer += deltaTime;
                 if(waitTimer > waitTime){
@@ -471,25 +462,25 @@ public class GameActivity extends AppCompatActivity {
                 playerStamPercentage = playerStam / playerMaxStam;
                 stamTimer = 0;
             }
-            leftGlove.y += lvy;
-            rightGlove.y += rvy;
+            LGlove.y += lvy;
+            RGlove.y += rvy;
 
-            if(leftGlove.y > screenHeight - leftGlove.height){
-
-                lvy = lvy * -1;
-                leftGlove.y += lvy;
-            }else if (leftGlove.y < screenHeight / 2){
+            if(LGlove.y > screenHeight - LGlove.height){
 
                 lvy = lvy * -1;
-                leftGlove.y += lvy;
+                LGlove.y += lvy;
+            }else if (LGlove.y < screenHeight / 2){
+
+                lvy = lvy * -1;
+                LGlove.y += lvy;
             }
-            if(rightGlove.y > screenHeight - rightGlove.height) {
+            if(RGlove.y > screenHeight - RGlove.height) {
                 rvy = rvy * -1;
-                rightGlove.y += rvy;
-            }else if (rightGlove.y < screenHeight / 2){
+                RGlove.y += rvy;
+            }else if (RGlove.y < screenHeight / 2){
 
                 rvy = rvy * -1;
-                rightGlove.y += rvy;
+                RGlove.y += rvy;
             }
 
             jeff.update(deltaTime);
@@ -523,24 +514,24 @@ public class GameActivity extends AppCompatActivity {
 
                 if (punchanim && gloveNum == 1) {
                     canvas.save();
-                    canvas.translate(rightGlove.x + (rightGlove.width / 2), rightGlove.y + (rightGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.translate(RGlove.x + (RGlove.width / 2), RGlove.y + (RGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
                     canvas.scale(scale, scale);
-                    rightGlove.draw(canvas, true);
+                    RGlove.draw(canvas, true);
                     canvas.restore();
                 }
                 else {
-                    rightGlove.draw(canvas, false);
+                    RGlove.draw(canvas, false);
                 }
                 if (punchanim && gloveNum == 2){
                     canvas.save();
-                    canvas.translate(leftGlove.x + (leftGlove.width / 2), leftGlove.y + (leftGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
+                    canvas.translate(LGlove.x + (LGlove.width / 2), LGlove.y + (LGlove.height / 2));//(rightGlove.x + rightGlove.width/2,rightGlove.y + rightGlove.height/2);
                     canvas.scale(scale, scale);
-                    leftGlove.draw(canvas, true);
+                    LGlove.draw(canvas, true);
                     canvas.restore();
                 }
                 else {
 
-                    leftGlove.draw(canvas, false);
+                    LGlove.draw(canvas, false);
                 }
                 exit.draw(canvas);
                 leftDod.draw(canvas);

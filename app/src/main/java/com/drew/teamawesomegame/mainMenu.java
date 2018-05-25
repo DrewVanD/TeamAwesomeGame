@@ -2,18 +2,11 @@ package com.drew.teamawesomegame;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
-import java.io.IOException;
 
 public class mainMenu extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,8 +39,6 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
             Button aboutButton = findViewById(R.id.aboutButton);
             aboutButton.setOnClickListener(this);
             Log.d("*****", "dasdsa");
-
-
 
         }
 
@@ -94,15 +85,6 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
 
             }
         }
-
-        public void resume() {
-
-
-    }
-
-     public void pause(){
-
-    }
 }
 
 

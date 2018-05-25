@@ -3,7 +3,6 @@ package com.drew.teamawesomegame;
 public class Enemy {
 
     String enemyName;
-    //int enemyNumber;
     public static float health;
     public static float maxHealth;
     public static int damage;

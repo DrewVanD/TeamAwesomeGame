@@ -21,9 +21,6 @@ public class playerStats extends AppCompatActivity implements View.OnClickListen
     public static int staminaMod = 0;
     public static int healthMod = 0;
     public static int rewardMod = 0;
-    public static int timesKO = 0;
-
-
 
 
     @Override
@@ -57,9 +54,6 @@ public class playerStats extends AppCompatActivity implements View.OnClickListen
 
         TextView healthBoost = findViewById(R.id.healthBoost);
         healthBoost.setText("+" + healthMod);
-
-       // TextView timesKO = findViewById(R.id.knockOuts);
-        //timesKO.setText(timesKO + "KOs");
     }
 
     @Override

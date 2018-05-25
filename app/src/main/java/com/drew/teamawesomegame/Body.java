@@ -14,13 +14,11 @@ public class Body {
 
     int sheet_rows = 3;
     int sheet_cols = 1;
-    //TODO fix sizing and such
 
     private final Bitmap bmp;
     private int srcX = 0;
     private int srcY = 0;
     public static int bodyNumber = 0;
-    //private int currentFrame = 7;
 
     public  Body(Bitmap bmp) {
         this.bmp = bmp;
@@ -28,7 +26,7 @@ public class Body {
         width = bmp.getWidth() / sheet_cols;
         height = bmp.getHeight() / sheet_rows;
 
-        srcX = 0;//currentFrame % sheet_cols * width;
+        srcX = 0;
         srcY = bodyNumber / sheet_cols * height;
 
         scalex = width * (3 / 2);

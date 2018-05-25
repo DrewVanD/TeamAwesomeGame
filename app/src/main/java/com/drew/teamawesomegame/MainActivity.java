@@ -30,6 +30,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         player.setLooping(true); // Set looping
         player.start();
         finish();
-        //player = MediaPlayer.create(this, R.raw.takeonme);
     }
 }
