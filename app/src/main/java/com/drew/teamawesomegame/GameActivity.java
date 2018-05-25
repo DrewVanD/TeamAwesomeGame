@@ -271,8 +271,7 @@ public class GameActivity extends AppCompatActivity {
         public void damageEnemy(){
 
             if (Enemy.health <= Enemy.maxHealth / 2){
-                Enemy.hurt = 1;//not changing face yet
-                //Face.srcX = Face.srcX / 2;
+                Enemy.hurt = 1;
             }
             else {
                 Enemy.hurt = 0;
@@ -424,6 +423,8 @@ public class GameActivity extends AppCompatActivity {
 
         private void updateLogic() {
             levelUp();
+
+            Face.srcX = Enemy.hurt * Face.width;
 
             if(fightOver){
                 waitTimer += deltaTime;

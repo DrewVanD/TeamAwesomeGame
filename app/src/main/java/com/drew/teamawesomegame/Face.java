@@ -7,14 +7,14 @@ import android.graphics.Rect;
 public class Face {
     int x = 0;
     int y = 0;
-    int width;
+    public static int width;
     int height;
 
     int sheet_rows = 7;
     int sheet_cols = 2;
 
     private final Bitmap bim;
-    private int srcX = 0;
+    public static int srcX = 0;
     private int srcY = 0;
 
     public Face(Bitmap bim) {
