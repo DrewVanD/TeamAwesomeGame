@@ -16,7 +16,7 @@ public class playerStats extends AppCompatActivity implements View.OnClickListen
     public static float playerMaxStam = 1000;
     public static int playerStamRegen = 5;
     public static int PunchCost = 20;
-    public static int coins = 1000;
+    public static int coins = 0;
     public static int damageMod = 0;
     public static int staminaMod = 0;
     public static int healthMod = 0;

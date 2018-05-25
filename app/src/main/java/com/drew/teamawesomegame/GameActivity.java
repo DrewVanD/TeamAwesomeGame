@@ -2,6 +2,7 @@ package com.drew.teamawesomegame;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -32,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     Canvas canvas;
     SpriteView spriteView;
     boolean running = true;
+    //SoundsPool
     private SoundPool soundPool;
     int realPunch = -1;
     int PUNCH = -1;
@@ -42,7 +44,20 @@ public class GameActivity extends AppCompatActivity {
     int Hit_Hurt5 = -1;
     int swoosh = -1;
     int gloveHit = -1;
+    //Enemy Class
     volatile Enemy currentEnemy;
+
+    //Shared Prefs
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    String dataName = "MyData";
+    String intName = "MyInt";
+    int defaultInt = 0;
+    int coinsSaved;
+    int damageBoosts;
+    int staminaBoosts;
+    int healthBoosts;
+    int rewardBoosts;
 
     @Override
     protected void onPause() {
@@ -69,9 +84,11 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        prefs = getSharedPreferences(dataName, MODE_PRIVATE);
+        editor = prefs.edit();
 
         Bundle bundle = getIntent().getBundleExtra("BUNDLE");
-
+        //Enemy Stats
         int health = bundle.getInt("Health",0);
         int maxHealth = bundle.getInt("MaxHealth", 0);
         int damagePerSwing = bundle.getInt("DamagePerSwing", 0);
@@ -124,6 +141,7 @@ public class GameActivity extends AppCompatActivity {
         final SurfaceHolder holder;
         final Paint paint;
 
+        //Bitmaps
         Bitmap bmp;
         Bitmap bit;
         Bitmap bim;
@@ -133,6 +151,8 @@ public class GameActivity extends AppCompatActivity {
         Bitmap ex;
         Bitmap dodle;
         Bitmap dodri;
+
+        //Constructors
         Exit exit;
         LeftDodge leftDod;
         RightDodge rightDod;
@@ -141,8 +161,9 @@ public class GameActivity extends AppCompatActivity {
         Face face;
         LeftGlove leftGlove;
         RightGlove rightGlove;
-        //sprite test for background
         BackGround background;
+        Display display;
+
         //Timers
         long stamTimer = 0;
         long stamTime = 1000;
@@ -151,6 +172,10 @@ public class GameActivity extends AppCompatActivity {
         long dodgetimer = 0;
         long waitTime = 0;
         long waitTimer = 3000;
+        long lastFrameTime;
+        long deltaTime;
+
+        //Booleans
         boolean punched = false;
         boolean enemypunch = false;
         boolean punchanim = false;
@@ -158,31 +183,36 @@ public class GameActivity extends AppCompatActivity {
         boolean dodamage = true;
         boolean dodge = false;
         boolean fightOver = false;
-        float playerHealth = playerStats.playerHealth;
-        float playerMaxHealth = playerStats.playerMaxHealth;
-        float playerStam = playerStats.playerStam;
-        float playerMaxStam = playerStats.playerMaxStam;
+
+        //Player Stats
+        float playerHealth = playerStats.playerHealth + playerStats.healthMod;
+        float playerMaxHealth = playerStats.playerMaxHealth + playerStats.healthMod;
+        float playerStam = playerStats.playerStam + playerStats.staminaMod;
+        float playerMaxStam = playerStats.playerMaxStam + playerStats.staminaMod;
         float playerStamRegen = playerStats.playerStamRegen;
         int punchCost = playerStats.PunchCost;
         boolean canPunch = true;
-        int baseDmg = 10;
         float enemyPercentage = Enemy.health / Enemy.maxHealth;
         float playerHealthPercentage = playerHealth / playerMaxHealth;
         float playerStamPercentage = playerStam / playerMaxStam;
-        Display display;
+
+        //Canvas
         int screenWidth;
         int screenHeight;
-        long lastFrameTime;
-        long deltaTime;
         int fps;
         int rvy = 4;
         int lvy = 4;
         int gloveNum = 1;
+        float scale = 1.0f;
 
+        //Experience
         int exp = 0;
         int playerlvl = 1;
         int expincrement = 1000 + (500 * playerlvl);
-        float scale = 1.0f;
+
+
+
+
         public SpriteView(Context context) {
             super(context);
 
@@ -257,15 +287,26 @@ public class GameActivity extends AppCompatActivity {
             }
             if(Enemy.health <= 0)
             {
-                exp += currentEnemy.expReward;
-                playerStats.coins += currentEnemy.coinReward;
+                exp += currentEnemy.expReward + playerStats.rewardMod;
+                playerStats.coins += currentEnemy.coinReward + playerStats.rewardMod;
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
-                                                           + "\nCoin Reward: " + currentEnemy.coinReward
+                                                           + "\nCoin Reward: " + (currentEnemy.coinReward + playerStats.rewardMod)
                                                             + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
+                coinsSaved = playerStats.coins;
+                damageBoosts = playerStats.damageMod;
+                staminaBoosts = playerStats.staminaMod;
+                healthBoosts = playerStats.healthMod;
+                rewardBoosts = playerStats.rewardMod;
+                editor.putInt(intName, coinsSaved);
+                editor.putInt(intName, damageBoosts);
+                editor.putInt(intName, staminaBoosts);
+                editor.putInt(intName, healthBoosts);
+                editor.putInt(intName,rewardBoosts);
+                editor.commit();
                 fightOver = true;
             }
             if (dodamage) {
-                Enemy.health -= baseDmg;
+                Enemy.health -= playerStats.baseDamage + playerStats.damageMod;
             }
             enemyPercentage = Enemy.health / Enemy.maxHealth;
 
@@ -278,6 +319,17 @@ public class GameActivity extends AppCompatActivity {
             enemypunch = true;
             punchanim = true;
             if(playerHealth <= 0){
+                coinsSaved = playerStats.coins;
+                damageBoosts = playerStats.damageMod;
+                staminaBoosts = playerStats.staminaMod;
+                healthBoosts = playerStats.healthMod;
+                rewardBoosts = playerStats.rewardMod;
+                editor.putInt(intName, coinsSaved);
+                editor.putInt(intName, damageBoosts);
+                editor.putInt(intName, staminaBoosts);
+                editor.putInt(intName, healthBoosts);
+                editor.putInt(intName,rewardBoosts);
+                editor.commit();
                 fightOver = true;
             }
             if (!dodge) {

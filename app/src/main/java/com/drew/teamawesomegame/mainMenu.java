@@ -1,6 +1,7 @@
 package com.drew.teamawesomegame;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
@@ -17,6 +18,15 @@ import java.io.IOException;
 public class mainMenu extends AppCompatActivity implements View.OnClickListener {
 
 
+        SharedPreferences prefs;
+        String dataName = "myData";
+        String intName = "myInt";
+        int defaultInt = 0;
+        public static int coinsSaved;
+        public static int damageBoosts;
+        public static int staminaBoosts;
+        public static int healthBoosts;
+        public static int rewardBoosts;
 
 
         @Override
@@ -40,6 +50,20 @@ public class mainMenu extends AppCompatActivity implements View.OnClickListener 
 
 
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        prefs = getSharedPreferences(dataName, MODE_PRIVATE);
+        coinsSaved = prefs.getInt(intName, defaultInt);
+        damageBoosts = prefs.getInt(intName, defaultInt);
+        staminaBoosts = prefs.getInt(intName, defaultInt);
+        healthBoosts = prefs.getInt(intName, defaultInt);
+        rewardBoosts = prefs.getInt(intName, defaultInt);
+
+
+    }
 
 
 

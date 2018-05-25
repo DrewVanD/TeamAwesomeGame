@@ -9,8 +9,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    public static int enemyNumber = 1;
-    public static int coins = 0;
     public static MediaPlayer player;
 
     @Override
