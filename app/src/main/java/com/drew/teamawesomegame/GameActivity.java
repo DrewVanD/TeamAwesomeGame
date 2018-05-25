@@ -287,11 +287,11 @@ public class GameActivity extends AppCompatActivity {
             }
             if(Enemy.health <= 0)
             {
-                exp += currentEnemy.expReward + playerStats.rewardMod;
-                playerStats.coins += currentEnemy.coinReward + playerStats.rewardMod;
+                exp += Enemy.expReward + playerStats.rewardMod;
+                playerStats.coins += Enemy.coinReward + playerStats.rewardMod;
                 Toast.makeText(getApplicationContext(),currentEnemy.enemyName + " Dead"
-                                                           + "\nCoin Reward: " + (currentEnemy.coinReward + playerStats.rewardMod)
-                                                            + "\nExp Reward: " + currentEnemy.expReward, Toast.LENGTH_LONG).show();
+                                                           + "\nCoin Reward: " + (Enemy.coinReward + playerStats.rewardMod)
+                                                            + "\nExp Reward: " + Enemy.expReward, Toast.LENGTH_LONG).show();
                 coinsSaved = playerStats.coins;
                 damageBoosts = playerStats.damageMod;
                 staminaBoosts = playerStats.staminaMod;
@@ -593,7 +593,7 @@ public class GameActivity extends AppCompatActivity {
 
             if (timeToSleep > 0){
                 try{
-                    thread.sleep(timeToSleep);
+                    Thread.sleep(timeToSleep);
                 }catch(InterruptedException e){
 
                 }

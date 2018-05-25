@@ -6,9 +6,9 @@ public class Enemy {
     //int enemyNumber;
     public static float health;
     public static float maxHealth;
-    int damage;
-    int coinReward;
-    int expReward;
+    public static int damage;
+    public static int coinReward;
+    public static int expReward;
     public static int timeBetweenSwings;
     public static int hurt;
     public static int facenum;
