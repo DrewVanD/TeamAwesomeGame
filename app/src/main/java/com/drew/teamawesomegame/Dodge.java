@@ -4,23 +4,20 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public class LeftDodge {
+public class Dodge {
     int x = 0;
     int y = 0;
     int width;
     int height;
 
-
-    //TODO fix sizing and such
-
-    private final Bitmap dodle;
+    private final Bitmap dod;
 
 
-    public LeftDodge(Bitmap dodle) {
-        this.dodle = dodle;
+    public Dodge(Bitmap dod) {
+        this.dod = dod;
 
-        width = dodle.getWidth();
-        height = dodle.getHeight();
+        width = dod.getWidth();
+        height = dod.getHeight();
 
     }
 
@@ -28,6 +25,6 @@ public class LeftDodge {
         Rect srcRect = new Rect(0,0,width,height);
         Rect dstRect = new Rect(x,y,x+width,y+height);
 
-        canvas.drawBitmap(dodle, srcRect, dstRect, null);
+        canvas.drawBitmap(dod, srcRect, dstRect, null);
     }
 }

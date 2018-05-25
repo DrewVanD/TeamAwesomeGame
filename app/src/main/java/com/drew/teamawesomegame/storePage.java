@@ -1,6 +1,5 @@
 package com.drew.teamawesomegame;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,7 +15,6 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
     int currentCoins = playerStats.coins;
     int currentPrice = 0;
 
-    boolean firstBuild = true;
     @Override
     protected void onStop(){
         super.onStop();

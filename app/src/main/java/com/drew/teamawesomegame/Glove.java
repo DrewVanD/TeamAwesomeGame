@@ -1,26 +1,23 @@
 package com.drew.teamawesomegame;
-
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-public class RightGlove {
+public class Glove {
     int x = 0;
     int y = 0;
     int width;
     int height;
 
-    //TODO fix sizing and such
-
-    private final Bitmap rGlove;
+    private final Bitmap lGlove;
     private int srcX = 0;
     private int srcY = 0;
 
-    public RightGlove(Bitmap rGlove) {
-        this.rGlove = rGlove;
+    public Glove(Bitmap lGlove) {
+        this.lGlove = lGlove;
 
-        width = rGlove.getWidth();
-        height = rGlove.getHeight();
+        width = lGlove.getWidth();
+        height = lGlove.getHeight();
     }
 
     public void draw(Canvas canvas, boolean scaled) {
@@ -34,6 +31,6 @@ public class RightGlove {
             dstRect = new Rect(-width / 2, -height / 2, width / 2, height / 2);
         }
 
-        canvas.drawBitmap(rGlove, srcRect, dstRect, null);
+        canvas.drawBitmap(lGlove, srcRect, dstRect, null);
     }
 }

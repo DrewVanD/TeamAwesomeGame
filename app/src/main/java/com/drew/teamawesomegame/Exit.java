@@ -11,8 +11,6 @@ public class Exit {
     int height;
 
 
-    //TODO fix sizing and such
-
     private final Bitmap ex;
 
 

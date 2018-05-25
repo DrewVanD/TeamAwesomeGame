@@ -12,7 +12,6 @@ public class Face {
 
     int sheet_rows = 7;
     int sheet_cols = 2;
-    //TODO fix sizing and such
 
     private final Bitmap bim;
     private int srcX = 0;
