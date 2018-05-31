@@ -620,7 +620,8 @@ public class GameActivity extends AppCompatActivity {
             }
             if(fightOver){
                 running = false;
-                MainActivity.player.stop();
+                //MainActivity.player.setVolume(100,100);
+                //MainActivity.player.start();
                 Intent finish = new Intent(GameActivity.this,storePage.class);
                 startActivity(finish);
                 finish();

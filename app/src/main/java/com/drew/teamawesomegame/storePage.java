@@ -23,6 +23,8 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MainActivity.player.setVolume(100,100);
+        MainActivity.player.start();
 
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_store_page);
@@ -236,7 +238,7 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
                         itemDesc.setText("Large Increase To Rewards(100)");
                         itemName.setText("Coach Burgher Kingg");
                         itemPrice.setText("$1800");
-                        currentPrice = 600;
+                        currentPrice = 1800;
                         playerStats.rewardMod += 100;
                         break;
                 }
