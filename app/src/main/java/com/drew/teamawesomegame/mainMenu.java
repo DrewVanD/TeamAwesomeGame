@@ -11,38 +11,44 @@ import android.widget.Button;
 public class mainMenu extends AppCompatActivity implements View.OnClickListener {
 
 
-        SharedPreferences prefs;
-        String dataName = "myData";
-        String intName = "myInt";
-        int defaultInt = 0;
-        public static int coinsSaved;
-        public static int damageBoosts;
-        public static int staminaBoosts;
-        public static int healthBoosts;
-        public static int rewardBoosts;
+    SharedPreferences prefs;
+    String dataName = "myData";
+    String intName = "myInt";
+    int defaultInt = 0;
+    public static int coinsSaved;
+    public static int damageBoosts;
+    public static int staminaBoosts;
+    public static int healthBoosts;
+    public static int rewardBoosts;
 
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main_menu);
-                MainActivity.player.setVolume(100,100);
-                MainActivity.player.start();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menu);
+            MainActivity.player.setVolume(100,100);
+            MainActivity.player.start();
 
-            Button playButton = findViewById(R.id.playButton);
-            playButton.setOnClickListener(this);
+        Button playButton = findViewById(R.id.playButton);
+        playButton.setOnClickListener(this);
 
-            Button statsButton = findViewById(R.id.statsButton);
-            statsButton.setOnClickListener(this);
+        Button statsButton = findViewById(R.id.statsButton);
+        statsButton.setOnClickListener(this);
 
-            Button storeButton = findViewById(R.id.storeButton);
-            storeButton.setOnClickListener(this);
+        Button storeButton = findViewById(R.id.storeButton);
+        storeButton.setOnClickListener(this);
 
-            Button aboutButton = findViewById(R.id.aboutButton);
-            aboutButton.setOnClickListener(this);
-            Log.d("*****", "dasdsa");
+        Button aboutButton = findViewById(R.id.aboutButton);
+        aboutButton.setOnClickListener(this);
+        Log.d("*****", "dasdsa");
 
-        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MainActivity.player.stop();
+    }
 
     @Override
     protected void onResume() {

@@ -38,6 +38,12 @@ public class playGame extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MainActivity.player.stop();
+    }
+
+    @Override
     public void onClick(View v) {
         Bundle bundle = new Bundle();
         MainActivity.player.setVolume(0.25f,0.25f);

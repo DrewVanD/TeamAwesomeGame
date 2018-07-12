@@ -21,6 +21,8 @@ public class storePage extends AppCompatActivity implements View.OnClickListener
         finish();
 
     }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MainActivity.player.setVolume(100,100);
